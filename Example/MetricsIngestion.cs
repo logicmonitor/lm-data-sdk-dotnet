@@ -42,6 +42,7 @@ namespace DemoDataSDK
             JArray values = (JArray)data["values"];
             var meta = data["meta"];
 
+            //Enter Account details using `export id=  api_key="" type=LMv1 Lm_company=`
             Authenticate authenticate = new Authenticate();
             authenticate.Id = Environment.GetEnvironmentVariable("id");
             authenticate.Key = Environment.GetEnvironmentVariable("api_key");

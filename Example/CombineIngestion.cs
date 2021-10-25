@@ -34,10 +34,12 @@ namespace StockMarketData
             resource = new Resource(name: "MarketData", ids: resourceIds, create: true);
 
             responseInterface = new MyResponse();
+
+            //Enter Account details using `export id=  api_key="" type=LMv1 Lm_company=`
             Authenticate authenticate = new Authenticate();
-            authenticate.Id = "xz5i6L7Pz44k4wAb4b5r";
-            authenticate.Key = "F972B{jWL-JI+Z}M=(aA~~=fcD(y[^993]pCyjS+";
-            authenticate.Type = "LMv1";
+            authenticate.Id = Environment.GetEnvironmentVariable("id");
+            authenticate.Key = Environment.GetEnvironmentVariable("api_key");
+            authenticate.Type = Environment.GetEnvironmentVariable("type");
             Configuration configuration = new Configuration(company: "lmaakashkhopade", authentication: authenticate);
             apiClients = new ApiClients(configuration); 
         }
@@ -96,7 +98,7 @@ namespace StockMarketData
             var Symbols = new List<string>();
             Symbols.Add("MSFT");
             Symbols.Add("AAPL");
-            string ApiKey = "";
+            string ApiKey = "";//twelvedata.com api key.
             string Format   = "json";
             string Interval = "1min";
             int OutputSize  = 30;

@@ -23,7 +23,7 @@ namespace LogicMonitor.DataSDK
     {
         ObjectNameValidator objectNameValidator;
         private bool asyncRequest;
-        private object _company;
+        private string _company;
         private string _host;
         public Authenticate authentication;
         public int ConnectionPoolMaxsize;
@@ -75,7 +75,7 @@ namespace LogicMonitor.DataSDK
                 this.asyncRequest = value;
             }
         }
-        public object company
+        public string company
         {
             get => this._company;
             set
@@ -110,7 +110,7 @@ namespace LogicMonitor.DataSDK
             return true;
         }
         
-        public object host
+        public string host
         {
             get
             {

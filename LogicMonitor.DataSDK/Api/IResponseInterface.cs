@@ -14,8 +14,8 @@ namespace LogicMonitor.DataSDK.Api
     /// </summary>
     public interface IResponseInterface
     {
-        public void SuccessCallback(RestRequest request, RestResponse response);
-        public void ErrorCallback(RestRequest request, RestResponse response);
+        public void SuccessCallback(RestResponse response);
+        public void ErrorCallback(RestResponse response);
     }
 }
 

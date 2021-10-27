@@ -21,9 +21,20 @@ namespace LogicMonitor.DataSDK
 {
     public class Rest
     {
+
+        public IRestClient client;
         SocketsHttpHandler poolManager;
-        public Rest(Configuration configuration, int maxSize, int poolSize = 4)
+
+        public Rest( Configuration configuration, int maxSize, int poolSize = 4, IRestClient restClient= default)
         {
+            if(restClient == default)
+            {
+                client = new RestClient(); 
+            }
+            else
+            {
+                client = restClient; 
+            }
             poolManager = new SocketsHttpHandler();
             if (maxSize == 0)
             {
@@ -32,7 +43,6 @@ namespace LogicMonitor.DataSDK
                 else
                     maxSize = 4;
             }
-            
         }
 
         public void Request(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams)
@@ -48,7 +58,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Get(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.GET;
             RestResponse response = (RestResponse)client.Execute(request);
@@ -57,7 +67,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Head(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.HEAD;
             RestResponse response = (RestResponse)client.Execute(request);
@@ -66,7 +76,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Options(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.OPTIONS;
             RestResponse response = (RestResponse)client.Execute(request);
@@ -75,7 +85,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Delete(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.DELETE;
             RestResponse response = (RestResponse)client.Execute(request);
@@ -84,7 +94,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Post(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.POST;
             headers.Add("X-Version", "2");
@@ -101,7 +111,7 @@ namespace LogicMonitor.DataSDK
 
         public RestResponse Put(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.PUT;
             request.AddHeaders(headers);
@@ -116,9 +126,9 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-        public RestResponse Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, Dictionary<string, string> postParams, TimeSpan requestTimeout)
+        public RestResponse Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams,  TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
         {
-            var client = new RestClient(url);
+            client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.PATCH;
             request.AddHeaders(headers);

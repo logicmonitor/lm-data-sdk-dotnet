@@ -1,24 +1,22 @@
 ﻿/*
  * Copyright, 2021, LogicMonitor, Inc.
- * This Source Code Form is subject to the terms of the 
- * Mozilla Public License, v. 2.0. If a copy of the MPL 
- * was not distributed with this file, You can obtain 
+ * This Source Code Form is subject to the terms of the
+ * Mozilla Public License, v. 2.0. If a copy of the MPL
+ * was not distributed with this file, You can obtain
  * one at https://mozilla.org/MPL/2.0/.
  */
 
 using System;
-using System.Collections;
 using RestSharp;
 using System.Collections.Generic;
 using LogicMonitor.DataSDK.Api;
 using System.Threading;
 using Microsoft.Extensions.Logging;
-using LogicMonitor.DataSDK.Model;
 using LogicMonitor.DataSDK.Client;
 
 namespace LogicMonitor.DataSDK.Internal
 {
-    
+
     public class BatchingCache
     {
         public static ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
@@ -39,15 +37,16 @@ namespace LogicMonitor.DataSDK.Internal
         public const char _PayloadTotal = 'T';
         public const char _PayloadException = 'E';
 
-  
+
         public static ApiClients ApiClient { get; set; }
         public int Interval { get; set; }
         public static bool Batch { get; set; }
         public static IResponseInterface ResponseCallback { get; set; }
 
-        private readonly Object _Lock = new Object();
+        private static readonly Object _Lock = new Object();
         public static Queue<string> rawRequest = new Queue<string>();
         public static List<string> PayloadCache = new List<string>();
+        public static List<string> Payload = new List<string>();
         public long _lastTimeSend;
         public long _lastTimeStat;
         public Dictionary<char, int> _Counter;
@@ -76,7 +75,7 @@ namespace LogicMonitor.DataSDK.Internal
 
             _lastTimeSend = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds()); //seconds since epoch
 
-            _hasRequest = new Semaphore(0, 40);
+            _hasRequest = new Semaphore(0, int.MaxValue);
             _lastTimeStat = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
             if (Batch == true)
             {
@@ -98,7 +97,7 @@ namespace LogicMonitor.DataSDK.Internal
         {
             return _hasRequest;
         }
-        public Queue<string> GetRequest()
+        public static Queue<string> GetRequest()
         {
             return rawRequest;
         }
@@ -108,11 +107,11 @@ namespace LogicMonitor.DataSDK.Internal
             return PayloadCache;
         }
 
-        private void MergeRequest()
+        private static void MergeRequest()
         {
             while (_hasRequest.WaitOne())
             {
-                if (GetRequest().Count > 0)
+                while (GetRequest().Count > 0)
                 {
                     var singleRequest = GetRequest().Dequeue();
                     lock (_Lock)
@@ -123,100 +122,80 @@ namespace LogicMonitor.DataSDK.Internal
             }
         }
 
-        private void DoRequest()
+        public void DoRequest()
         {
             while (true)
             {
-                var currentTime = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-                if (currentTime > (_lastTimeStat + 10))
+                lock (_Lock)
                 {
-                    PrintStat();
-                    _lastTimeStat = currentTime;
-                }
-                if (currentTime > (_lastTimeSend + Interval))
-                {
-                    try
+                    var currentTime = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+                    if (currentTime > (_lastTimeStat + 10))
                     {
-                        DoRequest(PayloadCache, path:Path);
-                        PayloadCache.Clear();
+                        PrintStat();
+                        _lastTimeStat = currentTime;
                     }
-                    catch (Exception ex)
+                    if (currentTime > (_lastTimeSend + Interval))
                     {
-                        _logger.LogError("Got exception"+ex);
-                    }
-                    _lastTimeSend = currentTime;
-                    
-                }
-                else
-                {
-                    Thread.Sleep(1000);
-                }
-            }
-        }
-
-        public static string CreateBatchBody(List<string> body)
-        {
-            string requestbody = "[";
-            if (body.Count != 0)
-            {
-                foreach (var item in body)
-                {
-                    requestbody += item.Substring(1, item.Length - 2) + ",";
-                }
-                requestbody = requestbody.Substring(0, requestbody.Length - 1) + "]";
-
-                return requestbody;
-            }
-            else return null;
-        }
-
-        public void DoRequest(List<string> body, string path)
-        {
-            List<string> restRequest = new List<string>();
-
-            var responseList = new List<RestResponse>();
-            lock (_Lock)
-            {
-                if (body.Count != 0)
-                {
-
-                    if (path.Contains("log"))
-                    {
-
-                        string requestbody = CreateBatchBody(body);
-                        if (requestbody != null)
+                        try
                         {
-                            RestResponse response = new RestResponse();
-                            try
+                            foreach (var item in PayloadCache)
                             {
-                                response = BatchingCache.MakeRequest(path: path, method: "POST", body: requestbody, create: true);
-                                responseList.Add(response);
+                                Payload.Add(item);
                             }
-                            catch (ApiException ex)
-                            {
-                                _logger.LogError("Got exception" + ex);
-                                BatchingCache.ResponseHandler(response: response);
-                            }
+                            //_logger.LogInformation(Payload.Count + " " + PayloadCache.Count);
+                            PayloadCache.Clear();
+                            DoRequest(Payload, path: Path);
+                            Payload.Clear();
                         }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError("Got exception" + ex);
+
+                        }
+                        _lastTimeSend = currentTime;
 
                     }
                     else
                     {
-                        foreach (var item in body)
+                        Thread.Sleep(1000);
+                    }
+
+                }
+            }
+        }
+        private void DoRequest(List<string> body, string path)
+        {
+            List<string> restRequest = new List<string>();
+
+            var responseList = new List<RestResponse>();
+            if (body.Count != 0)
+            {
+                lock (_Lock)
+                {
+                    foreach (var item in body)
+                    {
+
+                        var pathparam = item.Substring(0, 1);
+                        if (pathparam.Equals("M"))
                         {
+                            path = "/metric/ingest";
+                        }
+                        else
+                        {
+                            path = "/log/ingest";
 
-                            RestResponse response = new RestResponse();
-                            try
-                            {
-                                response = BatchingCache.MakeRequest(path: path, method: "POST", body: item, create: true);
-                                responseList.Add(response);
-                            }
-                            catch (ApiException ex)
-                            {
-                                _logger.LogError("Got exception" + ex);
-                                BatchingCache.ResponseHandler(response: response);
-                            }
-
+                        }
+                        string bodystring = item.Substring(1);
+                        RestResponse response = new RestResponse();
+                        try
+                        {
+                            response = MakeRequest(path: path, method: "POST", body: bodystring, create: true);
+                            responseList.Add(response);
+                        }
+                        catch (ApiException ex)
+                        {
+                            _logger.LogError("Got exception" + ex);
+                            BatchingCache.ResponseHandler(response: response);
                         }
                     }
                 }
@@ -244,36 +223,52 @@ namespace LogicMonitor.DataSDK.Internal
             _logger.LogDebug(smsg);
         }
 
-        public static void ResponseHandler(RestRequest request = default, RestResponse response = default)
+        public static void ResponseHandler(RestResponse response = default)
         {
             _logger.LogDebug("Response is {0}  {1}  \n{2}", response, response.StatusCode, response.Headers.ToString());
 
             try
             {
-                if (ResponseCallback != null )
+                if (ResponseCallback != null)
                 {
                     if ((int)response.StatusCode == 200 || (int)response.StatusCode == 202)
-                    ResponseCallback.SuccessCallback(request, response);
+                        ResponseCallback.SuccessCallback(response);
                     if ((int)response.StatusCode >= 300)
-                        ResponseCallback.ErrorCallback(request, response);
+                        ResponseCallback.ErrorCallback(response);
                 }
             }
-                
+
             catch (Exception ex)
             {
                 _logger.LogError("Got Exception in response callback {0}", Convert.ToString(ex));
             }
         }
 
-        public static void AddRequest(string body,string path)
+        public static void AddRequest(string body, string path)
         {
-            Path = path;
+            try
+            {
 
-            rawRequest.Enqueue(body);
-            //Semaphore release
-            _hasRequest.Release();
+                if (path.Contains("metric"))
+                {
+                    rawRequest.Enqueue("M" + body);
+
+                }
+
+                if (path.Contains("log"))
+                {
+                    rawRequest.Enqueue("L" + body);
+
+                }
+                //Semaphore release
+                _hasRequest.Release();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+            }
         }
-        public static RestResponse MakeRequest(string body, string path = default, string method = default, bool create = false, bool asyncRequest = false)
+        public RestResponse MakeRequest(string body, string path = default, string method = default, bool create = true, bool asyncRequest = false)
         {
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
             var collectionFormats = new Dictionary<string, string>();
@@ -298,9 +293,6 @@ namespace LogicMonitor.DataSDK.Internal
             headersParams.Add("Content-Type", ApiClient.SelectHeaderContentType("application/json"));
 
             var _responseType = "PushMetricAPIResponse";
-            bool _preloadContent = true;
-            if (_responseType == "file")
-                _preloadContent = false;
             return ApiClient.CallApi(
                 path,
                 method,
@@ -317,6 +309,5 @@ namespace LogicMonitor.DataSDK.Internal
                 collectionFormats: collectionFormats
                 );
         }
-       
     }
 }

@@ -48,6 +48,8 @@ namespace LogicMonitor.DataSDK.Model
         
         public Authenticate()
         {
+            this.Id = null;
+            this.Key = null;
         }
 
 

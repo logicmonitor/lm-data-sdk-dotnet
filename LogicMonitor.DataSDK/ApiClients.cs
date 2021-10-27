@@ -81,26 +81,10 @@ namespace LogicMonitor.DataSDK
             return response_data;
         }
 
-
-
-        
-
         public RestResponse CallApi(
-            string path,
-            string method,
-            TimeSpan _request_timeout,
-            Dictionary<string, string> pathParams = default,
-            Dictionary<string, string> queryParams = default,
-            Dictionary<string, string> headerParams = default,
-            string body = default,
-            Dictionary<string, string> post_params = default,
-            string files = null,
-            string responseType = null,
-            string authSetting = null,
-            bool asyncRequest = true,
-            bool _return_http_data_only = true,
-            Dictionary<string, string> collectionFormats = default,
-            Dictionary<string, string> _preload_content = default
+            string path,string method,TimeSpan _request_timeout,Dictionary<string, string> pathParams = default,Dictionary<string, string> queryParams = default,
+            Dictionary<string, string> headerParams = default,string body = default,Dictionary<string, string> post_params = default,string files = null,string responseType = null,string authSetting = null,bool asyncRequest = true,
+            bool _return_http_data_only = true,Dictionary<string, string> collectionFormats = default,Dictionary<string, string> _preload_content = default
             )
         {
             if (asyncRequest == false)
@@ -154,14 +138,6 @@ namespace LogicMonitor.DataSDK
             {
                 return rest_client.Get("GET", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
             }
-            else if (method == "HEAD")
-            { 
-                return rest_client.Head("HEAD", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
-            }
-            else if (method == "OPTIONS")
-            {
-                return this.rest_client.Options("OPTIONS", url, queryParams: queryParams, headers: headers, requestTimeout: _request_timeout, body: body);
-            }
             else if (method == "POST")
             {
 
@@ -182,7 +158,7 @@ namespace LogicMonitor.DataSDK
             }
             else
             {
-                throw new ArgumentException("http method must be `GET`, `HEAD`, `OPTIONS`, `POST`, `PATCH`, `PUT` or `DELETE`.");
+                throw new ArgumentException("http method must be `GET`, `POST`, `PATCH`, `PUT` or `DELETE`.");
             }
         }
 

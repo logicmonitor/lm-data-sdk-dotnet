@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace LogicMonitor.DataSDK.Tests
 {
     [TestFixture]
-    public class Tests
+    public class TestApiClients
     {
         Configuration configuration;
         ApiClients apiClients;
@@ -71,9 +71,17 @@ namespace LogicMonitor.DataSDK.Tests
             var headersParams = new Dictionary<String, string>();
             headersParams.Add("Accept", "application/json");
             headersParams.Add("Content-Type", "application/json");
-            var a = apiClients.Callapi(path: "/metric/ingest", method: "POST",_request_timeout: TimeSpan.FromMinutes(2), pathParams:pathParams,queryParams:queryParams,headerParams:headersParams);
+            var a = apiClients.Callapi(path: "/metric/ingest", method: "POST",_request_timeout: TimeSpan.FromMinutes(2),queryParams:queryParams,headerParams:headersParams);
             //Console.WriteLine(a.Content.ToString());
             Assert.Pass();
+        }
+
+        [TestCase("ABCD1234","body{}")]
+        public void TestHmacSHA256(string key, string data)
+        {
+            string expected = "097adf7cbbe4be168eabbf41032e1ae163bb709b7d45c4ae256fa66065367c49";
+            string actual = ApiClients.HmacSHA256(key, data);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

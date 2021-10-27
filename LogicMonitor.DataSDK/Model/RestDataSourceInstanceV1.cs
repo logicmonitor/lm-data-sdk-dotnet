@@ -20,7 +20,7 @@ namespace LogicMonitor.DataSDK.Model
     /// RestDataSourceInstanceV1
     /// </summary>
     [DataContract(Name = "RestDataSourceInstanceV1")]
-    public partial class RestDataSourceInstanceV1 : IEquatable<RestDataSourceInstanceV1>, IValidatableObject
+    public partial class RestDataSourceInstanceV1
     {
         public RestDataSourceInstanceV1()
         {
@@ -117,116 +117,6 @@ namespace LogicMonitor.DataSDK.Model
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RestDataSourceInstanceV1);
-        }
-
-        /// <summary>
-        /// Returns true if RestDataSourceInstanceV1 instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RestDataSourceInstanceV1 to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RestDataSourceInstanceV1 input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.DataPoints == input.DataPoints ||
-                    this.DataPoints != null &&
-                    input.DataPoints != null &&
-                    this.DataPoints.SequenceEqual(input.DataPoints)
-                ) && 
-                (
-                    this.InstanceDescription == input.InstanceDescription ||
-                    (this.InstanceDescription != null &&
-                    this.InstanceDescription.Equals(input.InstanceDescription))
-                ) && 
-                (
-                    this.InstanceDisplayName == input.InstanceDisplayName ||
-                    (this.InstanceDisplayName != null &&
-                    this.InstanceDisplayName.Equals(input.InstanceDisplayName))
-                ) && 
-                (
-                    this.InstanceGroup == input.InstanceGroup ||
-                    (this.InstanceGroup != null &&
-                    this.InstanceGroup.Equals(input.InstanceGroup))
-                ) && 
-                (
-                    this.InstanceId == input.InstanceId ||
-                    this.InstanceId.Equals(input.InstanceId)
-                ) && 
-                (
-                    this.InstanceName == input.InstanceName ||
-                    (this.InstanceName != null &&
-                    this.InstanceName.Equals(input.InstanceName))
-                ) && 
-                (
-                    this.InstanceProperties == input.InstanceProperties ||
-                    this.InstanceProperties != null &&
-                    input.InstanceProperties != null &&
-                    this.InstanceProperties.SequenceEqual(input.InstanceProperties)
-                ) && 
-                (
-                    this.InstanceWildValue == input.InstanceWildValue ||
-                    (this.InstanceWildValue != null &&
-                    this.InstanceWildValue.Equals(input.InstanceWildValue))
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.DataPoints != null)
-                    hashCode = hashCode * 59 + this.DataPoints.GetHashCode();
-                if (this.InstanceDescription != null)
-                    hashCode = hashCode * 59 + this.InstanceDescription.GetHashCode();
-                if (this.InstanceDisplayName != null)
-                    hashCode = hashCode * 59 + this.InstanceDisplayName.GetHashCode();
-                if (this.InstanceGroup != null)
-                    hashCode = hashCode * 59 + this.InstanceGroup.GetHashCode();
-                hashCode = hashCode * 59 + this.InstanceId.GetHashCode();
-                if (this.InstanceName != null)
-                    hashCode = hashCode * 59 + this.InstanceName.GetHashCode();
-                if (this.InstanceProperties != null)
-                    hashCode = hashCode * 59 + this.InstanceProperties.GetHashCode();
-                if (this.InstanceWildValue != null)
-                    hashCode = hashCode * 59 + this.InstanceWildValue.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

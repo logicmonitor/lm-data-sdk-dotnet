@@ -19,7 +19,7 @@ namespace LogicMonitor.DataSDK.Model
     /// RestMetricsV1
     /// </summary>
     [DataContract(Name = "RestMetricsV1")]
-    public partial class RestMetricsV1 : IEquatable<RestMetricsV1>, IValidatableObject
+    public partial class RestMetricsV1 
     {
 
         public RestMetricsV1()
@@ -124,125 +124,6 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  ResourceProperties: ").Append(ResourceProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RestMetricsV1);
-        }
-
-        /// <summary>
-        /// Returns true if RestMetricsV1 instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RestMetricsV1 to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RestMetricsV1 input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.DataSource == input.DataSource ||
-                    (this.DataSource != null &&
-                    this.DataSource.Equals(input.DataSource))
-                ) && 
-                (
-                    this.DataSourceDisplayName == input.DataSourceDisplayName ||
-                    (this.DataSourceDisplayName != null &&
-                    this.DataSourceDisplayName.Equals(input.DataSourceDisplayName))
-                ) && 
-                (
-                    this.DataSourceGroup == input.DataSourceGroup ||
-                    (this.DataSourceGroup != null &&
-                    this.DataSourceGroup.Equals(input.DataSourceGroup))
-                ) && 
-                (
-                    this.DataSourceId == input.DataSourceId ||
-                    this.DataSourceId.Equals(input.DataSourceId)
-                ) && 
-                (
-                    this.Instances == input.Instances ||
-                    this.Instances != null &&
-                    input.Instances != null &&
-                    this.Instances.SequenceEqual(input.Instances)
-                ) && 
-                (
-                    this.ResourceDescription == input.ResourceDescription ||
-                    (this.ResourceDescription != null &&
-                    this.ResourceDescription.Equals(input.ResourceDescription))
-                ) && 
-                (
-                    this.ResourceIds == input.ResourceIds ||
-                    this.ResourceIds != null &&
-                    input.ResourceIds != null &&
-                    this.ResourceIds.SequenceEqual(input.ResourceIds)
-                ) && 
-                (
-                    this.ResourceName == input.ResourceName ||
-                    (this.ResourceName != null &&
-                    this.ResourceName.Equals(input.ResourceName))
-                ) && 
-                (
-                    this.ResourceProperties == input.ResourceProperties ||
-                    this.ResourceProperties != null &&
-                    input.ResourceProperties != null &&
-                    this.ResourceProperties.SequenceEqual(input.ResourceProperties)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.DataSource != null)
-                    hashCode = hashCode * 59 + this.DataSource.GetHashCode();
-                if (this.DataSourceDisplayName != null)
-                    hashCode = hashCode * 59 + this.DataSourceDisplayName.GetHashCode();
-                if (this.DataSourceGroup != null)
-                    hashCode = hashCode * 59 + this.DataSourceGroup.GetHashCode();
-                hashCode = hashCode * 59 + this.DataSourceId.GetHashCode();
-                if (this.Instances != null)
-                    hashCode = hashCode * 59 + this.Instances.GetHashCode();
-                if (this.ResourceDescription != null)
-                    hashCode = hashCode * 59 + this.ResourceDescription.GetHashCode();
-                if (this.ResourceIds != null)
-                    hashCode = hashCode * 59 + this.ResourceIds.GetHashCode();
-                if (this.ResourceName != null)
-                    hashCode = hashCode * 59 + this.ResourceName.GetHashCode();
-                if (this.ResourceProperties != null)
-                    hashCode = hashCode * 59 + this.ResourceProperties.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

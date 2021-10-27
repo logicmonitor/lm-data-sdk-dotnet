@@ -19,7 +19,7 @@ namespace LogicMonitor.DataSDK.Model
     /// RestInstancePropertiesV1
     /// </summary>
     [DataContract(Name = "RestInstancePropertiesV1")]
-    public partial class RestInstancePropertiesV1 : IEquatable<RestInstancePropertiesV1>, IValidatableObject
+    public partial class RestInstancePropertiesV1
     {
         public RestInstancePropertiesV1()
         {
@@ -98,102 +98,6 @@ namespace LogicMonitor.DataSDK.Model
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RestInstancePropertiesV1);
-        }
-
-        /// <summary>
-        /// Returns true if RestInstancePropertiesV1 instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RestInstancePropertiesV1 to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RestInstancePropertiesV1 input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.DataSource == input.DataSource ||
-                    (this.DataSource != null &&
-                    this.DataSource.Equals(input.DataSource))
-                ) && 
-                (
-                    this.DataSourceDisplayName == input.DataSourceDisplayName ||
-                    (this.DataSourceDisplayName != null &&
-                    this.DataSourceDisplayName.Equals(input.DataSourceDisplayName))
-                ) && 
-                (
-                    this.InstanceId == input.InstanceId ||
-                    this.InstanceId.Equals(input.InstanceId)
-                ) && 
-                (
-                    this.InstanceName == input.InstanceName ||
-                    (this.InstanceName != null &&
-                    this.InstanceName.Equals(input.InstanceName))
-                ) && 
-                (
-                    this.InstanceProperties == input.InstanceProperties ||
-                    this.InstanceProperties != null &&
-                    input.InstanceProperties != null &&
-                    this.InstanceProperties.SequenceEqual(input.InstanceProperties)
-                ) && 
-                (
-                    this.ResourceIds == input.ResourceIds ||
-                    this.ResourceIds != null &&
-                    input.ResourceIds != null &&
-                    this.ResourceIds.SequenceEqual(input.ResourceIds)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.DataSource != null)
-                    hashCode = hashCode * 59 + this.DataSource.GetHashCode();
-                if (this.DataSourceDisplayName != null)
-                    hashCode = hashCode * 59 + this.DataSourceDisplayName.GetHashCode();
-                hashCode = hashCode * 59 + this.InstanceId.GetHashCode();
-                if (this.InstanceName != null)
-                    hashCode = hashCode * 59 + this.InstanceName.GetHashCode();
-                if (this.InstanceProperties != null)
-                    hashCode = hashCode * 59 + this.InstanceProperties.GetHashCode();
-                if (this.ResourceIds != null)
-                    hashCode = hashCode * 59 + this.ResourceIds.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

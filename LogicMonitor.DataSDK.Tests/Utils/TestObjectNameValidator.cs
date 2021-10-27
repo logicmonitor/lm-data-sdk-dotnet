@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using LogicMonitor.DataSDK.Utils;
 using NUnit.Framework;
 
-namespace Testing
+namespace TestingLogicMonitor.DataSDK.Tests.Utils
 {
     [TestFixture]
     public class TestObjectNameValidator
@@ -98,7 +98,7 @@ namespace Testing
 
         [TestCase("A123", "Name$")]
         [TestCase("123ABC", "Name ")]
-        [TestCase("ABC", "Name,:")] // check
+        [TestCase("ABC", "Name,:")]
         public void TestIsValidResourceName(string resourceName, string invalidResourceName)
         {
             Assert.AreEqual(true, o.IsValidResourceName(resourceName));
@@ -129,7 +129,6 @@ namespace Testing
             string actual = o.ValidateDataSourceName(name);
             Assert.AreEqual(expected, actual);
         }
-        //fail
 
         [TestCase("Data-Source")]
         public void TestDashDataSourceName(string name)
@@ -150,20 +149,18 @@ namespace Testing
             }
         }
 
-        //verify
         [Test, TestCaseSource(nameof(TestStringsProvider))]
         public void TestValidIstanceName(string name)
         {
             Assert.IsFalse(o.IsValidInstanceName(name));
         }
-        //verify
+        
         [Test, TestCaseSource(nameof(TestStringsProvider))]
         public void TestValidCompanyName(string name)
         {
             Assert.AreEqual(false, o.IsValidCompanyName(name));
         }
 
-        //verify
         [Test, TestCaseSource(nameof(TestStringsProvider))]
         public void ValidateDeviceDisplayName(string name)
         {
@@ -214,7 +211,6 @@ namespace Testing
             string actual = o.ValidateDataSourceName(name);
             Assert.AreEqual(expected, actual);
         }
-        //fail
 
         [TestCase("Data-Source")]
         public void TestDashDataSourceDisplayName(string name)

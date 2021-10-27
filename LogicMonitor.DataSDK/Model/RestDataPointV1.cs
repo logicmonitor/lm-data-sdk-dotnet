@@ -20,7 +20,7 @@ namespace LogicMonitor.DataSDK.Model
     /// RestDataPointV1
     /// </summary>
     [DataContract(Name = "RestDataPointV1")]
-    public partial class RestDataPointV1 : IEquatable<RestDataPointV1>, IValidatableObject
+    public partial class RestDataPointV1
     {
         public RestDataPointV1()
         {
@@ -90,96 +90,6 @@ namespace LogicMonitor.DataSDK.Model
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RestDataPointV1);
-        }
-
-        /// <summary>
-        /// Returns true if RestDataPointV1 instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RestDataPointV1 to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RestDataPointV1 input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.DataPointAggregationType == input.DataPointAggregationType ||
-                    (this.DataPointAggregationType != null &&
-                    this.DataPointAggregationType.Equals(input.DataPointAggregationType))
-                ) && 
-                (
-                    this.DataPointDescription == input.DataPointDescription ||
-                    (this.DataPointDescription != null &&
-                    this.DataPointDescription.Equals(input.DataPointDescription))
-                ) && 
-                (
-                    this.DataPointName == input.DataPointName ||
-                    (this.DataPointName != null &&
-                    this.DataPointName.Equals(input.DataPointName))
-                ) && 
-                (
-                    this.DataPointType == input.DataPointType ||
-                    (this.DataPointType != null &&
-                    this.DataPointType.Equals(input.DataPointType))
-                ) && 
-                (
-                    this.Values == input.Values ||
-                    this.Values != null &&
-                    input.Values != null &&
-                    this.Values.SequenceEqual(input.Values)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.DataPointAggregationType != null)
-                    hashCode = hashCode * 59 + this.DataPointAggregationType.GetHashCode();
-                if (this.DataPointDescription != null)
-                    hashCode = hashCode * 59 + this.DataPointDescription.GetHashCode();
-                if (this.DataPointName != null)
-                    hashCode = hashCode * 59 + this.DataPointName.GetHashCode();
-                if (this.DataPointType != null)
-                    hashCode = hashCode * 59 + this.DataPointType.GetHashCode();
-                if (this.Values != null)
-                    hashCode = hashCode * 59 + this.Values.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

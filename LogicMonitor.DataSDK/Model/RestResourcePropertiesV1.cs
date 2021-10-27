@@ -19,7 +19,7 @@ namespace LogicMonitor.DataSDK.Model
     /// RestResourcePropertiesV1
     /// </summary>
     [DataContract(Name = "RestResourcePropertiesV1")]
-    public partial class RestResourcePropertiesV1 : IEquatable<RestResourcePropertiesV1>, IValidatableObject
+    public partial class RestResourcePropertiesV1
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RestResourcePropertiesV1" /> class.
@@ -67,83 +67,6 @@ namespace LogicMonitor.DataSDK.Model
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
-        {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
-        /// <summary>
-        /// Returns true if objects are equal
-        /// </summary>
-        /// <param name="input">Object to be compared</param>
-        /// <returns>Boolean</returns>
-        public override bool Equals(object input)
-        {
-            return this.Equals(input as RestResourcePropertiesV1);
-        }
-
-        /// <summary>
-        /// Returns true if RestResourcePropertiesV1 instances are equal
-        /// </summary>
-        /// <param name="input">Instance of RestResourcePropertiesV1 to be compared</param>
-        /// <returns>Boolean</returns>
-        public bool Equals(RestResourcePropertiesV1 input)
-        {
-            if (input == null)
-                return false;
-
-            return 
-                (
-                    this.ResourceIds == input.ResourceIds ||
-                    this.ResourceIds != null &&
-                    input.ResourceIds != null &&
-                    this.ResourceIds.SequenceEqual(input.ResourceIds)
-                ) && 
-                (
-                    this.ResourceName == input.ResourceName ||
-                    (this.ResourceName != null &&
-                    this.ResourceName.Equals(input.ResourceName))
-                ) && 
-                (
-                    this.ResourceProperties == input.ResourceProperties ||
-                    this.ResourceProperties != null &&
-                    input.ResourceProperties != null &&
-                    this.ResourceProperties.SequenceEqual(input.ResourceProperties)
-                );
-        }
-
-        /// <summary>
-        /// Gets the hash code
-        /// </summary>
-        /// <returns>Hash code</returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hashCode = 41;
-                if (this.ResourceIds != null)
-                    hashCode = hashCode * 59 + this.ResourceIds.GetHashCode();
-                if (this.ResourceName != null)
-                    hashCode = hashCode * 59 + this.ResourceName.GetHashCode();
-                if (this.ResourceProperties != null)
-                    hashCode = hashCode * 59 + this.ResourceProperties.GetHashCode();
-                return hashCode;
-            }
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
 }

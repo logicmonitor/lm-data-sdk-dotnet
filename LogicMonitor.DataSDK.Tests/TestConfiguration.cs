@@ -16,8 +16,6 @@ namespace LogicMonitor.DataSDK.Tests
     [TestFixture]
     public class TestConfiguration
     {
-        Configuration configuration;
-        ApiClients apiClients;
         Authenticate authentication;
 
         Configuration config = new Configuration();

@@ -6,10 +6,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestLogV1
     {
-        string message = "msg";
-        Dictionary<string, string> resourceIds;
-        string timeStamp;
-        Dictionary<string, string> metaData;
 
         [Test]
         public void TestLogsV1Constructor()
@@ -26,6 +22,9 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestLogsV1()
         {
+            Dictionary<string, string> resourceIds = new Dictionary<string, string>();
+            Dictionary<string, string> metaData = new Dictionary<string, string>();
+            string timeStamp = "1321123432";
             LogsV1 a = new LogsV1("msg", resourceIds, timeStamp, metaData);
             a.Message = "msg";
             Assert.AreEqual("msg", a.Message);

@@ -32,7 +32,7 @@ namespace LogicMonitor.DataSDK
 
             if (configuration == null)
                 configuration = new Configuration();
-
+            this.maxSize = 10;
             this.configuration = configuration;
             this.rest_client = new Rest(configuration, maxSize);
             // Set default API version

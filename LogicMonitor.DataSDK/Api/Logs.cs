@@ -30,7 +30,7 @@ namespace LogicMonitor.DataSDK.Api
         /// </summary>
         /// <param name="message">Log Message.</param>
         /// <param name="resource">Resource object.</param>
-        public void SendLogs(string message, Resource resource,Dictionary<string,string> metadata = default)
+        public RestResponse SendLogs(string message, Resource resource,Dictionary<string,string> metadata = default)
         {
             LogsV1 logs = new LogsV1(message: message, resourceIds: resource.Ids, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), metaData: metadata);
 

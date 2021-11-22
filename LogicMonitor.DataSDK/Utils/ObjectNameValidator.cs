@@ -33,7 +33,7 @@ namespace LogicMonitor.DataSDK.Utils
         public const string RegexAuthId                       = "^[a-zA-Z0-9]+$";
         public const string RegexAuthKey                      = "\\s";
         public const string RegexDataSourceId9Digit           = "^[0-9]{0,9}$";
-        public const string RegexDataSourceIdExpo             = "^-?[0-9]*e\\^-?[0-9]*x$";
+        public const string RegexDataSourceIdExpo             = @"^e\^\-?\d*?$";
 
         private readonly Regex PatternResourceName = new Regex(RegexResourceName);
         private readonly Regex PatternInvalidResourceName = new Regex(RegexInvalidResourceName);
@@ -167,7 +167,12 @@ namespace LogicMonitor.DataSDK.Utils
 
         public bool IsValidDataSourceDisplayName(string name)
         {
-            return Convert.ToBoolean(ValidateDataSourceDisplayName(name)); //Need to check
+            var errormsg = ValidateDataSourceDisplayName(name); //Need to check
+
+            if (errormsg.Length == 0)
+                return true;
+            else
+                return false;
         }
 
         public string ValidateDataSourceDisplayName(string name)
@@ -176,8 +181,6 @@ namespace LogicMonitor.DataSDK.Utils
                 return "Datasource display name cannot be empty";
             if (name.Contains("-") && (name.IndexOf("-") == (name.Length - 1)))
             {
-                
-                
                     if (name.Length == 1)
                         return "Datasource display name cannot be single \"-\"";
                     name = name.Replace(" -", "");
@@ -465,7 +468,7 @@ namespace LogicMonitor.DataSDK.Utils
 
             if(IsValidDataSourceId9Digit(dataSourceId) == false)
                 errorMsg.Append("DataSource Id cannot be more than 9 digit");
-            if(IsValidDataSourceIdExpo(dataSourceId) == false)
+            if(IsValidDataSourceIdExpo(dataSourceId) == true)
                 errorMsg.Append("DataSource Id cannot be in Exponential form");
             return errorMsg.ToString();
         }

@@ -338,10 +338,10 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             bool actual = o.IsValidDataSourceDisplayName(dsname);
             Assert.AreEqual(expected, actual);
         }
-        [TestCase("")]
+        [TestCase(" ")]
         public void TestEmptyIsValidDataSourceDisplayName(string dsname)
         {
-            bool expected = true;
+            bool expected = false;
             bool actual = o.IsValidDataSourceDisplayName(dsname);
             Assert.AreEqual(expected, actual);
         }
@@ -350,7 +350,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         public void TestCheckInstanceDisplayNameValidationGreaterThan255()
         {
             String name = new String('a', 256);
-            Assert.AreEqual("Datapoint description should not be greater than 255 characters.", o.CheckInstanceDisplayNameValidation(name));
+            Assert.AreEqual("Instance display name size should not be greater than 255 characters.", o.CheckInstanceDisplayNameValidation(name));
         }
     }
 }

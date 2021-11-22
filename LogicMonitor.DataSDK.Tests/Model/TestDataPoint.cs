@@ -7,7 +7,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestDataPoint
     {
-        DataPoint a = new DataPoint("sum","desc","name","type");
+        DataPoint a = new DataPoint(name:"name");
         ObjectNameValidator objectNameValidator = new ObjectNameValidator();
         public string Name;
         public string AggregationType;

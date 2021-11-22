@@ -12,6 +12,8 @@ using RestSharp;
 using System;
 using LogicMonitor.DataSDK.Model;
 using System.Collections.Generic;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace LogicMonitor.DataSDK.Tests
 {
@@ -19,7 +21,7 @@ namespace LogicMonitor.DataSDK.Tests
     public class TestApiClients
     {
         Configuration configuration;
-        ApiClients apiClients;
+        ApiClient apiClients;
 
 
         [SetUp]
@@ -30,7 +32,7 @@ namespace LogicMonitor.DataSDK.Tests
             authenticate.Key = "F972B{jWL-JI+Z}M=(aA~~=fcD(y[^993]pCyjS+";
             authenticate.Type = "LMv1";
             configuration = new Configuration(company: "lmaakashkhopade", authentication: authenticate);
-            apiClients = new ApiClients(configuration);
+            apiClients = new ApiClient(configuration);
         }
 
         [Test]
@@ -80,8 +82,36 @@ namespace LogicMonitor.DataSDK.Tests
         public void TestHmacSHA256(string key, string data)
         {
             string expected = "097adf7cbbe4be168eabbf41032e1ae163bb709b7d45c4ae256fa66065367c49";
-            string actual = ApiClients.HmacSHA256(key, data);
+            string actual = ApiClient.HmacSHA256(key, data);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("ABCD1234", "body{}")]
+        public void TestToHexString(string key, string data)
+        {
+            string expected = "097adf7cbbe4be168eabbf41032e1ae163bb709b7d45c4ae256fa66065367c49";
+            string actual;
+            ASCIIEncoding encoder = new ASCIIEncoding();
+            var code = System.Text.Encoding.UTF8.GetBytes(key);
+            using (HMACSHA256 hmac = new HMACSHA256(code))
+            {
+                Byte[] hmBytes = hmac.ComputeHash(encoder.GetBytes(data));
+                actual = ApiClient.ToHexString(hmBytes);
+
+            }
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TestUpdate_params_for_auth()
+        {
+            Dictionary<string, string> header = new Dictionary<string, string>();
+            header.Add("ads", "sdsa");
+            Dictionary<string, string> query = new Dictionary<string, string>();
+            query.Add("ads", "sdsa");
+            Console.WriteLine(header.Count);
+            var authcheck = apiClients.Update_params_for_auth(method: "POST", querys: query, auth_settings: "LMv1", resource_path: "/metric/ingest", body: "body{}", headers: header);
+            Assert.AreEqual(true, authcheck);
         }
     }
 }

@@ -12,14 +12,13 @@ using System.Collections.Generic;
 using LogicMonitor.DataSDK.Api;
 using System.Threading;
 using Microsoft.Extensions.Logging;
-using LogicMonitor.DataSDK.Client;
 
 namespace LogicMonitor.DataSDK.Internal
 {
 
     public class BatchingCache
     {
-        public static ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
                 .AddFilter("Microsoft", LogLevel.Warning)
@@ -28,7 +27,7 @@ namespace LogicMonitor.DataSDK.Internal
                 .AddConsole();
         });
 
-        public static ILogger _logger = loggerFactory.CreateLogger<BatchingCache>();
+        public static readonly ILogger _logger = loggerFactory.CreateLogger<BatchingCache>();
         public const int _DefaultQueue = 100;
         public const char _AddRequest = 'A';
         public const char _MergeRequest = 'M';
@@ -38,31 +37,29 @@ namespace LogicMonitor.DataSDK.Internal
         public const char _PayloadException = 'E';
 
 
-        public static ApiClients ApiClient { get; set; }
+        public static ApiClient ApiClient { get; set; }
         public int Interval { get; set; }
         public static bool Batch { get; set; }
         public static IResponseInterface ResponseCallback { get; set; }
 
-        private static readonly Object _Lock = new Object();
-        public static Queue<string> rawRequest = new Queue<string>();
-        public static List<string> PayloadCache = new List<string>();
-        public static List<string> Payload = new List<string>();
-        public long _lastTimeSend;
-        public long _lastTimeStat;
-        public Dictionary<char, int> _Counter;
-        public Dictionary<char, int> _RequestCounter;
-        public Thread mergeThread;
-        public Thread requestThread;
-        public static Semaphore _hasRequest;
-        private static string Path { get; set; }
+        private  readonly Object _Lock = new Object();
+        public Queue<string> rawRequest = new Queue<string>();
+        public List<string> PayloadCache = new List<string>();
+        private List<string> Payload = new List<string>();
+        private long _lastTimeSend;
+        private long _lastTimeStat;
+        private Thread mergeThread;
+        private Thread requestThread;
+        private Semaphore _hasRequest;
+        private  string Path { get; set; }
 
         public BatchingCache()
         {
         }
-        public BatchingCache(ApiClients apiClient = default, int interval = default, bool batch = default, IResponseInterface responseCallback = default)
+        public BatchingCache(ApiClient apiClient , int interval = 0, bool batch = false, IResponseInterface responseCallback = default)
         {
             if (apiClient == null)
-                apiClient = new ApiClients();
+                apiClient = new ApiClient();
 
             ApiClient = apiClient;
             this.Interval = interval;
@@ -77,7 +74,7 @@ namespace LogicMonitor.DataSDK.Internal
 
             _hasRequest = new Semaphore(0, int.MaxValue);
             _lastTimeStat = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-            if (Batch == true)
+            if (Batch)
             {
                 mergeThread = new Thread(MergeRequest);
                 mergeThread.IsBackground = true;
@@ -97,17 +94,17 @@ namespace LogicMonitor.DataSDK.Internal
         {
             return _hasRequest;
         }
-        public static Queue<string> GetRequest()
+        public  Queue<string> GetRequest()
         {
             return rawRequest;
         }
 
-        public static List<string> GetPayload()
+        public  List<string> GetPayload()
         {
             return PayloadCache;
         }
 
-        private static void MergeRequest()
+        public void MergeRequest()
         {
             while (_hasRequest.WaitOne())
             {
@@ -142,7 +139,6 @@ namespace LogicMonitor.DataSDK.Internal
                             {
                                 Payload.Add(item);
                             }
-                            //_logger.LogInformation(Payload.Count + " " + PayloadCache.Count);
                             PayloadCache.Clear();
                             DoRequest(Payload, path: Path);
                             Payload.Clear();
@@ -165,8 +161,6 @@ namespace LogicMonitor.DataSDK.Internal
         }
         private void DoRequest(List<string> body, string path)
         {
-            List<string> restRequest = new List<string>();
-
             var responseList = new List<RestResponse>();
             if (body.Count != 0)
             {
@@ -192,7 +186,7 @@ namespace LogicMonitor.DataSDK.Internal
                             response = MakeRequest(path: path, method: "POST", body: bodystring, create: true);
                             responseList.Add(response);
                         }
-                        catch (ApiException ex)
+                        catch (Exception ex)
                         {
                             _logger.LogError("Got exception" + ex);
                             BatchingCache.ResponseHandler(response: response);
@@ -244,7 +238,7 @@ namespace LogicMonitor.DataSDK.Internal
             }
         }
 
-        public static void AddRequest(string body, string path)
+        public void AddRequest(string body, string path)
         {
             try
             {
@@ -255,7 +249,7 @@ namespace LogicMonitor.DataSDK.Internal
 
                 }
 
-                if (path.Contains("log"))
+                else if (path.Contains("log"))
                 {
                     rawRequest.Enqueue("L" + body);
 
@@ -268,45 +262,31 @@ namespace LogicMonitor.DataSDK.Internal
                 _logger.LogError(e.Message);
             }
         }
-        public RestResponse MakeRequest(string body, string path = default, string method = default, bool create = true, bool asyncRequest = false)
+        public RestResponse MakeRequest(string body, string path = default, string method = default, bool create = false, bool asyncRequest = false)
         {
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
-            var collectionFormats = new Dictionary<string, string>();
-            Dictionary<string, string> pathParams = new Dictionary<string, string>();
             var queryParams = new Dictionary<string, string>();
 
-            if (create == true && path == "/metric/ingest")
+            if (create && path == "/metric/ingest")
             {
                 queryParams.Add("create", "true");
             }
-
             var headersParams = new Dictionary<String, string>();
             string authSetting = "LMv1";
-
-            var formParams = new Dictionary<string, string>();
-            string localVarFiles = "";
-
             if (ApiClient == null)
-                ApiClient = new ApiClients();
+                ApiClient = new ApiClient();
 
             headersParams.Add("Accept", ApiClient.SelectHeaderAccept("application/json"));
             headersParams.Add("Content-Type", ApiClient.SelectHeaderContentType("application/json"));
 
-            var _responseType = "PushMetricAPIResponse";
             return ApiClient.CallApi(
                 path,
                 method,
                 _request_timeout,
-                pathParams: pathParams,
                 queryParams,
                 headersParams,
                 body: body,
-                post_params: formParams,
-                files: localVarFiles,
-                responseType: _responseType,
-                authSetting: authSetting,
-                asyncRequest: asyncRequest,
-                collectionFormats: collectionFormats
+                authSetting: authSetting
                 );
         }
     }

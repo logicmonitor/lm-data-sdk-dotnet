@@ -38,7 +38,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="resourceIds">resourceIds.</param>
         /// <param name="resourceName">resourceName.</param>
         /// <param name="resourceProperties">resourceProperties.</param>
-        public RestMetricsV1(string dataSource = default(string), string dataSourceDisplayName = default(string), string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>))
+        public RestMetricsV1(string dataSource , string dataSourceDisplayName , string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>))
         {
             this.DataSource = dataSource;
             this.DataSourceDisplayName = dataSourceDisplayName;
@@ -117,12 +117,27 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  DataSourceDisplayName: ").Append(DataSourceDisplayName).Append("\n");
             sb.Append("  DataSourceGroup: ").Append(DataSourceGroup).Append("\n");
             sb.Append("  DataSourceId: ").Append(DataSourceId).Append("\n");
-            sb.Append("  Instances: ").Append(Instances).Append("\n");
-            sb.Append("  ResourceDescription: ").Append(ResourceDescription).Append("\n");
-            sb.Append("  ResourceIds: ").Append(ResourceIds).Append("\n");
-            sb.Append("  ResourceName: ").Append(ResourceName).Append("\n");
-            sb.Append("  ResourceProperties: ").Append(ResourceProperties).Append("\n");
+            sb.Append("  Instances{ ");
+            foreach (var item in Instances)
+            {
+                if (item != null)
+                    sb.Append(item.ToString());
+            }
             sb.Append("}\n");
+            sb.Append("  ResourceDescription: ").Append(ResourceDescription).Append("\n");
+            sb.Append("  ResourceIds{\n");
+            foreach (var item in ResourceIds)
+            {
+                sb.Append("   "+item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
+            sb.Append("  ResourceName: ").Append(ResourceName).Append("\n");
+            sb.Append("  ResourceProperties{\n");
+            foreach (var item in ResourceProperties)
+            {
+                sb.Append("   "+item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n"); sb.Append("}\n");
             return sb.ToString();
         }
     }

@@ -32,8 +32,8 @@ namespace LogicMonitor.DataSDK.Tests.Model
         {
             Authenticate a = new Authenticate();
            
-            Assert.AreEqual(a.Id,null);
-            Assert.AreEqual(a.Key, null);
+            Assert.AreEqual(null,a.Id);
+            Assert.AreEqual(null,a.Id);
 
         }
 
@@ -58,7 +58,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
             }
             catch (Exception e)
             {
-                Assert.AreEqual(e.Message, "Type must be 'LMv1' or 'Bearer' ");
+                Assert.AreEqual("Type must be 'LMv1' or 'Bearer' ",e.Message);
             }
         }
     }

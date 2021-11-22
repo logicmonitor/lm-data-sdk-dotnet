@@ -7,12 +7,11 @@
  */
  
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using LogicMonitor.DataSDK.Utils;
 using LogicMonitor.DataSDK.Model;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace LogicMonitor.DataSDK
 {
@@ -21,19 +20,17 @@ namespace LogicMonitor.DataSDK
    /// </summary>
     public class Configuration
     {
-        ObjectNameValidator objectNameValidator;
-        private bool asyncRequest;
+        private readonly ObjectNameValidator objectNameValidator;
         private string _company;
         private string _host;
         public Authenticate authentication;
         public int ConnectionPoolMaxsize;
-        public bool AppendToFile { get; set; }
-
         public Configuration() { }
 
         public Configuration(string company, Authenticate authentication)
         {
             objectNameValidator = new ObjectNameValidator();
+            StringBuilder sb = new StringBuilder();
             ValidationContext validationContext = new ValidationContext(authentication);
             List<ValidationResult> validationResults = new List<ValidationResult>();
             var valid = Validator.TryValidateObject(authentication, validationContext, validationResults);
@@ -41,8 +38,10 @@ namespace LogicMonitor.DataSDK
             {
                 foreach (ValidationResult validationResult in validationResults)
                 {
-                    throw new ArgumentException(validationResult.ErrorMessage);
+                    sb.Append(validationResult.ErrorMessage);
                 }
+                throw new ArgumentException(sb.ToString());
+
             }
 
             company = company ?? Convert.ToString(Environment.GetEnvironmentVariable("LM_COMPANY"));
@@ -60,21 +59,9 @@ namespace LogicMonitor.DataSDK
             this._company = company;
             this.authentication = authentication;
             this._host = "https://" + this._company + ".logicmonitor.com/rest";
-            
-            this.asyncRequest = false;
             this.ConnectionPoolMaxsize = Environment.ProcessorCount * 5;
         }
-        public bool AsyncRequest
-        {
-            get
-            {
-                return this.asyncRequest;
-            }
-            set
-            {
-                this.asyncRequest = value;
-            }
-        }
+        public bool AsyncRequest {get;set; }
         public string company
         {
             get => this._company;
@@ -85,12 +72,11 @@ namespace LogicMonitor.DataSDK
             }
         }
 
-
         public bool  check_authentication(Authenticate authentication)
         {
             if(authentication.Type == "LMv1")
             {
-                if (authentication == null || !(authentication is Authenticate) || authentication.Id == null || authentication.Key == null)
+                if ( authentication.Id.Equals(null) || authentication.Key.Equals(null))
                 {
                     throw new ArgumentException("Authenticate must provide the `id` and `key`");
                 }
@@ -100,12 +86,10 @@ namespace LogicMonitor.DataSDK
                 }
             }
 
-            if (authentication.Type == "Bearer")
+            if (authentication.Type == "Bearer" && authentication.Key == null)
             {
-                if (authentication == null || !(authentication is Authenticate) ||  authentication.Key == null)
-                {
+               
                     throw new ArgumentException("Authenticate must provide Bearer Token");
-                }
             }
             return true;
         }
@@ -119,13 +103,5 @@ namespace LogicMonitor.DataSDK
         }
        
         public PlatformID Platform { get; }
-        static void to_debug_report(PlatformID pID, Version ver)
-        {
-            OperatingSystem opSys = new OperatingSystem(pID, ver);
-            PlatformID platform = opSys.Platform;
-            Version version = opSys.Version;
-            Console.WriteLine("   Platform: {0,-15} Version: {1}",
-                platform, version);
-        }
     }
 }

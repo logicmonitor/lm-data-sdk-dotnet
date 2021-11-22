@@ -60,9 +60,20 @@ namespace LogicMonitor.DataSDK.Model
         {
             var sb = new StringBuilder();
             sb.Append("class RestResourcePropertiesV1 {\n");
-            sb.Append("  ResourceIds: ").Append(ResourceIds).Append("\n");
+
+            sb.Append("  RestResourcePropertiesV1{\n");
+            foreach (var item in ResourceProperties)
+            {
+                sb.Append("   "+item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
+            sb.Append("  ResourceIds{\n");
+            foreach (var item in ResourceIds)
+            {
+                sb.Append("   "+item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("  ResourceName: ").Append(ResourceName).Append("\n");
-            sb.Append("  ResourceProperties: ").Append(ResourceProperties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

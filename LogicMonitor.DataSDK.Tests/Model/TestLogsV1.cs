@@ -12,11 +12,11 @@ namespace LogicMonitor.DataSDK.Tests.Model
         {
             LogsV1 a = new LogsV1();
 
-            Assert.AreEqual(a.Message, null);
-            Assert.AreEqual(a.Body, null);
-            Assert.AreEqual(a.Timestamp, null);
-            Assert.AreEqual(a.MetaData, null);
-            Assert.AreEqual(a.ResourceId, null);
+            Assert.AreEqual(null,a.Message);
+            Assert.AreEqual(null, a.Body);
+            Assert.AreEqual(null, a.Timestamp);
+            Assert.AreEqual(null, a.MetaData);
+            Assert.AreEqual(null, a.ResourceId);
         }
 
         [Test]

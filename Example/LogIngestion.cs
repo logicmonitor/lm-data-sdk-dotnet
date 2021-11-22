@@ -5,93 +5,61 @@
  * was not distributed with this file, You can obtain 
  * one at https://mozilla.org/MPL/2.0/.
  */
- 
-using System;
-using System.Collections.Generic;
-using LogicMonitor.DataSDK.Model;
-using LogicMonitor.DataSDK;
-using LogicMonitor.DataSDK.Api;
-using RestSharp;
-using System.Threading;
-using Newtonsoft.Json.Linq;
 
-namespace LogsDemo
+using System;
+using LogicMonitor.DataSDK.Model;
+using LogicMonitor.DataSDK.Api;
+using LogicMonitor.DataSDK;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net;
+using RestSharp;
+
+namespace Demo
 {
     class Program
     {
         static void Main(string[] args)
+
         {
-            double previous;
-            double current = 0;
-            string logMessage;
-            string Format = "json";
-            string Interval = "1min";
-            int OutputSize = 30;
-            string symbol = "AaPL";
-            string ApiKey = ""; //twelvedata.com api key.
+            var resourceName = Dns.GetHostName();
+            var temp = Process.GetCurrentProcess();
+            var startTime = DateTime.UtcNow;
+            var startCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
+            var endTime = DateTime.UtcNow;
+            var endCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
+            var cpuUsedMs = (endCpuUsage - startCpuUsage).TotalMilliseconds;
+            var totalMsPassed = (endTime - startTime).TotalMilliseconds;
 
-            //Receiving data from twelvedata.com 
-            //This will act as datasource which will be send data to server.
-            string url = string.Format("https://api.twelvedata.com/time_series?symbol={0}&format={1}&interval={2}&outputsize={3}&apikey={4}",
-                symbol
-                , Format
-                , Interval
-                , OutputSize
-                , ApiKey);
-            var client = new RestClient(url);
-            var request = new RestRequest(Method.GET);
-            RestResponse response = (RestResponse)client.Execute(request);
-            JObject data = JObject.Parse(response.Content);
-            JArray values = (JArray)data["values"];
-            var meta = data["meta"];
-
-            //Enter Account details using `export id=  api_key="" type=LMv1 Lm_company=`
             Authenticate authenticate = new Authenticate();
             authenticate.Id = Environment.GetEnvironmentVariable("id");
             authenticate.Key = Environment.GetEnvironmentVariable("api_key");
-            authenticate.Type = Environment.GetEnvironmentVariable("type");
-            Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("Lm_company"), authentication: authenticate);
+            authenticate.Type = Environment.GetEnvironmentVariable("LMv1");
+            Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("company"), authentication: authenticate);
 
             ApiClients apiClients = new ApiClients(configuration);
-
-            MyResponse responseInterface = new MyResponse();
-            string resourceName = meta.SelectToken("exchange").ToString();
-            string dataSourceName = meta.SelectToken("symbol").ToString();
+            
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
-            resourceIds.Add("system.displayname", "MarketMetrics");
+            resourceIds.Add("system.displayname", resourceName.ToString());
+            MyResponse responseInterface = new MyResponse();
+            Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
 
-            Resource resource = new Resource(name: resourceName, ids: resourceIds);
+            Logs logs = new Logs(batchs: false, intervals: 0, responseCallbacks: responseInterface, apiClients: apiClients);
+            string msg =  "Program function  has CPU Usage " + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+" Milliseconds";
+            logs.SendLogs(message: msg, resource: resource);
 
-            Logs logs = new Logs(batchs: false, intervals: 0, apiClients: apiClients);
-            foreach (var item in values)
-            {
-                previous = Convert.ToDouble(item.SelectToken("open"));
-                if (current == 0)
-                    logMessage = (string.Format(" Monitoring Stock: {0} ", dataSourceName));
-                else if (previous - current > 0)
-                    logMessage = (string.Format(" The {0} is Bearish in {1} inteval.", dataSourceName, Interval));
-                else if (previous - current < 0)
-                    logMessage = (string.Format(" The {0} is Bullish in {1} inteval.", dataSourceName, Interval));
-                else
-                    logMessage = (string.Format(" The {0} is Consoladating in {1} inteval.", dataSourceName, Interval));
-
-                current = previous;
-                //Invokes RestApi Request for log ingestion.
-                logs.SendLogs(message: logMessage, resource: resource);
-            }
         }
     }
-
     class MyResponse : IResponseInterface
     {
-       public void ErrorCallback(RestResponse response)
-       {
-           Console.WriteLine("ErrorCallback");
-       }
+        public void ErrorCallback(RestResponse response)
+        {
+            Console.WriteLine("Custom message for ErrorCallback");
+        }
 
-       public void SuccessCallback(RestResponse response)
-       {
-           Console.WriteLine("SuccessCallback");
-       }
+        public void SuccessCallback( RestResponse response)
+        {
+            Console.WriteLine("Custom message for SuccessCallback");
+        }
     }
 }

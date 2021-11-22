@@ -21,8 +21,8 @@ namespace LogicMonitor.DataSDK.Api
 
         }
 
-        public Logs(bool batchs = default, int intervals = default, IResponseInterface responseCallbacks = default,
-            ApiClients apiClients = default) : base(apiClient: apiClients, interval: intervals, batch: batchs, responseCallback: responseCallbacks)
+        public Logs(bool batch , int interval = default, IResponseInterface responseCallback = default,
+            ApiClient apiClient = default) : base(apiClient: apiClient, interval: interval, batch: batch, responseCallback: responseCallback)
         {
 
         }
@@ -35,7 +35,7 @@ namespace LogicMonitor.DataSDK.Api
             LogsV1 logs = new LogsV1(message: message, resourceIds: resource.Ids, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), metaData: metadata);
 
 
-            if (Batch == true)
+            if (Batch)
             {
                 AddRequest(logs.ToString(), "/log/ingest");
                 return null;

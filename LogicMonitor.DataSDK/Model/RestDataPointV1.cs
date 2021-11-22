@@ -34,7 +34,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="dataPointName">dataPointName.</param>
         /// <param name="dataPointType">dataPointType.</param>
         /// <param name="values">values.</param>
-        public RestDataPointV1(string dataPointAggregationType = default(string), string dataPointDescription = default(string), string dataPointName = default(string), string dataPointType = default(string), Dictionary<string, string> values = default(Dictionary<string, string>))
+        public RestDataPointV1(string dataPointName,string dataPointAggregationType = default(string), string dataPointDescription = default(string),  string dataPointType = default(string), Dictionary<string, string> values = default(Dictionary<string, string>))
         {
             this.DataPointAggregationType = dataPointAggregationType;
             this.DataPointDescription = dataPointDescription;
@@ -85,7 +85,11 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  DataPointDescription: ").Append(DataPointDescription).Append("\n");
             sb.Append("  DataPointName: ").Append(DataPointName).Append("\n");
             sb.Append("  DataPointType: ").Append(DataPointType).Append("\n");
-            sb.Append("  Values: ").Append(Values).Append("\n");
+            sb.Append("  Values{\n ");
+            foreach (var item in Values) { 
+            sb.Append("   "+item.Key).Append(":").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("}\n");
             return sb.ToString();
         }

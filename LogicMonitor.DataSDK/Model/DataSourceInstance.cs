@@ -20,8 +20,8 @@ namespace LogicMonitor.DataSDK.Model
     [DataContract]
     public class DataSourceInstance
     {
-        ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        public DataSourceInstance(string description = default(string), string displayName = default(string), string name = default(string), Dictionary<string,string> properties = default(Dictionary<string, string>))
+        private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
+        public DataSourceInstance(string name,string description = null, string displayName = null, Dictionary<string,string> properties = default(Dictionary<string, string>))
         {
             this.Description = description;
             this.DisplayName = displayName;
@@ -64,7 +64,10 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Properties: ").Append(Properties).Append("\n");
+            foreach (var item in Properties)
+            {
+                sb.Append("  Properties: ").Append(item.Key).Append(":").Append(item.Value).Append("\n");
+            }
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -72,9 +75,11 @@ namespace LogicMonitor.DataSDK.Model
         public string ValidField()
         {
             string errorMsg = "";
-            errorMsg += objectNameValidator.CheckInstanceNameValidation(Name);
-            errorMsg += objectNameValidator.CheckInstanceDisplayNameValidation(DisplayName);
-            errorMsg += objectNameValidator.CheckInstancePropertiesValidation(Properties);
+                errorMsg += objectNameValidator.CheckInstanceNameValidation(Name);
+            if(DisplayName!=null)
+                errorMsg += objectNameValidator.CheckInstanceDisplayNameValidation(DisplayName);
+            if (Properties != null)
+                errorMsg += objectNameValidator.CheckInstancePropertiesValidation(Properties);
             return errorMsg;
         }
 

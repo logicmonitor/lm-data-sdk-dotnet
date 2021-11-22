@@ -16,9 +16,10 @@ namespace LogicMonitor.DataSDK.Tests.@internal
     public class TestBatchingCache
     {
 
-        public ApiClients apiClients;
+        public ApiClient apiClient;
         public Task t;
-  
+        public BatchingCache b;
+
         [SetUp]
         public void Setup()
         {
@@ -27,7 +28,7 @@ namespace LogicMonitor.DataSDK.Tests.@internal
             string resourceName = "abcd";
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
             resourceIds.Add("system.displayname", "abcdtest");
-
+            b = new BatchingCache();
             string dataSourceGroup = "dotnetSDK";
             string saname = "Instance1";
             string AggType = "None";
@@ -55,8 +56,8 @@ namespace LogicMonitor.DataSDK.Tests.@internal
             authenticate.Type = "LMv1";
 
             Configuration configuration = new Configuration(company: "lmabcd", authentication: authenticate);
-            apiClients = new ApiClients(configuration);
-            Metrics metrics1 = new Metrics(batchs: false, intervals: 5000, responseInterface, apiClients);
+            apiClient = new ApiClient(configuration);
+            Metrics metrics1 = new Metrics(batch: false, interval: 5000, responseInterface, apiClient);
 
         }
 
@@ -64,10 +65,10 @@ namespace LogicMonitor.DataSDK.Tests.@internal
         [TestCase("body", "/log/ingest")]
         public void TestAddRequest(string body, string path)
         {
-            BatchingCache.AddRequest(body, path);
-            int count = BatchingCache.rawRequest.Count;
-            Assert.AreEqual(count, 1);
-            BatchingCache.rawRequest.Clear();
+            b.AddRequest(body, path);
+            int count = b.rawRequest.Count;
+            Assert.AreEqual(1,count);
+            b.rawRequest.Clear();
         }
 
         [Test]
@@ -76,8 +77,8 @@ namespace LogicMonitor.DataSDK.Tests.@internal
             List<string> testlist = new List<string>();
             testlist.Add("A");
             testlist.Add("B");
-            BatchingCache.PayloadCache = testlist;
-            List<string> testpayload = BatchingCache.GetPayload();
+            b.PayloadCache = testlist;
+            List<string> testpayload = b.GetPayload();
             Assert.AreEqual(testpayload, testlist);
         }
 
@@ -85,16 +86,15 @@ namespace LogicMonitor.DataSDK.Tests.@internal
         public void TestDoRequest()
         {
             MyResponse responseInterface = new MyResponse();
-            BatchingCache b = new BatchingCache(apiClients, 0, true, responseInterface);
-            BatchingCache.rawRequest.Clear();
-            BatchingCache.AddRequest("body", "path");
-            BatchingCache.AddRequest("body1", "path");
-            BatchingCache.AddRequest("body2", "path");
+            BatchingCache b = new BatchingCache(apiClient, 0, true, responseInterface);
+            b.rawRequest.Clear();
+            b.AddRequest("body", "metric/ingest");
+            b.AddRequest("body1", "metric/ingest");
+            b.AddRequest("body2", "metric/ingest");
             t = Task.Run(() => b.DoRequest());
             Thread.Sleep(2000);
-            Assert.AreEqual(0, BatchingCache.PayloadCache.Count);
+            Assert.AreEqual(0, b.PayloadCache.Count);
         }
-
     }
 
 

@@ -20,8 +20,12 @@ namespace LogicMonitor.DataSDK.Model
     [DataContract]
     public class Resource
     {
-        ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        public Resource(Dictionary<string,string> ids = default(Dictionary<string,string>), string name = default(string), string description = default(string), bool create = default(bool))
+        private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
+        public Resource()
+        {
+
+        }
+        public Resource(Dictionary<string,string> ids = default(Dictionary<string,string>), string name = default(string), string description = null, bool create = false)
         {
             this.Ids = ids;
             this.Name = name;
@@ -69,7 +73,12 @@ namespace LogicMonitor.DataSDK.Model
         {
             var sb = new StringBuilder();
             sb.Append("class DataPoint {\n");
-            sb.Append("  Ids: ").Append(Ids).Append("\n");
+            sb.Append("  Ids{\n");
+            foreach (var item in Ids)
+            {
+                sb.Append("   "+item.Key).Append(":").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Properties: ").Append(Properties).Append("\n");
@@ -81,10 +90,13 @@ namespace LogicMonitor.DataSDK.Model
         public string ValidField()
         {
             string errorMsg = "";
+            if(Name!=null)
             errorMsg += objectNameValidator.CheckResourceNameValidation(Create,Name);
-            errorMsg += objectNameValidator.CheckResourceNamDescriptionValidation(Description);
+            if (Description != null)
+                errorMsg += objectNameValidator.CheckResourceNamDescriptionValidation(Description);
             errorMsg += objectNameValidator.CheckResourceIdsValidation(Ids);
-            errorMsg += objectNameValidator.CheckResourcePropertiesValidation(Properties);
+            if(Properties != null)
+                errorMsg += objectNameValidator.CheckResourcePropertiesValidation(Properties);
             return errorMsg;
         }
 

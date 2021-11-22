@@ -37,7 +37,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="instanceName">instanceName.</param>
         /// <param name="instanceProperties">instanceProperties.</param>
         /// <param name="instanceWildValue">instanceWildValue.</param>
-        public RestDataSourceInstanceV1(List<RestDataPointV1> dataPoints = default(List<RestDataPointV1>), string instanceDescription = default(string), string instanceDisplayName = default(string), string instanceGroup = default(string), int instanceId = default(int), string instanceName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), string instanceWildValue = default(string))
+        public RestDataSourceInstanceV1(string instanceDisplayName ,List<RestDataPointV1> dataPoints = default(List<RestDataPointV1>), string instanceDescription = default(string),  string instanceGroup = default(string), int instanceId = default(int), string instanceName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), string instanceWildValue = default(string))
         {
             this.DataPoints = dataPoints;
             this.InstanceDescription = instanceDescription;
@@ -105,13 +105,24 @@ namespace LogicMonitor.DataSDK.Model
         {
             var sb = new StringBuilder();
             sb.Append("class RestDataSourceInstanceV1 {\n");
-            sb.Append("  DataPoints: ").Append(DataPoints).Append("\n");
+            sb.Append("  DataPoints{\n ");
+            foreach (var item in DataPoints)
+            {
+                if(item != null)
+                sb.Append(item.ToString()).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("  InstanceDescription: ").Append(InstanceDescription).Append("\n");
             sb.Append("  InstanceDisplayName: ").Append(InstanceDisplayName).Append("\n");
             sb.Append("  InstanceGroup: ").Append(InstanceGroup).Append("\n");
             sb.Append("  InstanceId: ").Append(InstanceId).Append("\n");
             sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
-            sb.Append("  InstanceProperties: ").Append(InstanceProperties).Append("\n");
+            sb.Append("  InstanceProperties{\n ");
+            foreach (var item in InstanceProperties)
+            {
+                sb.Append("   "+item.Key).Append(":").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("  InstanceWildValue: ").Append(InstanceWildValue).Append("\n");
             sb.Append("}\n");
             return sb.ToString();

@@ -12,7 +12,7 @@ namespace LogicMonitor.DataSDK.Tests.Api
 {
     public class TestMetrics
     {
-        public ApiClients apiClients;
+        public ApiClient apiClient;
         public Resource resource;
         public Metrics metrics;
         public DataSource dataSource;
@@ -30,7 +30,7 @@ namespace LogicMonitor.DataSDK.Tests.Api
             string AggType = "None";
             string datapointname = "datapoint1";
             Configuration configuration = new Configuration(company: "lmabcd", authentication: authenticate);
-            apiClients = new ApiClients(configuration);
+            apiClient = new ApiClient(configuration);
 
             string resourceName = "abcd";
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
@@ -38,7 +38,7 @@ namespace LogicMonitor.DataSDK.Tests.Api
             Dictionary<string, string> value = new Dictionary<string, string>();
             value.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), string.Format("12" + 10));
             MyResponse responseInterface = new MyResponse();
-            metrics = new Metrics(batchs: true, intervals: 0, responseInterface, apiClients);
+            metrics = new Metrics(batch: true, interval: 0, responseInterface, apiClient);
 
 
             string dataSourceName = "Mac2";

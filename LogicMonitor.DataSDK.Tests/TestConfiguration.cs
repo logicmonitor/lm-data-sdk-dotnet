@@ -18,7 +18,7 @@ namespace LogicMonitor.DataSDK.Tests
     {
         Authenticate authentication;
 
-        Configuration config = new Configuration();
+        Configuration config;
         [SetUp]
         public void Setup()
         {
@@ -27,7 +27,7 @@ namespace LogicMonitor.DataSDK.Tests
             authentication.Key = "abckjahgdf7w46rih3kj";
             authentication.Type = "Bearer";
             authentication.Id = "1khgflshdkfuhlsdhf";
-            // Configuration config = new Configuration();
+            config = new Configuration(company: "lmabcd",authentication);
 
         }
         [Test]
@@ -87,6 +87,34 @@ namespace LogicMonitor.DataSDK.Tests
             {
                 Assert.AreEqual("Company must have your account name", e.Message);
             }
+        }
+        [TestCase("https://lmabcd.logicmonitor.com/rest")]
+        public void TestHost(string expected)
+        {
+            Assert.AreEqual(expected, config.host);
+        }
+        [TestCase(false)]
+        public void TestAsyncRequestGet(bool async)
+        {
+            Assert.AreEqual(async, config.AsyncRequest);
+        }
+
+        [TestCase(true)]
+        public void TestAsyncRequestSet(bool async)
+        {
+            config.AsyncRequest = true;
+            Assert.AreEqual(async, config.AsyncRequest);
+        }
+        [TestCase("lmabcd")]
+        public void TestCompanyGet(string company)
+        {
+            Assert.AreEqual(company, config.company);
+        }
+        [TestCase("lmabcd")]
+        public void TestCompanySet(string company)
+        {
+            config.company = "lmabcd";
+            Assert.AreEqual(company, config.company);
         }
 
     }

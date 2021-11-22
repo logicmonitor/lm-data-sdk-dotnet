@@ -47,7 +47,7 @@ namespace LogicMonitor.DataSDK.Tests
             Dictionary<string, string> queryParams = new Dictionary<string, string>();
             TimeSpan requestTimeout = TimeSpan.Zero;
             Dictionary<string, string> postParams = new Dictionary<string, string>();
-            Rest r = new Rest(configuration, 10, 4);
+            Rest r = new Rest();
             Assert.Throws<ArgumentException>(() => r.Request(method, url, body, headers, queryParams, requestTimeout, postParams));
         }
 
@@ -63,7 +63,7 @@ namespace LogicMonitor.DataSDK.Tests
             Dictionary<string, string> queryParams = new Dictionary<string, string>();
             TimeSpan requestTimeout = TimeSpan.Zero;
             Dictionary<string, string> postParams = new Dictionary<string, string>();
-            Rest r = new Rest(configuration, 10, 4);
+            Rest r = new Rest();
             Assert.DoesNotThrow(() => r.Request(method, url, body, headers, queryParams, requestTimeout, postParams));
         }
         public static IRestClient MockRestClient<T>(HttpStatusCode httpStatusCode, string json)
@@ -84,7 +84,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest(restClient.Object);
 
             var Response = r.Get(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -96,7 +96,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4 , restClient.Object);
+            Rest r = new Rest(restClient.Object);
 
             var Response = r.Post(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -108,7 +108,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest( restClient.Object);
 
             var Response = r.Head(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -119,7 +119,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest( restClient.Object);
 
             var Response = r.Options(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -130,7 +130,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest(restClient.Object);
 
             var Response = r.Delete(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -141,7 +141,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest(restClient.Object);
 
             var Response = r.Put(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
@@ -152,7 +152,7 @@ namespace LogicMonitor.DataSDK.Tests
             Mock<RestClient> restClient = new Mock<RestClient>();
 
             restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
-            Rest r = new Rest(configuration, 10, 4, restClient.Object);
+            Rest r = new Rest(restClient.Object);
 
             var Response = r.Patch(method, url, body, headers, queryParams, requestTimeout);
             Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);

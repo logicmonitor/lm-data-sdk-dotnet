@@ -250,7 +250,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase(null)]
         public void TestNullCheckDataSourceNameValidation(string DSname)
         {
-            string expected = "";
+            string expected = "Datasource is mandatory.";
             string actual = o.CheckDataSourceNameValidation(DSname);
             Assert.AreEqual(expected, actual);
         }
@@ -288,7 +288,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase(null)]
         public void TestNullCheckInstanceNameValidation(string Iname)
         {
-            string expected = "";
+            string expected = "Instance name is mandatory.";
             string actual = o.CheckInstanceNameValidation(Iname);
             Assert.AreEqual(expected, actual);
         }
@@ -312,7 +312,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase(null)]
         public void TestNullCheckDataPointNameValidation(string dpname)
         {
-            string expected = "";
+            string expected = "Datapoint name is mandatory.";
             string actual = o.CheckDataPointNameValidation(dpname);
             Assert.AreEqual(expected, actual);
         }
@@ -329,6 +329,28 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         {
             String name = new String('a', 1025);
             Assert.AreEqual("Datapoint description should not be greater than 1024 characters.", o.CheckDataPointDescriptionValidation(name));
+        }
+        
+        [TestCase("Name")]
+        public void TestIsValidDataSourceDisplayName(string dsname)
+        {
+            bool expected = true;
+            bool actual = o.IsValidDataSourceDisplayName(dsname);
+            Assert.AreEqual(expected, actual);
+        }
+        [TestCase("")]
+        public void TestEmptyIsValidDataSourceDisplayName(string dsname)
+        {
+            bool expected = true;
+            bool actual = o.IsValidDataSourceDisplayName(dsname);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void TestCheckInstanceDisplayNameValidationGreaterThan255()
+        {
+            String name = new String('a', 256);
+            Assert.AreEqual("Datapoint description should not be greater than 255 characters.", o.CheckInstanceDisplayNameValidation(name));
         }
     }
 }

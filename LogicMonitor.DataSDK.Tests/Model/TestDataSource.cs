@@ -7,12 +7,11 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestDataSource
     {
-        DataSource dataSource = new DataSource();
+        DataSource dataSource = new DataSource("nameold","displayname","groupname",1);
 
         [Test]
         public void TestName()
         {
-            //DataPoint a = new DataPoint();
             string i = "name";
             dataSource.Name = i;
             string msg = dataSource.Name;
@@ -21,7 +20,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestDisplayName()
         {
-            //DataPoint a = new DataPoint();
             string i = "Displayname";
             dataSource.DisplayName = i;
             string msg = dataSource.DisplayName;
@@ -30,7 +28,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestGroup()
         {
-            //DataPoint a = new DataPoint();
             string i = "group";
             dataSource.Group = i;
             string msg = dataSource.Group;
@@ -39,11 +36,31 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestId()
         {
-            //DataPoint a = new DataPoint();
             int i = 0;
             dataSource.Id = i;
             int msg = dataSource.Id;
             Assert.AreEqual(msg, i);
+        }
+
+        [Test]
+        public void TestToString()
+        {
+            string i = "1683263926";
+            dataSource.Name = i;
+
+
+            string m = "Sample msg for testing";
+            dataSource.DisplayName = m;
+
+            string n = "Sample msg for testing";
+            dataSource.Group = n;
+
+            int o = 12345;
+            dataSource.Id = o;
+
+            string expected = "class DataSource {\n  Name: 1683263926\n  DisplayName: Sample msg for testing\n  Group: Sample msg for testing\n  Id: 12345\n}\n";
+            Assert.AreEqual(expected, dataSource.ToString());
+
         }
     }
 }

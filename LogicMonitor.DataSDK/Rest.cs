@@ -9,13 +9,6 @@
 using System;
 using RestSharp;
 using System.Collections.Generic;
-using LogicMonitor.DataSDK.Model;
-using LogicMonitor.DataSDK.Client;
-using System.Net.Http;
-using System.Net.Sockets;
-using LogicMonitor.DataSDK;
-using System.Net;
-using Newtonsoft.Json;
 
 namespace LogicMonitor.DataSDK
 {
@@ -23,9 +16,8 @@ namespace LogicMonitor.DataSDK
     {
 
         public IRestClient client;
-        SocketsHttpHandler poolManager;
 
-        public Rest( Configuration configuration, int maxSize, int poolSize = 4, IRestClient restClient= default)
+        public Rest( IRestClient restClient= default)
         {
             if(restClient == default)
             {
@@ -35,14 +27,7 @@ namespace LogicMonitor.DataSDK
             {
                 client = restClient; 
             }
-            poolManager = new SocketsHttpHandler();
-            if (maxSize == 0)
-            {
-                if (configuration.ConnectionPoolMaxsize != 0)
-                    maxSize = configuration.ConnectionPoolMaxsize;
-                else
-                    maxSize = 4;
-            }
+            
         }
 
         public void Request(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams)

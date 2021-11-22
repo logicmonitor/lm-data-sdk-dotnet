@@ -7,8 +7,14 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestDataSourceInstance
     {
-        DataSourceInstance dataSourceIns = new DataSourceInstance();
+        Dictionary<string, string> res = new Dictionary<string, string>();
+        DataSourceInstance dataSourceIns;
 
+        [SetUp]
+        public void SetUp()
+        {
+            dataSourceIns = new DataSourceInstance(name: "Instance1");
+        }
         [Test]
         public void TestName()
         {
@@ -20,7 +26,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestDisplayName()
         {
-            string i = "Displayname";
+            string i = "logicmonitor.host";
             dataSourceIns.DisplayName = i;
             string msg = dataSourceIns.DisplayName;
             Assert.AreEqual(msg, i);
@@ -41,6 +47,28 @@ namespace LogicMonitor.DataSDK.Tests.Model
             dataSourceIns.Properties = i;
             Dictionary<string, string> msg = dataSourceIns.Properties;
             Assert.AreEqual(msg, i);
+        }
+
+        [Test]
+        public void TestToString()
+        {
+            string i = "1683263926";
+            dataSourceIns.Description = i;
+
+
+            string m = "Sample msg for testing";
+            dataSourceIns.DisplayName = m;
+
+            string n = "Sample msg for testing";
+            dataSourceIns.Name = n;
+
+            Dictionary<string, string> res = new Dictionary<string, string>();
+            res.Add("test", "test");
+            dataSourceIns.Properties = res;
+
+            string expected = "class DataPoint {\n  Description: 1683263926\n  DisplayName: Sample msg for testing\n  Name: Sample msg for testing\n  Properties: test:test\n}\n";
+            Assert.AreEqual(expected, dataSourceIns.ToString());
+
         }
     }
 }

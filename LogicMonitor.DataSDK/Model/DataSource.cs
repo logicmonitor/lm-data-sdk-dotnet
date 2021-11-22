@@ -19,7 +19,7 @@ namespace LogicMonitor.DataSDK.Model
     [DataContract]
     public class DataSource
     {
-        ObjectNameValidator objectNameValidator = new ObjectNameValidator();
+        private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
         public DataSource(string Name = default(string), string DisplayName = default(string), string Group = default(string), int Id = default(int) )
         {
             this.Name = Name;
@@ -58,7 +58,7 @@ namespace LogicMonitor.DataSDK.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DataPoint {\n");
+            sb.Append("class DataSource {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
@@ -72,8 +72,9 @@ namespace LogicMonitor.DataSDK.Model
             int dataSourceId = Id;
             string errorMsg = "";
 
-            if (dataSourceId == 0)
+            if (dataSourceId >= 0)
             {
+                errorMsg += objectNameValidator.CheckDataSourceId(dataSourceId);
                 errorMsg += objectNameValidator.CheckDataSourceNameValidation(Name);
                 errorMsg += objectNameValidator.CheckDataSourceDisplayNameValidation(DisplayName);
                 errorMsg += objectNameValidator.CheckDataSourceGroupNameValidation(Group);

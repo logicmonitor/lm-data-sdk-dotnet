@@ -7,7 +7,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestDataPoint
     {
-        DataPoint dataPoint = new DataPoint();
+        DataPoint a = new DataPoint("sum","desc","name","type");
         ObjectNameValidator objectNameValidator = new ObjectNameValidator();
         public string Name;
         public string AggregationType;
@@ -19,7 +19,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestAggregationType()
         {
-            DataPoint a = new DataPoint();
             string i = "Aggreaation";
             a.AggregationType = i;
             string msg = a.AggregationType;
@@ -28,7 +27,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestDescription()
         {
-            DataPoint a = new DataPoint();
             string i = "Description";
             a.Description = i;
             string msg = a.Description;
@@ -37,7 +35,6 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestName()
         {
-            DataPoint a = new DataPoint();
             string i = "Name";
             a.Name = i;
             string msg = a.Name;
@@ -46,13 +43,32 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestType()
         {
-            DataPoint a = new DataPoint();
             string i = "Type";
             a.Type = i;
             string msg = a.Type;
             Assert.AreEqual(msg, i);
         }
-        
+
+        [Test]
+        public void TestToString()
+        {
+            string i = "1683263926";
+            a.AggregationType = i;
+
+
+            string m = "Sample msg for testing";
+            a.Description = m;
+
+            string n = "Sample msg for testing";
+            a.Name = n;
+
+            string o = "Sample msg for testing";
+            a.Type = o;
+
+            string expected = "class DataPoint {\n  Aggregation: 1683263926\n  Description: Sample msg for testing\n  Name: Sample msg for testing\n  Type: Sample msg for testing\n}\n";
+            Assert.AreEqual(expected, a.ToString());
+
+        }
     }
 }
 

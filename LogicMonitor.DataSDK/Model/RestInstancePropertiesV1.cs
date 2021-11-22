@@ -34,7 +34,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="instanceName">instanceName.</param>
         /// <param name="instanceProperties">instanceProperties.</param>
         /// <param name="resourceIds">resourceIds.</param>
-        public RestInstancePropertiesV1(string dataSource = default(string), string dataSourceDisplayName = default(string), int instanceId = default(int), string instanceName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), Dictionary<string, string> resourceIds = default(Dictionary<string, string>))
+        public RestInstancePropertiesV1(string dataSource , string dataSourceDisplayName = default(string), int instanceId = default(int), string instanceName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), Dictionary<string, string> resourceIds = default(Dictionary<string, string>))
         {
             this.DataSource = dataSource;
             this.DataSourceDisplayName = dataSourceDisplayName;
@@ -92,8 +92,17 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  DataSourceDisplayName: ").Append(DataSourceDisplayName).Append("\n");
             sb.Append("  InstanceId: ").Append(InstanceId).Append("\n");
             sb.Append("  InstanceName: ").Append(InstanceName).Append("\n");
-            sb.Append("  InstanceProperties: ").Append(InstanceProperties).Append("\n");
-            sb.Append("  ResourceIds: ").Append(ResourceIds).Append("\n");
+            sb.Append("  InstanceProperties{\n");
+            foreach (var item in InstanceProperties)
+            {
+                sb.Append("   " + item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n"); sb.Append("  ResourceIds{\n");
+            foreach (var item in ResourceIds)
+            {
+                sb.Append("   " + item.Key).Append(": ").Append(item.Value).Append("\n");
+            }
+            sb.Append("  }\n");
             sb.Append("}\n");
             return sb.ToString();
         }

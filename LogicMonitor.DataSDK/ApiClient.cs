@@ -18,63 +18,38 @@ namespace LogicMonitor.DataSDK
     /// <summary>
     /// This class is Controller.
     /// </summary>
-    public class ApiClients 
+    public class ApiClient 
     {
         public Configuration configuration;
-        public string pool;
         private Rest rest_client;
-        public Dictionary<string, string> default_headers = new Dictionary<string, string>();
-        private int maxSize;
-        public PlatformID Platform { get; }
-        public ApiClients() { }
-        public ApiClients(Configuration configuration)
+        private readonly Dictionary<string, string> default_headers = new Dictionary<string, string>();
+        public ApiClient() { }
+        public ApiClient(Configuration configuration)
         {
 
             if (configuration == null)
                 configuration = new Configuration();
-            this.maxSize = 10;
             this.configuration = configuration;
-            this.rest_client = new Rest(configuration, maxSize);
+            this.rest_client = new Rest();
             // Set default API version
             default_headers.Add("X-version", "1");
-        }
-
-
-
-        public object user_agent
-        {
-            get
-            {
-                return this.default_headers["User-Agent"];
-            }
-            set
-            {
-                this.default_headers["User-Agent"] = (string)value;
-            }
         }
 
         public RestResponse Callapi(
               string path,
               string method,
               TimeSpan _request_timeout,
-              Dictionary<string, string> pathParams = default,
               Dictionary<string, string> queryParams = default,
               Dictionary<string, string> headerParams = default,
               string body = null,
-              Dictionary<string, string> post_params = default,
-              string files = default,
-              string responseType = default,
-              string authSetting = default,
-              bool _return_http_data_only = default,
-              Dictionary<string, string> collectionFormats = default,
-              Dictionary<string, string> _preload_content = default
+              string authSetting = default
 
               )
         {
 
             var url = this.configuration.host + path;
-            this.Update_params_for_auth(headerParams, queryParams, authSetting, path, method, body, files);
-            var response_data = this.Request(method: method, url: url, queryParams: queryParams, _request_timeout: _request_timeout, headers: headerParams, post_params: post_params, body: body);
+            this.Update_params_for_auth(headerParams, queryParams, authSetting, path, method, body);
+            var response_data = this.Request(method: method, url: url, queryParams: queryParams, _request_timeout: _request_timeout, headers: headerParams, body: body);
 
 
             Console.WriteLine("Response: {0}", response_data.Content.ToString());
@@ -82,18 +57,16 @@ namespace LogicMonitor.DataSDK
         }
 
         public RestResponse CallApi(
-            string path,string method,TimeSpan _request_timeout,Dictionary<string, string> pathParams = default,Dictionary<string, string> queryParams = default,
-            Dictionary<string, string> headerParams = default,string body = default,Dictionary<string, string> post_params = default,string files = null,string responseType = null,string authSetting = null,bool asyncRequest = true,
-            bool _return_http_data_only = true,Dictionary<string, string> collectionFormats = default,Dictionary<string, string> _preload_content = default
-            )
+            string path,string method,TimeSpan _request_timeout,Dictionary<string, string> queryParams = default,
+            Dictionary<string, string> headerParams = default,string body = default,string authSetting = null,bool asyncRequest = true)
         {
-            if (asyncRequest == false)
+            if (!asyncRequest)
             {
-                return this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, pathParams: pathParams, queryParams: queryParams, body: body, post_params: post_params, files: files, responseType: responseType, authSetting: authSetting, _return_http_data_only: _return_http_data_only, collectionFormats: collectionFormats, _preload_content: _preload_content);
+                return this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting);
             }
             else
             {
-                return CallAsync(path, method, _request_timeout, pathParams, queryParams, headerParams, body, post_params, files, responseType, authSetting, _return_http_data_only, Convert.ToBoolean(collectionFormats), _preload_content)
+                return CallAsync(path, method, _request_timeout, queryParams, headerParams, body, authSetting)
                     .Result;
             }
         }
@@ -102,21 +75,14 @@ namespace LogicMonitor.DataSDK
             string path,
             string method,
             TimeSpan _request_timeout,
-            Dictionary<string, string> pathParams = null,
             Dictionary<string, string> queryParams = null,
-            object headerParams = null,
+            Dictionary<string, string> headerParams = null,
             string body = null,
-            Dictionary<string, string> post_params = null,
-            string files = null,
-            string responseType = null,
-            string authSetting = null,
-            bool asyncRequest = true,
-            bool _return_http_data_only = true,
-            Dictionary<string, string> collectionFormats = null,
-            Dictionary<string, string> _preload_content = null
+            string authSetting = null
+  
             )
         {
-            var thread = await Task.FromResult(this.Callapi(path: path, method: method, _request_timeout: _request_timeout, pathParams: pathParams, queryParams: queryParams, body: body, post_params: post_params, files: files, responseType: responseType, authSetting: authSetting, _return_http_data_only: _return_http_data_only, collectionFormats: collectionFormats, _preload_content: _preload_content));
+            var thread = await Task.FromResult(this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting));
             return thread;
         }
 
@@ -132,7 +98,7 @@ namespace LogicMonitor.DataSDK
              )
         {
             if (rest_client == null)
-                rest_client = new Rest(configuration, 4);
+                rest_client = new Rest();
             
             if (method == "GET")
             {
@@ -143,14 +109,6 @@ namespace LogicMonitor.DataSDK
 
                 return rest_client.Post("POST", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body);
 
-            }
-            else if (method == "PUT")
-            {
-                return this.rest_client.Put("PUT", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body);
-            }
-            else if (method == "PATCH")
-            {
-                return this.rest_client.Patch("PATCH", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body);
             }
             else if (method == "DELETE")
             {
@@ -195,32 +153,27 @@ namespace LogicMonitor.DataSDK
             }
         }
 
-        public void Update_params_for_auth(
+        public bool Update_params_for_auth(
                 Dictionary<string, string> headers,
                 Dictionary<string, string> querys,
                 string auth_settings,
                 string resource_path,
                 string method,
-                string body = null,
-                string files = null)
+                string body = null)
         {
             string msg;
             if (auth_settings == null)
             {
-                return;
+                return false;
             }
 
             var auth_setting = this.configuration.authentication;
-            if (auth_setting != null)
+            if (auth_setting.Key != null && auth_setting.Id !=null)
             {
-                if (auth_setting.Key == null)
-                {
-                    return;
-                }
-                else if (auth_setting.Type == "Bearer" && auth_setting.Key != null)
+                if (auth_setting.Type == "Bearer" )
                 {
                     headers.Add("Authorization", string.Format("Bearer={0}", auth_setting.Key));
-                    
+                    return true;
                 }
                 else
                 {
@@ -242,7 +195,8 @@ namespace LogicMonitor.DataSDK
                     var auth_hash = "LMv1 " + auth_setting.Id + ":" + signature + ":" + epoch;
 
                     headers.Add("Authorization", auth_hash);
-                   
+                    return true;
+
                 }
             }
             else

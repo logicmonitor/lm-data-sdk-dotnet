@@ -20,7 +20,7 @@ namespace LogicMonitor.DataSDK.Model
     [DataContract(Name ="DataPoint")]
     public partial class DataPoint
     {
-        ObjectNameValidator objectNameValidator = new ObjectNameValidator();
+        private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
 
         public DataPoint(string aggregation = default(string), string description = default(string), string name = default(string), string type = default(string) )
         {

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>LogicMonitor.DataSDK</AssemblyName>
+    <PackageId>Logicmonitor.DataSDK</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>LogicMonitor</Authors>
+    <Company>LogicMonitor</Company>
+    <AssemblyTitle>LogicMonitor PushMetricSDK</AssemblyTitle>
+    <Description>LogicMonitor's Push Metrics feature allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.
+        Once ingested, these metrics are presented alongside all other metrics gathered via LogicMonitor.</Description>
+    <Copyright>Copyright, 2021, LogicMonitor, Inc.</Copyright>
+    <RootNamespace>LogicMonitor.DataSDK</RootNamespace>
+    <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>	
+    <PackageIcon>LM_Icon.png</PackageIcon>	
+    <repositorytype>SDK</repositorytype>
+    <Version>0.0.4-alpha</Version>
+    <PackageReleaseNotes>Summary: What's New in 0.0.4-alpha
+Changes:
+SendMetric and SendLogs return Rest Response.
+Fixed a bug which caused SendLogs and SendMetrics fail for batchs = true.</PackageReleaseNotes>
+    <PackOnBuild>true</PackOnBuild>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Owners>Logicmonitor</Owners>
+    <Summary>Allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.</Summary>
+    <Title>LogicMonitor PushMetricSDK</Title>
+    <PackageVersion>0.0.4-alpha</PackageVersion>
+    <Configurations>Release;Debug</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <None Include="..\images\LM_Icon.png" Pack="true" PackagePath="\" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Utils\" />
+    <Folder Include="Internal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.Extensions.Logging" />
+    <None Remove="Microsoft.Extensions.Hosting" />
+  </ItemGroup>
+</Project>

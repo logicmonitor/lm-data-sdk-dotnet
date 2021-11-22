@@ -1,0 +1,390 @@
+{
+  "homepages": [],
+  "source_base_path": "/Users/aakashkhopade/Documents/lm-data-sdk-dotnet/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Read.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Read.html",
+          "hash": "mQsaCGc+KYSjDOD9EwRsGfFgHiCVFHiNu66k5UKt08w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_Combine.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_Combine.html",
+          "hash": "Umh960k1lXIHpSYF+f7zmCGxL2xqtcpG4YmgXihWMmU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_Logs.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_Logs.html",
+          "hash": "pJxWaUbMQyjoQwqZCVHhceGG4xGAPAEILrFeZUCwaOA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_metrics.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_metrics.html",
+          "hash": "3pSDNhMDabElQ82SIjNy3n+HWEVlZbWYvx68fJU05qA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Example/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Example/toc.html",
+          "hash": "Kb4bNle4vHx9jgukv5wByNwbJbY/YojZXIH21NfrQZ4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Api.IResponseInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Api.IResponseInterface.html",
+          "hash": "hoy8N+uyLgtYoJSlgCxuL6pJo2+X9uI+BihiSfSO0EY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Api.Logs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Api.Logs.html",
+          "hash": "QLDkXu3y8YMvhbi+WGSmbFvJr0iOs276DhdGD/3V8v0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Api.Metrics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Api.Metrics.html",
+          "hash": "rgym6kcRNpz3/v2d8NhUGLiCu5hZFcuCMQF8nNdrVds="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Api.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Api.html",
+          "hash": "ncBLjexqaSPouLsibtYubpEvecVP52exrBdaeqGOzXU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.ApiClients.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.ApiClients.html",
+          "hash": "deFT0XaTiae2zr5Li0vao70h0GHobUpjfDRxXlpdM9E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Configuration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Configuration.html",
+          "hash": "T1RcwAxtepLGOWmU76ROhqSYcihtcbWCwvr5z1fVJy8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.Authenticate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.Authenticate.html",
+          "hash": "ZlTAGKHSJs6vBeI0CZVVFBne0HU9wgF8mF/GKVkCOzM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.DataPoint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.DataPoint.html",
+          "hash": "pZ4y+vIvivstgLTLVTTCtD70hYIfIrFaPwSIIBcielw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.DataSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.DataSource.html",
+          "hash": "GXg8jVdEBY2QbjNUgtOGkhKZlC5D/GcvePCmq3WdU+E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.DataSourceInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.DataSourceInstance.html",
+          "hash": "gdZ7tn0w+WNS3O5YK4sM67Y64yQ3Hud1qY9ac/ObMj8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.LogsV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.LogsV1.html",
+          "hash": "QEtiXrAwry+qm7AGMOfCD3vLW9g2wk1B+yntht4gTak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.Resource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.Resource.html",
+          "hash": "webvdDRgvSbjtxD7Q6wuxJ/UwKaabTPtWZsmQkw6k1E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.RestDataPointV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.RestDataPointV1.html",
+          "hash": "xww7ZqZc8Wg5dG6HcyDrT279yfQp+fQ8x+N90elthrc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.html",
+          "hash": "fee46k8JGAmsYiO3IVKeyrmowfzHyWk639gAjlVaod8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.RestInstancePropertiesV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.RestInstancePropertiesV1.html",
+          "hash": "w1CxYa922TlgdW6w7Rz1srxu+uUX6Ye6FzMYJqJPZs0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.RestMetricsV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.RestMetricsV1.html",
+          "hash": "ytqfZ0+gOo4EavSSA04LvS8ekYKjvPV3GFuZX850JgM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.RestResourcePropertiesV1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.RestResourcePropertiesV1.html",
+          "hash": "kWyiufr0DxkVucLkpyJlfsIbpoDMppkRQVfC5p7jol8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.Model.html",
+          "hash": "LLbk4jBalZewInJdiPdSqhLdWJDOUg5mj/D7z/bT3b8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/LogicMonitor.DataSDK.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/LogicMonitor.DataSDK.html",
+          "hash": "J4NB/2B8779DdVJyk/ToK2PY7NeLAA96OttXazJSB0M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "b8PxEIUSUaSyViEPEu11YFYuKhc7ccuBD1MLSdVqLo8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "YCGGz5wPSqzKi0qtGHx/qWYqBEHiGvu9EDgI9suWr1c="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Xk8Lz6C7AH47MRlOh6XZwCHncrg1KoTATCAayaBoWdM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "EUqY+a7JmTsyUiHVrT8Im4ojLRLa51P9MQWFV76puuY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 6,
+          "skipped_file_count": 6
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 19,
+          "skipped_file_count": 19
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

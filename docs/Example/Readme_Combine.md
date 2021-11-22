@@ -61,11 +61,6 @@ Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseIn
 logs.SendLogs(message: msg, resource: resource);
 ```
 
-Then Run the program as:
-```csharp
-export id=<LM_AccessID>  api_key=<LM_AccessKey> type=<'LMv1'/'Bearer'> Lm_company=<LM_AccountName>
-dotnet run
-```
 
 <a name="Model"></a>
 ## Model

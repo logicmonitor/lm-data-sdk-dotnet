@@ -43,6 +43,6 @@ jobs:
         if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.DOCFXTOKEN }}
+          github_token: ${{ secrets.NEWDOCFXTOKEN }}
           publish_dir: docs/_site
           force_orphan: true

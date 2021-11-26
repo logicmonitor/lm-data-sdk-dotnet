@@ -1,0 +1,137 @@
+{
+  "homepages": [],
+  "source_base_path": "/Users/aakashkhopade/Documents/GitHub/lm-data-sdk-dotnet/Docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Read.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Read.html",
+          "hash": "4XixNMble3CWDDZJR9fobPkrgrN2vkhiKE128qjsLyQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_Combine.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_Combine.html",
+          "hash": "Umh960k1lXIHpSYF+f7zmCGxL2xqtcpG4YmgXihWMmU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_Logs.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_Logs.html",
+          "hash": "pJxWaUbMQyjoQwqZCVHhceGG4xGAPAEILrFeZUCwaOA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "Example/Readme_metrics.md",
+      "output": {
+        ".html": {
+          "relative_path": "Example/Readme_metrics.html",
+          "hash": "3pSDNhMDabElQ82SIjNy3n+HWEVlZbWYvx68fJU05qA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "Example/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "Example/toc.html",
+          "hash": "Kb4bNle4vHx9jgukv5wByNwbJbY/YojZXIH21NfrQZ4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Xk8Lz6C7AH47MRlOh6XZwCHncrg1KoTATCAayaBoWdM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "0ClBs9QO9hLHbcqb1A+cNJh11PEk1z+SOlRmDwRRX9k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 5,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

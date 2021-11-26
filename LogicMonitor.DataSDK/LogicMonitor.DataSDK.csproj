@@ -16,17 +16,20 @@
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>	
     <PackageIcon>LM_Icon.png</PackageIcon>	
     <repositorytype>SDK</repositorytype>
-    <Version>0.0.4-alpha</Version>
-    <PackageReleaseNotes>Summary: What's New in 0.0.4-alpha
+    <Version>0.0.5-alpha</Version>
+    <PackageReleaseNotes>Summary: What's New in 0.0.5-alpha
 Changes:
-SendMetric and SendLogs return Rest Response.
-Fixed a bug which caused SendLogs and SendMetrics fail for batchs = true.</PackageReleaseNotes>
+Datapoint Type accept valid values.
+Datasource ID validation added.
+DataSource Validation improved.
+Minorbugs fixed.
+</PackageReleaseNotes>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>Logicmonitor</Owners>
     <Summary>Allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.</Summary>
     <Title>LogicMonitor PushMetricSDK</Title>
-    <PackageVersion>0.0.4-alpha</PackageVersion>
+    <PackageVersion>0.0.5-alpha</PackageVersion>
     <Configurations>Release;Debug</Configurations>
   </PropertyGroup>
 
@@ -37,7 +40,7 @@ Fixed a bug which caused SendLogs and SendMetrics fail for batchs = true.</Packa
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
-    <None Include="..\images\LM_Icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\LogicMonitor.DataSDK\LM_Icon.png" Pack="true" PackagePath="\" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
 

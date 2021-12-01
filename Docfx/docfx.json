@@ -42,7 +42,7 @@
                 "_site/**"
             ]
         }],
-        "dest": "_site",
+        "dest": "../docs",
         "globalMetadataFiles": [],
         "fileMetadataFiles": [],
         "template": ["default", "material/material"],

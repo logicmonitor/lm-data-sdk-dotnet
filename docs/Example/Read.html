@@ -89,12 +89,6 @@ have to create LMAuth token using access id and key from santaba.</p>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Microsoft.Extenstion.Logging</a> - 12.0.3 or later</li>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Microsoft.Extenstion.Hosting</a> - 12.0.3 or later</li>
 </ul>
-<p>The DLLs included in the package may not be the latest version. We recommend using <a href="https://docs.nuget.org/consume/installing-nuget">NuGet</a> to obtain the latest version of the packages:</p>
-<pre><code>Install-Package RestSharp
-Install-Package Newtonsoft.Json
-Install-Package JsonSubTypes
-Install-Package System.ComponentModel.Annotations
-</code></pre>
 <p>NOTE: RestSharp versions greater than 105.1.0 have a bug which causes file uploads to fail. See <a href="https://github.com/restsharp/RestSharp/issues/742">RestSharp#742</a>.
 NOTE: RestSharp for .Net Core creates a new socket for each api call, which can lead to a socket exhaustion problem. See <a href="https://github.com/restsharp/RestSharp/issues/1406">RestSharp#1406</a>.</p>
 <p><a name="Configration"></a></p>

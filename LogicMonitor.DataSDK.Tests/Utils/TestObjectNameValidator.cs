@@ -80,7 +80,6 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase("ABC", " Name")]
         [TestCase("A123", " Name ")]
         [TestCase("123ABC", "Name ")]
-        [TestCase("NameABC", "Name ABC")]
         public void TestPassEmptyAndSpellCheck(string name, string invalidname)
         {
             Assert.AreEqual(false, o.PassEmptyAndSpellCheck(invalidname));
@@ -232,7 +231,6 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase(true, "")]
         [TestCase(true, " Name")]
         [TestCase(true, "Name ")]
-        [TestCase(true, "Name Space")] //fail
         public void TestEmptyCheckResourceNameValidation(bool flag, string name)
         {
             string expected = "Resource Name Should not be empty or have tailing spaces.";

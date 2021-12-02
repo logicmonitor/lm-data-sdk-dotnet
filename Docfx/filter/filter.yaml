@@ -1,0 +1,70 @@
+apiRules:
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Utils$
+    type: Namespace
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Internal$
+    type: Namespace
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Client$
+    type: Namespace 
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Rest$
+    type: Type
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.ApiClients\.ApiClients$
+    type: Type
+- exclude:
+    uidRegex: 'Callapi'
+    type: Method
+- exclude:
+    uidRegex: 'CallApi'
+    type: Method
+- exclude:
+    uidRegex: 'HmacSHA256'
+    type: Method
+- exclude:
+    uidRegex: '_deserialize_file'
+    type: Method
+- exclude:
+    uidRegex: 'CallAsync'
+    type: Method
+- exclude:
+    uidRegex: 'Deserialize'
+    type: Method
+- exclude:
+    uidRegex: 'deserialize'
+    type: Method
+- exclude:
+    uidRegex: 'parameters_to_tuples'
+    type: Method
+- exclude:
+    uidRegex: 'Request'
+    type: Method
+- exclude:
+    uidRegex: 'sanitize_for_serialization'
+    type: Method
+- exclude:
+    uidRegex: 'ToHexString'
+    type: Method
+- exclude:
+    uidRegex: 'Update_params_for_auth'
+    type: Method
+- exclude:
+    uidRegex: 'default_headers'
+    type: Member
+- exclude:
+    uidRegex: 'Equals'
+    type: Method
+- exclude:
+    uidRegex: 'GetHashCode'
+    type: Method
+- exclude:
+    uidRegex: 'ToJson'
+    type: Method
+- exclude:
+    uidRegex: 'ToString'
+    type: Method
+- exclude:
+    uidRegex: 'ValidField'
+    type: Member

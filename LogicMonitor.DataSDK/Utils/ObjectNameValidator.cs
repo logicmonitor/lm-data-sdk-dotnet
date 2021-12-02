@@ -422,7 +422,7 @@ namespace LogicMonitor.DataSDK.Utils
 
             if (dataPointType != null)
             {
-                var dataPointTypes = new List<string> { "counter", "guage", "derive" };
+                var dataPointTypes = new List<string> { "counter", "gauge", "derive" };
                 dataPointType = dataPointType.ToLower();
                 var counter = 0;
                 foreach(var type in dataPointTypes)

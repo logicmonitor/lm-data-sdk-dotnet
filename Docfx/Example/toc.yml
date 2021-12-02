@@ -1,0 +1,8 @@
+- name: Simple Example
+  href: Read.md
+- name: Single Metrics Ingestion
+  href: Readme_metrics.md
+- name: Single Logs Ingestion
+  href: Readme_Logs.md
+- name: Batching Metrics & Log Ingestion
+  href: Readme_Combine.md

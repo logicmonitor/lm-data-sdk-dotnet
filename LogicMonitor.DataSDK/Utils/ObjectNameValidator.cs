@@ -59,7 +59,7 @@ namespace LogicMonitor.DataSDK.Utils
 
         public bool PassEmptyAndSpellCheck(string name)
         {
-            if (name.Length == 0 || name.StartsWith(" ") || name.EndsWith(" ") || name.Contains(" "))
+            if (name.Length == 0 || name.StartsWith(" ") || name.EndsWith(" "))
                 return false;
             else
                 return true;

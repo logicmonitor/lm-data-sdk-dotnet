@@ -1,4 +1,6 @@
 # LogicMonitor.DataSDK - the C# library for the LogicMonitor API-Ingest Rest API
+[![CodeQL](https://github.com/AakashKhopade/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/AakashKhopade/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml)
+
 LogicMonitor is a SaaS-based performance monitoring platform that provides full visibility into complex, hybrid 
 infrastructures, offering granular performance monitoring and actionable data and insights. API-Ingest provides the 
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
@@ -13,7 +15,7 @@ have to create LMAuth token using access id and key from santaba.
 <a name="dependencies"></a>
 ## Dependencies
 
-- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.11.7 or later
+- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.13.0 or later
 - [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 12.0.3 or later
 - [Microsoft.Extenstion.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/) - 5.0.0 or later
 - [Microsoft.Extenstion.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) - 5.0.0 or later

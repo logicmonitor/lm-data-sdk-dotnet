@@ -13,7 +13,7 @@ have to create LMAuth token using access id and key from santaba.
 <a name="dependencies"></a>
 ## Dependencies
 
-- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.11.7 or later
+- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.13.0 or later
 - [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 12.0.3 or later
 - [Microsoft.Extenstion.Logging](https://www.nuget.org/packages/Newtonsoft.Json/) - 12.0.3 or later
 - [Microsoft.Extenstion.Hosting](https://www.nuget.org/packages/Newtonsoft.Json/) - 12.0.3 or later

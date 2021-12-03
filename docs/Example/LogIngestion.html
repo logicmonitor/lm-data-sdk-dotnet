@@ -10,17 +10,17 @@
     <meta name="title" content="LogicMonitor.DataSDK - the C# library for the LogicMonitor API-Ingest Rest API ">
     <meta name="generator" content="docfx 2.58.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <meta property="docfx:navrel" content="../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
     
     
     
-  </head>
-  <body data-spy="scroll" data-target="#affix" data-offset="120">
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
         
@@ -33,9 +33,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" src="../images/favicon.ico" height="46" width="46" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -46,8 +45,7 @@
               </form>
             </div>
           </div>
-        </nav>
-        
+        </nav>        
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -74,7 +72,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users
 have to create LMAuth token using access id and key from santaba.</p>
 <ul>
-<li>SDK version: 0.0.4-alpha</li>
+<li>SDK version: 0.0.5-alpha</li>
 </ul>
 <p><a name="frameworks-supported"></a></p>
 <h2 id="frameworks-supported">Frameworks supported</h2>
@@ -99,25 +97,16 @@ authenticate.Key = Environment.GetEnvironmentVariable(&quot;LmKey&quot;);
 authenticate.Type = Environment.GetEnvironmentVariable(&quot;LmType&quot;);
 Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable(&quot;LmCompany&quot;), authentication: authenticate);
 </code></pre>
-<p><a name="Metrics Ingestion Example"></a></p>
-<h2 id="metrics-ingestion-example">Metrics Ingestion Example.</h2>
-<p>After Configuring the SDK, configration must be passed to ApiClients.
-For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model,
-also dictonary should be created in  which 'Key' hold the Time(epoch) for which data is being emitted and 'Value' will the the value of datapoint.</p>
-<p>Read below for understanding more about Models in SDK.</p>
+<p><a name="Single Log Ingestion"></a></p>
+<h2 id="single-log-ingestion">Single Log Ingestion.</h2>
+<p>For Log ingestion, log message has to be passed along the resource object to idetify the resource.</p>
 <pre><code class="lang-csharp">ApiClients apiClients = new ApiClients(configuration);
 
-Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
-DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
-DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint open = new DataPoint(name: &quot;High&quot;);
-Dictionary&lt;string, string&gt; highValue = new Dictionary&lt;string, string&gt;();
-    
-    
-Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClients);
-highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken(&quot;high&quot;).ToString());
-    
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: open, values: openValue);
+Resource resource = new Resource(name: resourceName, ids: resourceIds);
+string logMessage = &quot; This is my logging message&quot;;
+
+Logs logs = new Logs(batchs: false, intervals: 0, apiClients: apiClients);s
+logs.SendLogs(message: logMessage, resource: resource);
 </code></pre>
 <p><a name="Model"></a></p>
 <h2 id="model">Model</h2>
@@ -135,44 +124,19 @@ display name respectively in the resulting resource.</p>
 <p><b>Properties(Dictonary&lt;string,string&gt;):</b> New properties for resource. Updates to existing resource properties are not considered. Depending on the property name,
 we will convert these properties into system, auto, or custom properties.</p>
 <p><b>Description(string):</b>  Resource description. Only considered when creating a new resource.</p>
-<p><b>Create(bool):</b> Do you want to create the resource.</p>
 <ul>
-<li>DataSource</li>
+<li><p>Message
+<br>
+Message is string which contains the message that is used to be logged and send to  LM site.</p>
+</li>
+<li><p>Metadata</p>
+</li>
 </ul>
-<pre><code class="lang-csharp">DataSource dataSource = new DataSource(DataSourceName,DataSourceGroup,DisplayName,Id );
-</code></pre>
-<p><b>Name(string):</b>  DataSource unique name. Used to match an existing DataSource. If no existing DataSource matches the name provided
-here, a new DataSource is created with this name.</p>
-<p><b>DisplayName(string):</b> DataSource display name. Only considered when creating a new DataSource.</p>
-<p><b>Group(string):</b> DataSource group name. Only considered when DataSource does not already belong to a group. Used to organize the
-DataSource within a DataSource group. If no existing DataSource group matches, a new group is created with this name
-and the DataSource is organized under the new group.</p>
-<p><b>Id(int):</b> DataSource unique ID. Used only to match an existing DataSource. If no existing DataSource matches the provided ID,
-an error results.</p>
+<p>Metadata is dictionary which can used to ingest metadata. It can be viewd on LM site along with the logs and can we logged message.</p>
 <ul>
-<li>DatasourceInstance</li>
+<li>Timestamp
+Log generated time in Date Time format.</li>
 </ul>
-<pre><code class="lang-csharp">DataSourceInstance dataSourceInstance = new DataSourceInstance(Name,DisplayName,Description,Properties);
-</code></pre>
-<p><b>Name(string):</b> Instance name. If no existing instance matches, a new instance is created with this name.</p>
-<p><b>DisplayName(string):</b> Instance display name. Only considered when creating a new instance.</p>
-<p><b>Properties(Dictionary&lt;string,string&gt;):</b> New properties for instance. Updates to existing instance properties are not considered. Depending on the
-property name, we will convert these properties into system, auto, or custom properties.</p>
-<p><b>Description(string):</b>  Resource description. Only considered when creating a new resource.</p>
-<ul>
-<li>DataPoint</li>
-</ul>
-<pre><code class="lang-csharp">DataPoint dataPoint = new DataPoint(Name,Description,AggregationType,Description);
-</code></pre>
-<p><b>Name(string):</b> Datapoint name. If no existing datapoint matches for specified DataSource, a new datapoint is created with this
-name.</p>
-<p><b>AggreationType(string):</b>The aggregation method, if any, that should be used if data is pushed in sub-minute intervals. Allowed options are
-“sum”, “average” and “none”(default) where “none” would take last value for that minute.
-Only considered when creating a new datapoint. See the About the Push Metrics REST API section of this guide for more
-information on datapoint value aggregation intervals.</p>
-<p><b>Description(string):</b> Datapoint description. Only considered when creating a new datapoint.</p>
-<p><b>Type(string):</b> Metric type as a number in string format. Allowed options are “guage” (default) and “counter”. Only considered
-when creating a new datapoint.</p>
 <p><a name="documentation-for-api-endpoints"></a></p>
 <h2 id="documentation-for-api-endpoints">Documentation for API Endpoints</h2>
 <p>All URIs are relative to <em><a href="https://AccountName.logicmonitor.com/rest">https://AccountName.logicmonitor.com/rest</a></em></p>
@@ -202,11 +166,10 @@ when creating a new datapoint.</p>
               <a href="#top">Back to top</a>
             </span>
             
-            <span>Generated by <strong>DocFX</strong></span>
+            <span>Copyright © 2008-2021 Logicmonitor Inc.<br>Generated by <strong>DocFX</strong></span>
           </div>
         </div>
-      </footer>
-    </div>
+      </footer>    </div>
     
     <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../styles/docfx.js"></script>

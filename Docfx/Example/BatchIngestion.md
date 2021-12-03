@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.4-alpha
+- SDK version: 0.0.5-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -33,15 +33,15 @@ authenticate.Type = Environment.GetEnvironmentVariable("LmType");
 Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
 ```
 
-<a name = "Metrics Ingestion Example"></a>
-## Metrics Ingestion Example.
+<a name = "Batching Metrics & Log Ingestion"></a>
+## Batching Metrics & Log Ingestion.
 
-After Configuring the SDK, configration must be passed to ApiClients.
-For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model,
-also dictonary should be created in  which 'Key' hold the Time(epoch) for which data is being emitted and 'Value' will the the value of datapoint.
+When their is requirement that data is not to be ingested immediately after generation, user can ingest data in bulk i.e multiple metrics and log is to be ingested in single request.
 
-Read below for understanding more about Models in SDK.
+To enable batching, batchs is to be set to 'True' along with proper interval(in seconds) which determine the time between the variable.
+For the set interval, SDK waits for all the data to generate and ingest all the data after completion of interval. 
 
+NOTE:Make sure data should not be older than 10 mins.
 ```csharp
 ApiClients apiClients = new ApiClients(configuration);
 
@@ -52,15 +52,18 @@ DataPoint open = new DataPoint(name: "High");
 Dictionary<string, string> highValue = new Dictionary<string, string>();
     
     
-Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClients);
+Metrics metrics = new Metrics(batchs: true, intervals: 100, responseInterface, apiClients);
 highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("high").ToString());
     
 metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: open, values: openValue);
+
+Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClients: apiClients);
+logs.SendLogs(message: msg, resource: resource);
 ```
+
 
 <a name="Model"></a>
 ## Model
-
 - Resource
 
 ```csharp

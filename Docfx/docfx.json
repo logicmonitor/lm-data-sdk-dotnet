@@ -1,0 +1,59 @@
+{
+    "metadata": [{
+        "src": [{
+            "files": [
+                "../LogicMonitor.DataSDK/**.csproj"
+            ]
+        }],
+        "filter": "filter/filter.yaml",
+        "dest": "api",
+        "disableGitFeatures": false,
+        "disableDefaultFilter": false
+    }],
+    "build": {
+        "content": [{
+                "files": [
+                    "api/**.yml"
+                ]
+            },
+            {
+                "files": [
+                    "articles/**.md",
+                    "articles/**/toc.yml",
+                    "Example/**.md",
+                    "Example/**/toc.yml",
+                    "toc.yml",
+                    "*.md"
+                ]
+            }
+        ],
+        "resource": [{
+            "files": [
+                "images/**"
+            ]
+        }],
+        "overwrite": [{
+            "files": [
+                "apidoc/**.md"
+            ],
+            "exclude": [
+                "obj/**",
+                "_site/**"
+            ]
+        }],
+        "dest": "../docs",
+        "globalMetadataFiles": [],
+        "fileMetadataFiles": [],
+        
+        "template": [
+            "default",
+            "templates/material"
+        ],
+        "postProcessors": [],
+        "markdownEngineName": "markdig",
+        "noLangKeyword": false,
+        "keepFileLink": false,
+        "cleanupCacheHistory": false,
+        "disableGitFeatures": true
+    }
+}

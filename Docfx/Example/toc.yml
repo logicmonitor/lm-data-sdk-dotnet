@@ -1,0 +1,8 @@
+- name: Simple Example
+  href: SimpleIngestion.md
+- name: Single Metrics Ingestion
+  href: MetricsIngestion.md
+- name: Single Logs Ingestion
+  href: LogIngestion.md
+- name: Batching Metrics & Log Ingestion
+  href: BatchIngestion.md

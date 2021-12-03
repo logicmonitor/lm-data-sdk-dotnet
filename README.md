@@ -1,6 +1,8 @@
 # LogicMonitor.DataSDK - the C# library for the LogicMonitor API-Ingest Rest API
 [![CodeQL](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml)
 
+[![.NET](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/dotnet.yml/badge.svg)](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/dotnet.yml)
+
 LogicMonitor is a SaaS-based performance monitoring platform that provides full visibility into complex, hybrid 
 infrastructures, offering granular performance monitoring and actionable data and insights. API-Ingest provides the 
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 

@@ -5,50 +5,50 @@
   "files": [
     {
       "type": "Conceptual",
-      "source_relative_path": "Example/Read.md",
+      "source_relative_path": "Example/BatchIngestion.md",
       "output": {
         ".html": {
-          "relative_path": "Example/Read.html",
-          "hash": "4XixNMble3CWDDZJR9fobPkrgrN2vkhiKE128qjsLyQ="
+          "relative_path": "Example/BatchIngestion.html",
+          "hash": "ZxTeKJ6b9Q6rOEb5hnz0OpQ/AvO7+5+a/Y7k4x7m/kI="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Example/Readme_Combine.md",
+      "source_relative_path": "Example/LogIngestion.md",
       "output": {
         ".html": {
-          "relative_path": "Example/Readme_Combine.html",
-          "hash": "Umh960k1lXIHpSYF+f7zmCGxL2xqtcpG4YmgXihWMmU="
+          "relative_path": "Example/LogIngestion.html",
+          "hash": "/VWTYANGHI2ia+Aj/Pys2IGP0AIe5JE+EBIdtDv0uN4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Example/Readme_Logs.md",
+      "source_relative_path": "Example/MetricsIngestion.md",
       "output": {
         ".html": {
-          "relative_path": "Example/Readme_Logs.html",
-          "hash": "pJxWaUbMQyjoQwqZCVHhceGG4xGAPAEILrFeZUCwaOA="
+          "relative_path": "Example/MetricsIngestion.html",
+          "hash": "jExGMk3xqo+kTAMCsot4WvJm7O1L305CUnk94LgL7K8="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Example/Readme_metrics.md",
+      "source_relative_path": "Example/SimpleIngestion.md",
       "output": {
         ".html": {
-          "relative_path": "Example/Readme_metrics.html",
-          "hash": "3pSDNhMDabElQ82SIjNy3n+HWEVlZbWYvx68fJU05qA="
+          "relative_path": "Example/SimpleIngestion.html",
+          "hash": "vC2G1ulEEt7PC9t6lzNVG1E3PX5pNbapiE02Am0grvs="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -57,7 +57,7 @@
       "output": {
         ".html": {
           "relative_path": "Example/toc.html",
-          "hash": "Kb4bNle4vHx9jgukv5wByNwbJbY/YojZXIH21NfrQZ4="
+          "hash": "t1m//42HfqbSSuo9twc81P1ffEAzEecTo2g4/bURJWc="
         }
       },
       "is_incremental": false,
@@ -69,10 +69,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Api.IResponseInterface.html",
-          "hash": "hoy8N+uyLgtYoJSlgCxuL6pJo2+X9uI+BihiSfSO0EY="
+          "hash": "YUcAasONvTT6w7h+OOESnWUjK+PAMYGNwhwsR9XM520="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -81,10 +81,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Api.Logs.html",
-          "hash": "QLDkXu3y8YMvhbi+WGSmbFvJr0iOs276DhdGD/3V8v0="
+          "hash": "QKW1ZpddrsAkF6EzBW56MJrq+tB1myGNnOPZJrPy+D4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -93,10 +93,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Api.Metrics.html",
-          "hash": "rgym6kcRNpz3/v2d8NhUGLiCu5hZFcuCMQF8nNdrVds="
+          "hash": "QbOR1Mo9N4uAbDyeeCwwUchYGUFsuPoVcP2ZQ51k5LQ="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -105,10 +105,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Api.html",
-          "hash": "ncBLjexqaSPouLsibtYubpEvecVP52exrBdaeqGOzXU="
+          "hash": "gBAI7yvPSaa8oYr5zRC/jR1dwVdH2ZsnzpPnGvCH5w0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -117,10 +117,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.ApiClients.html",
-          "hash": "deFT0XaTiae2zr5Li0vao70h0GHobUpjfDRxXlpdM9E="
+          "hash": "4XTzKpZ7wgo9T2k01ptBSHC4sCa4FZEn5ODGN1LmRB0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -129,10 +129,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Configuration.html",
-          "hash": "T1RcwAxtepLGOWmU76ROhqSYcihtcbWCwvr5z1fVJy8="
+          "hash": "T6uklWCV4LGxSVELDsn43xGkRILRnuseOselY43yZRY="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -141,10 +141,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.Authenticate.html",
-          "hash": "ZlTAGKHSJs6vBeI0CZVVFBne0HU9wgF8mF/GKVkCOzM="
+          "hash": "Ithty9borqxX1w9Xoe4JjECioKAhZWC6IaEoaGy8DLk="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -153,10 +153,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.DataPoint.html",
-          "hash": "pZ4y+vIvivstgLTLVTTCtD70hYIfIrFaPwSIIBcielw="
+          "hash": "IW7cYwG1lYZi+LNyDPuANP1FQSyE7YNJl7ZEk12RQ24="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -165,10 +165,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.DataSource.html",
-          "hash": "GXg8jVdEBY2QbjNUgtOGkhKZlC5D/GcvePCmq3WdU+E="
+          "hash": "cl9HstPoGzOro57gLiT8bwRhXE64rVqINRW1PFV2zTs="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -177,10 +177,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.DataSourceInstance.html",
-          "hash": "gdZ7tn0w+WNS3O5YK4sM67Y64yQ3Hud1qY9ac/ObMj8="
+          "hash": "ZoO3bFctCNqsfwlR19+UmyawryB2GdQ/RpAjAljvZpU="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -189,10 +189,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.LogsV1.html",
-          "hash": "QEtiXrAwry+qm7AGMOfCD3vLW9g2wk1B+yntht4gTak="
+          "hash": "KsVISfWLn+Dkz3aXWmlEYnGNdzhMxWvXKxrb2LjssQw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -201,10 +201,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.Resource.html",
-          "hash": "webvdDRgvSbjtxD7Q6wuxJ/UwKaabTPtWZsmQkw6k1E="
+          "hash": "kC8iTN9yhe7hVZwvByGUMrrAJIM2L0KFLdAvLha36Gc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -213,10 +213,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.RestDataPointV1.html",
-          "hash": "xww7ZqZc8Wg5dG6HcyDrT279yfQp+fQ8x+N90elthrc="
+          "hash": "hN0duQVnuWKp735JajApkmoOgPRwRDTzG82twFobQv4="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -225,10 +225,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.html",
-          "hash": "fee46k8JGAmsYiO3IVKeyrmowfzHyWk639gAjlVaod8="
+          "hash": "Drz6yCpCPNHs8tklPo5vem9gvC2QlMYZFYag50vu+O0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -237,10 +237,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.RestInstancePropertiesV1.html",
-          "hash": "w1CxYa922TlgdW6w7Rz1srxu+uUX6Ye6FzMYJqJPZs0="
+          "hash": "BV5NLK/a0g16VayqC02tSnF1ryt7kah4UJH7bxS7ucM="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -249,10 +249,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.RestMetricsV1.html",
-          "hash": "ytqfZ0+gOo4EavSSA04LvS8ekYKjvPV3GFuZX850JgM="
+          "hash": "wm119kCbW+4QHg+19FpYxCoBA4oskV4eeD9/kcwKQXw="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -261,10 +261,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.RestResourcePropertiesV1.html",
-          "hash": "kWyiufr0DxkVucLkpyJlfsIbpoDMppkRQVfC5p7jol8="
+          "hash": "QpNlDirv0ksmGovcqh5A4NEvDsV7+R48YhKegs1yJQ0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -273,10 +273,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.Model.html",
-          "hash": "LLbk4jBalZewInJdiPdSqhLdWJDOUg5mj/D7z/bT3b8="
+          "hash": "9lcq0wF9Vss8z4SG6PuOZUsk5rGk1IDSZvAbmxsSUTc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -285,10 +285,10 @@
       "output": {
         ".html": {
           "relative_path": "api/LogicMonitor.DataSDK.html",
-          "hash": "J4NB/2B8779DdVJyk/ToK2PY7NeLAA96OttXazJSB0M="
+          "hash": "QTd47Vwq581t4X90fjBC31S3/+dHVm4rGxtf+1NOIYA="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -304,27 +304,145 @@
       "version": ""
     },
     {
-      "type": "Conceptual",
-      "source_relative_path": "index.md",
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_Bug-White.png",
       "output": {
-        ".html": {
-          "relative_path": "index.html",
-          "hash": "inQ+1x9HmFrlV3h7pi1tJpbl6I2XQ0Bw2Fx5rPVHON8="
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_Bug-White.png"
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "InvalidFileLink"
-      ],
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_Bug-lomo.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_Bug-lomo.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_Bug-lomo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_Bug-lomo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_Bug-navy.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_Bug-navy.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_Bug-navy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_Bug-navy.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_m_lomo.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_m_lomo.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_m_lomo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_m_lomo.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_m_navy.jpg",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_m_navy.jpg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_m_navy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_m_navy.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/LM_logo_Digital_m_white.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/LM_logo_Digital_m_white.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon.ico"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Aikkbekr6oK9UOJkawR57FmzCFNwjeDbcV1naglbkQA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
         ".html": {
           "relative_path": "toc.html",
-          "hash": "gDBPhs9Ex+0c5Lpik+BXubdTkzH3xAGjEIAQGJf0RGk="
+          "hash": "FbpELGuYr5MNpl7e2fjPlaD9bLqVbDGViYTyNAbUFQE="
         }
       },
       "is_incremental": false,
@@ -344,13 +462,20 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 5,
-          "skipped_file_count": 4
+          "skipped_file_count": 1
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 19,
           "skipped_file_count": 19
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

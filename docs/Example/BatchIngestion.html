@@ -72,7 +72,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users
 have to create LMAuth token using access id and key from santaba.</p>
 <ul>
-<li>SDK version: 0.0.5-alpha</li>
+<li>SDK version: 0.0.5-beta</li>
 </ul>
 <p><a name="frameworks-supported"></a></p>
 <h2 id="frameworks-supported">Frameworks supported</h2>
@@ -82,7 +82,7 @@ have to create LMAuth token using access id and key from santaba.</p>
 <p><a name="dependencies"></a></p>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
-<li><a href="https://www.nuget.org/packages/RestSharp">RestSharp</a> - 106.11.7 or later</li>
+<li><a href="https://www.nuget.org/packages/RestSharp">RestSharp</a> - 106.13.0 or later</li>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Json.NET</a> - 12.0.3 or later</li>
 <li><a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging/">Microsoft.Extenstion.Logging</a> - 5.0.0 or later</li>
 <li><a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/">Microsoft.Extenstion.Hosting</a> - 5.0.0 or later</li>
@@ -103,19 +103,19 @@ Configuration configuration = new Configuration(company: Environment.GetEnvironm
 <p>To enable batching, batchs is to be set to 'True' along with proper interval(in seconds) which determine the time between the variable.
 For the set interval, SDK waits for all the data to generate and ingest all the data after completion of interval.</p>
 <p>NOTE:Make sure data should not be older than 10 mins.</p>
-<pre><code class="lang-csharp">ApiClients apiClients = new ApiClients(configuration);
+<pre><code class="lang-csharp">ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
 DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
 DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint open = new DataPoint(name: &quot;High&quot;);
+DataPoint high = new DataPoint(name: &quot;High&quot;);
 Dictionary&lt;string, string&gt; highValue = new Dictionary&lt;string, string&gt;();
     
     
 Metrics metrics = new Metrics(batchs: true, intervals: 100, responseInterface, apiClients);
 highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken(&quot;high&quot;).ToString());
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: open, values: openValue);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highValue);
 
 Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClients: apiClients);
 logs.SendLogs(message: msg, resource: resource);

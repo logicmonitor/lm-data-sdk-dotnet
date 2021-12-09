@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-alpha
+- SDK version: 0.0.5-beta
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -120,8 +120,8 @@ namespace IncludeDll
             
             string resourceName = "SampleDevice.net";
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
-            resourceIds.Add("system.displayname","SampleDevice11");
-            resourceIds.Add("some.custom.property", "value11");
+            resourceIds.Add("system.displayname","SampleDevice1");
+            resourceIds.Add("some.custom.property", "value");
             string dataSourceName = "MBM";
             string dataSourceGroup = "123";
             string saname = "Instance1";
@@ -135,11 +135,11 @@ namespace IncludeDll
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: saname);
             DataPoint dataPoint = new DataPoint(name:datapointname);
 
-            ApiClients apiClients = new ApiClients(configuration);
+            ApiClient apiClient = new ApiClient(configuration);
 
 
-            Metrics metrics1 = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
-            metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
+            Metrics metrics = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
+            metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
 
             
         }

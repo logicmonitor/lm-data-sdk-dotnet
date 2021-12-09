@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-alpha
+- SDK version: 0.0.5-beta
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -43,19 +43,19 @@ also dictonary should be created in  which 'Key' hold the Time(epoch) for which 
 Read below for understanding more about Models in SDK.
 
 ```csharp
-ApiClients apiClients = new ApiClients(configuration);
+ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
 DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
 DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint open = new DataPoint(name: "High");
+DataPoint high = new DataPoint(name: "High");
 Dictionary<string, string> highValue = new Dictionary<string, string>();
     
     
 Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClients);
 highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("high").ToString());
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: open, values: openValue);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: high);
 ```
 
 <a name="Model"></a>

@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-alpha
+- SDK version: 0.0.5-beta
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -39,7 +39,7 @@ Configuration configuration = new Configuration(company: Environment.GetEnvironm
 For Log ingestion, log message has to be passed along the resource object to idetify the resource.
 
 ```csharp
-ApiClients apiClients = new ApiClients(configuration);
+ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds);
 string logMessage = " This is my logging message";

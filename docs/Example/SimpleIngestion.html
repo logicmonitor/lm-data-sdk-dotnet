@@ -72,7 +72,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users
 have to create LMAuth token using access id and key from santaba.</p>
 <ul>
-<li>SDK version: 0.0.5-alpha</li>
+<li>SDK version: 0.0.5-beta</li>
 </ul>
 <p><a name="frameworks-supported"></a></p>
 <h2 id="frameworks-supported">Frameworks supported</h2>
@@ -82,7 +82,7 @@ have to create LMAuth token using access id and key from santaba.</p>
 <p><a name="dependencies"></a></p>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
-<li><a href="https://www.nuget.org/packages/RestSharp">RestSharp</a> - 106.11.7 or later</li>
+<li><a href="https://www.nuget.org/packages/RestSharp">RestSharp</a> - 106.13.0 or later</li>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Json.NET</a> - 12.0.3 or later</li>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Microsoft.Extenstion.Logging</a> - 12.0.3 or later</li>
 <li><a href="https://www.nuget.org/packages/Newtonsoft.Json/">Microsoft.Extenstion.Hosting</a> - 12.0.3 or later</li>
@@ -169,8 +169,8 @@ namespace IncludeDll
             
             string resourceName = &quot;SampleDevice.net&quot;;
             Dictionary&lt;string, string&gt; resourceIds = new Dictionary&lt;string, string&gt;();
-            resourceIds.Add(&quot;system.displayname&quot;,&quot;SampleDevice11&quot;);
-            resourceIds.Add(&quot;some.custom.property&quot;, &quot;value11&quot;);
+            resourceIds.Add(&quot;system.displayname&quot;,&quot;SampleDevice1&quot;);
+            resourceIds.Add(&quot;some.custom.property&quot;, &quot;value&quot;);
             string dataSourceName = &quot;MBM&quot;;
             string dataSourceGroup = &quot;123&quot;;
             string saname = &quot;Instance1&quot;;
@@ -184,11 +184,11 @@ namespace IncludeDll
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: saname);
             DataPoint dataPoint = new DataPoint(name:datapointname);
 
-            ApiClients apiClients = new ApiClients(configuration);
+            ApiClient apiClient = new ApiClient(configuration);
 
 
-            Metrics metrics1 = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
-            metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
+            Metrics metrics = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
+            metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
 
             
         }

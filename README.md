@@ -1,4 +1,5 @@
 # LogicMonitor.DataSDK - the C# library for the LogicMonitor API-Ingest Rest API
+
 [![CodeQL](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/codeql-analysis.yml) [![.NET](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/dotnet.yml/badge.svg)](https://github.com/logicmonitor/lm-data-sdk-dotnet/actions/workflows/dotnet.yml)
 
 LogicMonitor is a SaaS-based performance monitoring platform that provides full visibility into complex, hybrid 
@@ -6,7 +7,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-alpha
+- SDK version: 0.0.5-beta
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -29,10 +30,10 @@ Authenticate class is to used set the values and its object will be passed to co
 
 ```csharp
 Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LmId");
-authenticate.Key = Environment.GetEnvironmentVariable("LmKey");
-authenticate.Type = Environment.GetEnvironmentVariable("LmType");
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
+authenticate.Id = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
+authenticate.Key = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
+authenticate.Type = Environment.GetEnvironmentVariable("LM_ACCESS_TYPE");
+Configuration configuration = new Configuration(company: "LM_ACCOUNT_NAME", authentication: authenticate);
 ```
 
 <a name = "Batching Metrics & Log Ingestion"></a>
@@ -45,27 +46,27 @@ For the set interval, SDK waits for all the data to generate and ingest all the 
 
 NOTE:Make sure data should not be older than 10 mins.
 ```csharp
-ApiClients apiClients = new ApiClients(configuration);
+ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
 DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
 DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint open = new DataPoint(name: "High");
-Dictionary<string, string> highValue = new Dictionary<string, string>();
+DataPoint high = new DataPoint(name: "High");           //Consider a stock price
+Dictionary<string, string> highestPriceValue = new Dictionary<string, string>();
     
     
-Metrics metrics = new Metrics(batchs: true, intervals: 100, responseInterface, apiClients);
-highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("high").ToString());
+Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClient);
+highestPriceValue.Add(epochTime, metricData);
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: open, values: openValue);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highestPriceValue);
 
-Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClients: apiClients);
+Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClient: apiClient);
 logs.SendLogs(message: msg, resource: resource);
 ```
 
 Then Run the program as:
 ```csharp
-export id=<LM_AccessID>  api_key=<LM_AccessKey> type=<'LMv1'/'Bearer'> Lm_company=<LM_AccountName>
+export LM_ACCESS_ID=<Your access ID>  LM_ACCESS_KEY=<Your access key> LM_ACCESS_TYPE=<('LMv1'/'Bearer')> LM_ACCOUNT_NAME=<Your Account(Company) name>
 dotnet run
 ```
 
@@ -142,6 +143,12 @@ information on datapoint value aggregation intervals.
 
 <b>Type(string):</b> Metric type as a number in string format. Allowed options are “guage” (default) and “counter”. Only considered 
 when creating a new datapoint.
+
+- Value
+```csharp
+Dictionary<string,string> value = new Dictionary<string,string>();
+```
+Value is a dictionary which stores the time of data emittion(in epoch) as Key of dictionary and Metric Data as Value of dictionary.
 
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints

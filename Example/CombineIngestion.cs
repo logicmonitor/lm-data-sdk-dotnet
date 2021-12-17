@@ -37,11 +37,11 @@ namespace StockMarketData
 
             //Enter Account details using `export id=  api_key="" type=LMv1 Lm_company=`
             Authenticate authenticate = new Authenticate();
-            authenticate.Id = Environment.GetEnvironmentVariable("id");
-            authenticate.Key = Environment.GetEnvironmentVariable("api_key");
-            authenticate.Type = Environment.GetEnvironmentVariable("type");
-            Configuration configuration = new Configuration(company: "lmaakashkhopade", authentication: authenticate);
-            apiClients = new ApiClients(configuration); 
+            authenticate.Id = Environment.GetEnvironmentVariable("API_ACCESS_ID");
+            authenticate.Key = Environment.GetEnvironmentVariable("API_ACCESS_KEY");
+            authenticate.Type = Environment.GetEnvironmentVariable("API_ACCESS_TYPE");
+            Configuration configuration = new Configuration(company: "ACCOUNT_NAME", authentication: authenticate);
+            apiClient = new ApiClient(configuration); 
         }
         public  void ReadLog()
         {
@@ -49,11 +49,11 @@ namespace StockMarketData
 
             var reseteevnt = new AutoResetEvent(false);
             var watcher = new FileSystemWatcher(".");
-            watcher.Filter = "/Users/aakashkhopade/Desktop/logfile.txt";
+            watcher.Filter = "/Users/local/Desktop/logfile.txt";
             watcher.EnableRaisingEvents = true;
             watcher.Changed += (s, e) => reseteevnt.Set();
             int count = 0;
-            var fs = new FileStream("/Users/aakashkhopade/Desktop/logfile.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            var fs = new FileStream("/Users/local/Desktop/logfile.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             using (var sr = new StreamReader(fs))
             {
                 Thread.Sleep(1000 * 60);
@@ -92,7 +92,7 @@ namespace StockMarketData
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
                 .WriteTo.Console()
-                .WriteTo.File("/Users/aakashkhopade/Desktop/logfile.txt")
+                .WriteTo.File("/Users/local/Desktop/logfile.txt")
             .CreateLogger();
 
             var Symbols = new List<string>();
@@ -136,7 +136,7 @@ namespace StockMarketData
 
            
             //Creating Data Point values
-            Dictionary<string, string> highValue = new Dictionary<string, string>();
+            Dictionary<string, string> highestPriceValue = new Dictionary<string, string>();
             Dictionary<string, string> lowValue = new Dictionary<string, string>();
             Dictionary<string, string> closeValue = new Dictionary<string, string>();
             Dictionary<string, string> openValue = new Dictionary<string, string>();
@@ -149,15 +149,18 @@ namespace StockMarketData
             var count = 0;
             foreach (var item in values)
             {
+                
+                string epochTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
 
+                string metricData = item.SelectToken("high").ToString();
                 //Storing Data value and its epoch time 
-                highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("high").ToString());
-                lowValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("low").ToString());
-                openValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("open").ToString());
-                closeValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("close").ToString());
+                highestPriceValue.Add(epochTime, metricData);
+                lowValue.Add(epochTime, item.SelectToken("low").ToString());
+                openValue.Add(epochTime, item.SelectToken("open").ToString());
+                closeValue.Add(epochTime, item.SelectToken("close").ToString());
 
                 //Generating Logs
-                previous = Convert.ToDouble(item.SelectToken("close"));
+                previous = metricData;
                 if (current == 0)
                     WriteLog(string.Format(" Monitoring Stock: {0} ", dataSourceName));
                 else if (previous - current > 0)
@@ -174,7 +177,7 @@ namespace StockMarketData
                 {
                     // Call LM Server using SDK.
                     metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstances, dataPoint: open, values: openValue);
-                    metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstances, dataPoint: high, values: highValue);
+                    metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstances, dataPoint: high, values: metricData);
                     metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstances, dataPoint: low, values: lowValue);
                     metrics1.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstances, dataPoint: close, values: closeValue);
                     count = 0;

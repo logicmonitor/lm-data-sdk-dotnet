@@ -27,10 +27,10 @@ Authenticate class is to used set the values and its object will be passed to co
 
 ```csharp
 Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LmId");
-authenticate.Key = Environment.GetEnvironmentVariable("LmKey");
-authenticate.Type = Environment.GetEnvironmentVariable("LmType");
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
+authenticate.Id = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
+authenticate.Key = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
+authenticate.Type = Environment.GetEnvironmentVariable("LM_ACCESS_TYPE");
+Configuration configuration = new Configuration(company: "LM_ACCOUNT_NAME", authentication: authenticate);
 ```
 
 <a name = "Single Log Ingestion"></a>
@@ -44,7 +44,7 @@ ApiClient apiClient = new ApiClient(configuration);
 Resource resource = new Resource(name: resourceName, ids: resourceIds);
 string logMessage = " This is my logging message";
 
-Logs logs = new Logs(batchs: false, intervals: 0, apiClients: apiClients);s
+Logs logs = new Logs(batchs: false, intervals: 0, apiClient: apiClient);
 logs.SendLogs(message: logMessage, resource: resource);
 ```
 

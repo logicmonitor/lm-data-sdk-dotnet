@@ -92,10 +92,10 @@ have to create LMAuth token using access id and key from santaba.</p>
 <p>SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
 Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.</p>
 <pre><code class="lang-csharp">Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable(&quot;LmId&quot;);
-authenticate.Key = Environment.GetEnvironmentVariable(&quot;LmKey&quot;);
-authenticate.Type = Environment.GetEnvironmentVariable(&quot;LmType&quot;);
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable(&quot;LmCompany&quot;), authentication: authenticate);
+authenticate.Id = Environment.GetEnvironmentVariable(&quot;API_ACCESS_ID&quot;);
+authenticate.Key = Environment.GetEnvironmentVariable(&quot;API_ACCESS_KEY&quot;);
+authenticate.Type = Environment.GetEnvironmentVariable(&quot;API_ACCESS_TYPE&quot;);
+Configuration configuration = new Configuration(company: &quot;ACCOUNT_NAME&quot;, authentication: authenticate);
 </code></pre>
 <p><a name="Single Log Ingestion"></a></p>
 <h2 id="single-log-ingestion">Single Log Ingestion.</h2>
@@ -105,7 +105,7 @@ Configuration configuration = new Configuration(company: Environment.GetEnvironm
 Resource resource = new Resource(name: resourceName, ids: resourceIds);
 string logMessage = &quot; This is my logging message&quot;;
 
-Logs logs = new Logs(batchs: false, intervals: 0, apiClients: apiClients);s
+Logs logs = new Logs(batchs: false, intervals: 0, apiClient: apiClient);
 logs.SendLogs(message: logMessage, resource: resource);
 </code></pre>
 <p><a name="Model"></a></p>

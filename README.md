@@ -64,7 +64,8 @@ Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseIn
 logs.SendLogs(message: msg, resource: resource);
 ```
 
-Then Run the program as:(c
+Then Run the program as:
+```csharp
 export LM_ACCESS_ID=<Your access ID>  LM_ACCESS_KEY=<Your access key> LM_ACCESS_TYPE=<('LMv1'/'Bearer')> LM_ACCOUNT_NAME=<Your Account(Company) name>
 dotnet run
 ```

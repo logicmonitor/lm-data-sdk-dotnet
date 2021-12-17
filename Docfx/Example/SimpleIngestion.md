@@ -29,10 +29,10 @@ Authenticate class is to used set the values and its object will be passed to co
 
 ```csharp
 Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LmId");
-authenticate.Key = Environment.GetEnvironmentVariable("LmKey");
-authenticate.Type = Environment.GetEnvironmentVariable("LmType");
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
+authenticate.Id = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
+authenticate.Key = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
+authenticate.Type = Environment.GetEnvironmentVariable("LM_ACCESS_TYPE");
+Configuration configuration = new Configuration(company: "LM_ACCOUNT_NAME", authentication: authenticate);
 ```
 <a name="Model"></a>
 ## Model
@@ -101,6 +101,12 @@ Description(string): Datapoint description. Only considered when creating a new 
 
 Type(string): Metric type as a number in string format. Allowed options are “guage” (default) and “counter”. Only considered 
 when creating a new datapoint.
+
+- Value
+```csharp
+Dictionary<string,string> value = new Dictionary<string,string>();
+```
+Value is a dictionary which stores the time of data emittion(in epoch) as Key of Dictionary and Metrics data as Value of Dictionary.
 
 <a name="getting-started"></a>
 ## Getting Started

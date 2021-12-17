@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Metrics
+    <title>Class ApiClient
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Metrics
+    <meta name="title" content="Class ApiClient
    ">
     <meta name="generator" content="docfx 2.58.4.0">
     
@@ -66,47 +66,46 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="LogicMonitor.DataSDK.Api.Metrics">
+            <article class="content wrap" id="_content" data-uid="LogicMonitor.DataSDK.ApiClient">
   
   
-  <h1 id="LogicMonitor_DataSDK_Api_Metrics" data-uid="LogicMonitor.DataSDK.Api.Metrics" class="text-break">Class Metrics
+  <h1 id="LogicMonitor_DataSDK_ApiClient" data-uid="LogicMonitor.DataSDK.ApiClient" class="text-break">Class ApiClient
   </h1>
-  <div class="markdown level0 summary"><p>This Class is used to Send Metrics.This class is used by user to interact with LogicMonitor.</p>
+  <div class="markdown level0 summary"><p>This class is Controller.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">LogicMonitor.DataSDK.Internal.BatchingCache</span></div>
-    <div class="level2"><span class="xref">Metrics</span></div>
+    <div class="level1"><span class="xref">ApiClient</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="LogicMonitor.DataSDK.Api.html">LogicMonitor.DataSDK.Api</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="LogicMonitor.DataSDK.html">LogicMonitor.DataSDK</a></h6>
   <h6><strong>Assembly</strong>: LogicMonitor.DataSDK.dll</h6>
-  <h5 id="LogicMonitor_DataSDK_Api_Metrics_syntax">Syntax</h5>
+  <h5 id="LogicMonitor_DataSDK_ApiClient_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Metrics : BatchingCache</code></pre>
+    <pre><code class="lang-csharp hljs">public class ApiClient : object</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
-  <a id="LogicMonitor_DataSDK_Api_Metrics__ctor_" data-uid="LogicMonitor.DataSDK.Api.Metrics.#ctor*"></a>
-  <h4 id="LogicMonitor_DataSDK_Api_Metrics__ctor" data-uid="LogicMonitor.DataSDK.Api.Metrics.#ctor">Metrics()</h4>
+  <a id="LogicMonitor_DataSDK_ApiClient__ctor_" data-uid="LogicMonitor.DataSDK.ApiClient.#ctor*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient__ctor" data-uid="LogicMonitor.DataSDK.ApiClient.#ctor">ApiClient()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Metrics()</code></pre>
+    <pre><code class="lang-csharp hljs">public ApiClient()</code></pre>
   </div>
   
   
-  <a id="LogicMonitor_DataSDK_Api_Metrics__ctor_" data-uid="LogicMonitor.DataSDK.Api.Metrics.#ctor*"></a>
-  <h4 id="LogicMonitor_DataSDK_Api_Metrics__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_" data-uid="LogicMonitor.DataSDK.Api.Metrics.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)">Metrics(Boolean, Int32, IResponseInterface, ApiClient)</h4>
+  <a id="LogicMonitor_DataSDK_ApiClient__ctor_" data-uid="LogicMonitor.DataSDK.ApiClient.#ctor*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient__ctor_LogicMonitor_DataSDK_Configuration_" data-uid="LogicMonitor.DataSDK.ApiClient.#ctor(LogicMonitor.DataSDK.Configuration)">ApiClient(Configuration)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Metrics(bool batchs = null, int intervals = null, IResponseInterface responseCallbacks = null, ApiClient ApiClient = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public ApiClient(Configuration configuration)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -119,23 +118,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">batchs</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">intervals</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.Api.IResponseInterface.html">IResponseInterface</a></td>
-        <td><span class="parametername">responseCallbacks</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.ApiClient.html">ApiClient</a></td>
-        <td><span class="parametername">ApiClient</span></td>
+        <td><a class="xref" href="LogicMonitor.DataSDK.Configuration.html">Configuration</a></td>
+        <td><span class="parametername">configuration</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -144,14 +128,90 @@
   </h3>
   
   
-  <h4 id="LogicMonitor_DataSDK_Api_Metrics__lock" data-uid="LogicMonitor.DataSDK.Api.Metrics._lock">_lock</h4>
+  <h4 id="LogicMonitor_DataSDK_ApiClient_configuration" data-uid="LogicMonitor.DataSDK.ApiClient.configuration">configuration</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly object _lock</code></pre>
+    <pre><code class="lang-csharp hljs">public Configuration configuration</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="LogicMonitor.DataSDK.Configuration.html">Configuration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="LogicMonitor_DataSDK_ApiClient_pool" data-uid="LogicMonitor.DataSDK.ApiClient.pool">pool</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string pool</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <a id="LogicMonitor_DataSDK_ApiClient_Platform_" data-uid="LogicMonitor.DataSDK.ApiClient.Platform*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient_Platform" data-uid="LogicMonitor.DataSDK.ApiClient.Platform">Platform</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PlatformID Platform { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">PlatformID</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LogicMonitor_DataSDK_ApiClient_user_agent_" data-uid="LogicMonitor.DataSDK.ApiClient.user_agent*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient_user_agent" data-uid="LogicMonitor.DataSDK.ApiClient.user_agent">user_agent</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object user_agent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
@@ -170,13 +230,13 @@
   </h3>
   
   
-  <a id="LogicMonitor_DataSDK_Api_Metrics_SendMetrics_" data-uid="LogicMonitor.DataSDK.Api.Metrics.SendMetrics*"></a>
-  <h4 id="LogicMonitor_DataSDK_Api_Metrics_SendMetrics_LogicMonitor_DataSDK_Model_Resource_LogicMonitor_DataSDK_Model_DataSource_LogicMonitor_DataSDK_Model_DataSourceInstance_LogicMonitor_DataSDK_Model_DataPoint_Dictionary_System_String_System_String__" data-uid="LogicMonitor.DataSDK.Api.Metrics.SendMetrics(LogicMonitor.DataSDK.Model.Resource,LogicMonitor.DataSDK.Model.DataSource,LogicMonitor.DataSDK.Model.DataSourceInstance,LogicMonitor.DataSDK.Model.DataPoint,Dictionary{System.String,System.String})">SendMetrics(Resource, DataSource, DataSourceInstance, DataPoint, Dictionary&lt;String, String&gt;)</h4>
+  <a id="LogicMonitor_DataSDK_ApiClient_SelectHeaderAccept_" data-uid="LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient_SelectHeaderAccept_System_String_" data-uid="LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept(System.String)">SelectHeaderAccept(String)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RestResponse SendMetrics(Resource resource, DataSource dataSource, DataSourceInstance dataSourceInstance, DataPoint dataPoint, Dictionary&lt;string, string&gt; values)</code></pre>
+    <pre><code class="lang-csharp hljs">public string SelectHeaderAccept(string accepts)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -189,28 +249,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.Model.Resource.html">Resource</a></td>
-        <td><span class="parametername">resource</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.Model.DataSource.html">DataSource</a></td>
-        <td><span class="parametername">dataSource</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.Model.DataSourceInstance.html">DataSourceInstance</a></td>
-        <td><span class="parametername">dataSourceInstance</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="LogicMonitor.DataSDK.Model.DataPoint.html">DataPoint</a></td>
-        <td><span class="parametername">dataPoint</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">Dictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.String</span>&gt;</td>
-        <td><span class="parametername">values</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">accepts</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -225,7 +265,49 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">RestResponse</span></td>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="LogicMonitor_DataSDK_ApiClient_SelectHeaderContentType_" data-uid="LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType*"></a>
+  <h4 id="LogicMonitor_DataSDK_ApiClient_SelectHeaderContentType_System_String_" data-uid="LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType(System.String)">SelectHeaderContentType(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SelectHeaderContentType(string content_types)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">content_types</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
         <td></td>
       </tr>
     </tbody>

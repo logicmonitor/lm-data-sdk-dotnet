@@ -92,10 +92,10 @@ have to create LMAuth token using access id and key from santaba.</p>
 <p>SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
 Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.</p>
 <pre><code class="lang-csharp">Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable(&quot;LmId&quot;);
-authenticate.Key = Environment.GetEnvironmentVariable(&quot;LmKey&quot;);
-authenticate.Type = Environment.GetEnvironmentVariable(&quot;LmType&quot;);
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable(&quot;LmCompany&quot;), authentication: authenticate);
+authenticate.Id = Environment.GetEnvironmentVariable(&quot;API_ACCESS_ID&quot;);
+authenticate.Key = Environment.GetEnvironmentVariable(&quot;API_ACCESS_KEY&quot;);
+authenticate.Type = Environment.GetEnvironmentVariable(&quot;API_ACCESS_TYPE&quot;);
+Configuration configuration = new Configuration(company: &quot;ACCOUNT_NAME&quot;, authentication: authenticate);
 </code></pre>
 <p><a name="Batching Metrics & Log Ingestion"></a></p>
 <h2 id="batching-metrics--log-ingestion">Batching Metrics &amp; Log Ingestion.</h2>
@@ -108,16 +108,16 @@ For the set interval, SDK waits for all the data to generate and ingest all the 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
 DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
 DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint high = new DataPoint(name: &quot;High&quot;);
-Dictionary&lt;string, string&gt; highValue = new Dictionary&lt;string, string&gt;();
+DataPoint high = new DataPoint(name: &quot;High&quot;);           //Consider a stock price
+Dictionary&lt;string, string&gt; highestPriceValue = new Dictionary&lt;string, string&gt;();
     
     
-Metrics metrics = new Metrics(batchs: true, intervals: 100, responseInterface, apiClients);
-highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken(&quot;high&quot;).ToString());
+Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClient);
+highestPriceValue.Add(epochTime, metricData);
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highValue);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highestPriceValue);
 
-Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClients: apiClients);
+Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClient: apiClient);
 logs.SendLogs(message: msg, resource: resource);
 </code></pre>
 <p><a name="Model"></a></p>
@@ -174,6 +174,12 @@ information on datapoint value aggregation intervals.</p>
 <p><b>Description(string):</b> Datapoint description. Only considered when creating a new datapoint.</p>
 <p><b>Type(string):</b> Metric type as a number in string format. Allowed options are “guage” (default) and “counter”. Only considered
 when creating a new datapoint.</p>
+<ul>
+<li>Value</li>
+</ul>
+<pre><code class="lang-csharp">Dictionary&lt;string,string&gt; value = new Dictionary&lt;string,string&gt;();
+</code></pre>
+<p>Value is a dictionary which stores the time of data emittion(in epoch) as Key of dictionary and Metric Data as Value of dictionary.</p>
 <p><a name="documentation-for-api-endpoints"></a></p>
 <h2 id="documentation-for-api-endpoints">Documentation for API Endpoints</h2>
 <p>All URIs are relative to <em><a href="https://AccountName.logicmonitor.com/rest">https://AccountName.logicmonitor.com/rest</a></em></p>

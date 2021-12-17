@@ -32,12 +32,12 @@ namespace Demo
             var totalMsPassed = (endTime - startTime).TotalMilliseconds;
 
             Authenticate authenticate = new Authenticate();
-            authenticate.Id = Environment.GetEnvironmentVariable("id");
-            authenticate.Key = Environment.GetEnvironmentVariable("api_key");
-            authenticate.Type = Environment.GetEnvironmentVariable("LMv1");
-            Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("company"), authentication: authenticate);
+            authenticate.Id = Environment.GetEnvironmentVariable("API_ACCESS_ID");
+            authenticate.Key = Environment.GetEnvironmentVariable("API_ACCESS_KEY");
+            authenticate.Type = Environment.GetEnvironmentVariable("API_ACCESS_TYPE");
+            Configuration configuration = new Configuration(company: "ACCOUNT_NAME", authentication: authenticate);
 
-            ApiClients apiClients = new ApiClients(configuration);
+            ApiClient apiClient = new ApiClient(configuration);
             
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
             resourceIds.Add("system.displayname", resourceName.ToString());

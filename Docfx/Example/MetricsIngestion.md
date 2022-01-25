@@ -20,52 +20,35 @@ have to create LMAuth token using access id and key from santaba.
 
 
 
-<a name = "Configration"></a>
-## Configration
-SDK must be configured with LogicMonitor.DataSDK Configuration class. 
-While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.
-
->[!Note]
->Authentication class is no longer supported in version 0.0.6-alpha.
-
-```csharp
-
-string yourCompany = "YourCompanyName";
-//For LMv1 authentication use Following variables.
-string yourAccessID = "YourAccessID";
-string yourAccessKey= "YourAccessKey";
-
-//For Bearer authentication use Following variable.
-string myBearerToken = "YourBearerToken";
-
-Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
-```
 
 <a name = "Metrics Ingestion Example"></a>
 ## Metrics Ingestion Example.
 
-After Configuring the SDK, configration must be passed to ApiClients.
-For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model,
-also dictonary should be created in  which 'Key' hold the Time(epoch) for which data is being emitted and 'Value' will the the value of datapoint.
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.All properties can be set using environment variable.
 
-Read below for understanding more about Models in SDK.
+For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model namespace,
+also dictonary should be created in  which 'Key' hold the Time(in epoch) for which data is being emitted and 'Value' will the the value of datapoint.
+
 
 ```csharp
-ApiClient apiClient = new ApiClient(configuration);
+//Pass autheticate variable as Environment variable.
+ApiClient apiClient = new ApiClient();
+
+Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
 DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
 DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
-
 DataPoint dataPoint = new DataPoint(name: CpuUsage);
 Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
     
     
-Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
 CpuUsageValue.Add(epochTime, metricData);
-    
- metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
 ```
+
+Read below for understanding more about Models in SDK.
 
 <a name="Model"></a>
 ## Model

@@ -20,38 +20,23 @@ have to create LMAuth token using access id and key from santaba.
 
 
 
-<a name = "Configration"></a>
-## Configration
-SDK must be configured with LogicMonitor.DataSDK Configuration class. 
-While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.
-
->[!Note]
->Authentication class is no longer supported in version 0.0.6-alpha.
-
-```csharp
-
-string yourCompany = "YourCompanyName";
-//For LMv1 authentication use Following variables.
-string yourAccessID = "YourAccessID";
-string yourAccessKey= "YourAccessKey";
-
-//For Bearer authentication use Following variable.
-string myBearerToken = "YourBearerToken";
-
-Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
-```
 
 <a name = "Single Log Ingestion"></a>
 ## Single Log Ingestion.
 
-For Log ingestion, log message has to be passed along the resource object to idetify the resource.
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.All properties can be set using environment variable.
+
+For Log ingestion, log message has to be passed along the resource object to idetify the resource.Create a resource object using LogicMonitor.DataSDK.Models namespace.
 
 ```csharp
-ApiClient apiClient = new ApiClient(configuration);
+ApiClient apiClient = new ApiClient();
+
+Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+
 Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
 string msg =  "Program function  has CPU Usage " + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+" Milliseconds";
 
-Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
 logs.SendLogs(message: msg, resource: resource);
 ```
 

@@ -284,6 +284,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             string expected = "Datasource group name Should not be empty or have tailing spaces.";
             string actual = o.CheckDataSourceGroupNameValidation(source);
             Assert.AreEqual(expected, actual);
+
         }
         [TestCase(null)]
         public void TestNullCheckInstanceNameValidation(string Iname)

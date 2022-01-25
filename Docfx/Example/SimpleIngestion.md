@@ -27,20 +27,6 @@ NOTE: RestSharp for .Net Core creates a new socket for each api call, which can 
 SDK must be configured with LogicMonitor.DataSDK Configuration class. 
 While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b> must </b> be passed to Company property.
 
->[!Note]
->Authentication class is no longer supported in version 0.0.6-alpha.
-
-```csharp
-string yourCompany = "YourCompanyName";
-//For LMv1 authentication use Following variables.
-string yourAccessID = "YourAccessID";
-string yourAccessKey= "YourAccessKey";
-
-//For Bearer authentication use Following variable.
-string myBearerToken = "YourBearerToken";
-
-Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
-```
 <a name="Model"></a>
 ## Model
 - Resource
@@ -140,19 +126,22 @@ namespace IncludeDll
             string dataSourceGroup = "123";
             string saname = "Instance1";
             string datapointname = "datapoint1";
-            Dictionary<string, string> value = new Dictionary<string, string>();
-            value.Add("1627542978", "4212");
 
             MyResponse responseInterface = new MyResponse();
+
+            ApiClient apiClient = new ApiClient(configuration);
+
+            Metrics metrics = new Metrics(batch:false,interval:0,responseInterface, apiClient);
+
             Resource resource = new Resource(name: resourceName,ids:resourceIds);
             DataSource dataSource = new DataSource( Name:dataSourceName, Group: dataSourceGroup);
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: saname);
             DataPoint dataPoint = new DataPoint(name:datapointname);
-
-            ApiClient apiClient = new ApiClient(configuration);
-
-
-            Metrics metrics = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
+            Dictionary<string, string> value = new Dictionary<string, string>();
+            
+            string epochTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            string metricData = "4212";
+            value.Add(epochTime, metricData);
             metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
 
             

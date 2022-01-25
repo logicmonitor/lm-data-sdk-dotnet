@@ -41,16 +41,18 @@ namespace Example
            
 
             MyResponse responseInterface = new MyResponse();
-        
+            //Pass the Authenticate Variables as Enviroment variable.
+            ApiClient apiClient = new ApiClient();
+            
+            Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
+            
             Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
             DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
-
             DataPoint dataPoint = new DataPoint(name: CpuUsage);
             Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
 
-            //Pass the Authenticate Variables as Enviroment variable.
-            Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
+            
 
             while (true)
             {

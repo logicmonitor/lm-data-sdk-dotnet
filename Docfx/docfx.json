@@ -2,8 +2,9 @@
     "metadata": [{
         "src": [{
             "files": [
-                "../LogicMonitor.DataSDK/**.csproj"
-            ]
+                "LogicMonitor.DataSDK/**.csproj"
+            ],
+            "src":".."
         }],
         "filter": "filter/filter.yaml",
         "dest": "api",

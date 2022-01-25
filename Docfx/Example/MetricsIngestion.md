@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-beta
+- SDK version: 0.0.6-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -22,15 +22,23 @@ have to create LMAuth token using access id and key from santaba.
 
 <a name = "Configration"></a>
 ## Configration
-SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.
+
+>[!Note]
+>Authentication class is no longer supported in version 0.0.6-alpha.
 
 ```csharp
-Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LmId");
-authenticate.Key = Environment.GetEnvironmentVariable("LmKey");
-authenticate.Type = Environment.GetEnvironmentVariable("LmType");
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
+
+string yourCompany = "YourCompanyName";
+//For LMv1 authentication use Following variables.
+string yourAccessID = "YourAccessID";
+string yourAccessKey= "YourAccessKey";
+
+//For Bearer authentication use Following variable.
+string myBearerToken = "YourBearerToken";
+
+Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
 ```
 
 <a name = "Metrics Ingestion Example"></a>
@@ -46,16 +54,17 @@ Read below for understanding more about Models in SDK.
 ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
-DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
-DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint high = new DataPoint(name: "High");
-Dictionary<string, string> highValue = new Dictionary<string, string>();
+DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
+DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
+
+DataPoint dataPoint = new DataPoint(name: CpuUsage);
+Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
     
     
-Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClients);
-highValue.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), item.SelectToken("high").ToString());
+Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
+CpuUsageValue.Add(epochTime, metricData);
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: high);
+ metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
 ```
 
 <a name="Model"></a>
@@ -132,6 +141,12 @@ information on datapoint value aggregation intervals.
 
 <b>Type(string):</b> Metric type as a number in string format. Allowed options are “guage” (default) and “counter”. Only considered 
 when creating a new datapoint.
+
+- Value
+```csharp
+Dictionary<string,string> value = new Dictionary<string,string>();
+```
+Value is a dictionary which stores the time of data emittion(in epoch) as Key of dictionary and Metric Data as Value of dictionary.
 
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints

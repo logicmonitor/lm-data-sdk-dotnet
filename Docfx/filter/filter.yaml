@@ -12,7 +12,10 @@ apiRules:
     uidRegex: ^LogicMonitor\.DataSDK\.Rest$
     type: Type
 - exclude:
-    uidRegex: ^LogicMonitor\.DataSDK\.ApiClients\.ApiClients$
+    uidRegex: ^LogicMonitor\.DataSDK\.ApiClient\.ApiClient$
+    type: Type
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Setup$
     type: Type
 - exclude:
     uidRegex: 'Callapi'
@@ -68,3 +71,15 @@ apiRules:
 - exclude:
     uidRegex: 'ValidField'
     type: Member
+- exclude:
+    uidRegex: 'CheckAuthenticate'
+    type: Method
+- exclude:
+    uidRegex: 'AsyncRequest'
+    type: Method
+- exclude:
+    uidRegex: 'host'
+    type: Type
+- exclude:
+    uidRegex: 'Platform'
+    type: Method

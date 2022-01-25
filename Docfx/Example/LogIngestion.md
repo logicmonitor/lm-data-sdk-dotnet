@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-beta
+- SDK version: 0.0.6-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -22,15 +22,23 @@ have to create LMAuth token using access id and key from santaba.
 
 <a name = "Configration"></a>
 ## Configration
-SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.
+
+>[!Note]
+>Authentication class is no longer supported in version 0.0.6-alpha.
 
 ```csharp
-Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LmId");
-authenticate.Key = Environment.GetEnvironmentVariable("LmKey");
-authenticate.Type = Environment.GetEnvironmentVariable("LmType");
-Configuration configuration = new Configuration(company: Environment.GetEnvironmentVariable("LmCompany"), authentication: authenticate);
+
+string yourCompany = "YourCompanyName";
+//For LMv1 authentication use Following variables.
+string yourAccessID = "YourAccessID";
+string yourAccessKey= "YourAccessKey";
+
+//For Bearer authentication use Following variable.
+string myBearerToken = "YourBearerToken";
+
+Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
 ```
 
 <a name = "Single Log Ingestion"></a>
@@ -40,12 +48,11 @@ For Log ingestion, log message has to be passed along the resource object to ide
 
 ```csharp
 ApiClient apiClient = new ApiClient(configuration);
+Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
+string msg =  "Program function  has CPU Usage " + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+" Milliseconds";
 
-Resource resource = new Resource(name: resourceName, ids: resourceIds);
-string logMessage = " This is my logging message";
-
-Logs logs = new Logs(batchs: false, intervals: 0, apiClients: apiClients);s
-logs.SendLogs(message: logMessage, resource: resource);
+Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+logs.SendLogs(message: msg, resource: resource);
 ```
 
 <a name="Model"></a>

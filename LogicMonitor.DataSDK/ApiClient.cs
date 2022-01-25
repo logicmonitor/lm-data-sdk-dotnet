@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2021, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -16,14 +16,21 @@ namespace LogicMonitor.DataSDK
 {
 
     /// <summary>
-    /// This class is Controller.
+    /// This class Bind the SDK configration and Model used.Object of this class passed to Metrics/Logs object.
+    /// This client handles the client-server communication, and is invariant across implementations.
     /// </summary>
     public class ApiClient 
     {
         public Configuration configuration;
         private Rest rest_client;
         private readonly Dictionary<string, string> default_headers = new Dictionary<string, string>();
-        public ApiClient() { }
+        public ApiClient()
+        {
+            configuration = new Configuration();
+            this.rest_client = new Rest();
+            // Set default API version
+            default_headers.Add("X-version", "1");
+        }
         public ApiClient(Configuration configuration)
         {
 
@@ -94,7 +101,6 @@ namespace LogicMonitor.DataSDK
             Dictionary<string, string> queryParams = default,
             Dictionary<string, string> headers = default,
             Dictionary<string, string> post_params = default
-
              )
         {
             if (rest_client == null)
@@ -167,37 +173,37 @@ namespace LogicMonitor.DataSDK
                 return false;
             }
 
-            var auth_setting = this.configuration.authentication;
-            if (auth_setting.Key != null && auth_setting.Id !=null)
+            if (configuration.BearerToken != null)
             {
-                if (auth_setting.Type == "Bearer" )
+                Console.WriteLine("Using Bearer token:{0}",configuration.BearerToken);
+                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
+                return true;
+            }
+            if (configuration.AccessKey != null && configuration.AccessID !=null)
+            {
+                DateTimeOffset n = DateTimeOffset.UtcNow;
+                long epoch = n.ToUnixTimeMilliseconds();
+                if (body != null)
                 {
-                    headers.Add("Authorization", string.Format("Bearer={0}", auth_setting.Key));
-                    return true;
+                    //body is serialized
+                    msg = method + epoch + body + resource_path;
                 }
                 else
                 {
-                    DateTimeOffset n = DateTimeOffset.UtcNow;
-                    long epoch = n.ToUnixTimeMilliseconds();
-                    if (body != null)
-                    {
-                        //body is serialized
-                        msg = method + epoch + body + resource_path;
-                    }
-                    else
-                    {
-                        msg = method + epoch + resource_path;
-                    }
-                    // Construct signature
-                    string hmac = HmacSHA256(auth_setting.Key, msg);
-                    var a = System.Text.Encoding.UTF8.GetBytes(hmac);
-                    string signature = Convert.ToBase64String(a);
-                    var auth_hash = "LMv1 " + auth_setting.Id + ":" + signature + ":" + epoch;
-
-                    headers.Add("Authorization", auth_hash);
-                    return true;
-
+                    msg = method + epoch + resource_path;
                 }
+                // Construct signature
+                string hmac = HmacSHA256(configuration.AccessKey, msg);
+                var a = System.Text.Encoding.UTF8.GetBytes(hmac);
+                string signature = Convert.ToBase64String(a);
+                var auth_hash = "LMv1 " + configuration.AccessID + ":" + signature + ":" + epoch;
+
+                Console.WriteLine("Using LMv1 auth {0}",auth_hash);
+
+                headers.Add("Authorization", auth_hash);
+                return true;
+
+                
             }
             else
             {

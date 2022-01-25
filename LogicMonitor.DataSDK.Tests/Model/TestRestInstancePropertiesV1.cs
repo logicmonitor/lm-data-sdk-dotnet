@@ -9,12 +9,12 @@ namespace LogicMonitor.DataSDK.Tests.Model
     {
         RestInstancePropertiesV1 restIPv1 = new RestInstancePropertiesV1();
         
-        string dataSource;
-        string dataSourceDisplayName;
-        int instanceId;
-        string instanceName;
-        Dictionary<string, string> instanceProperties;
-        Dictionary<string, string> resourceIds;
+        string dataSource = null;
+        string dataSourceDisplayName = null;
+        int instanceId = 0;
+        string instanceName = null;
+        Dictionary<string, string> instanceProperties = null;
+        Dictionary<string, string> resourceIds = null;
 
         [Test]
         public void TestRestInstancePropertiesv1()

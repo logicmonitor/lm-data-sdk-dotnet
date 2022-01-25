@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2021, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -20,12 +20,12 @@ namespace LogicMonitor.DataSDK.Model
     public class DataSource
     {
         private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        public DataSource(string Name = default(string), string DisplayName = default(string), string Group = default(string), int Id = default(int) )
+        public DataSource(string name = default(string), string displayName = default(string), string group = default(string), int id = default(int) )
         {
-            this.Name = Name;
-            this.DisplayName = DisplayName;
-            this.Group = Group;
-            this.Id = Id;
+            this.Name = name;
+            this.DisplayName = displayName;
+            this.Group = group;
+            this.Id = id;
             string errorMsg = ValidField();
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
@@ -69,19 +69,19 @@ namespace LogicMonitor.DataSDK.Model
 
         public string ValidField()
         {
-            int dataSourceId = Id;
+            int _dataSourceId = Id;
             string errorMsg = "";
 
-            if (dataSourceId > 0)
+            if (_dataSourceId > 0)
             {
-                errorMsg += objectNameValidator.CheckDataSourceId(dataSourceId);
+                errorMsg += objectNameValidator.CheckDataSourceId(_dataSourceId);
                 errorMsg += objectNameValidator.CheckDataSourceNameValidation(Name);
                 errorMsg += objectNameValidator.CheckDataSourceDisplayNameValidation(DisplayName);
                 errorMsg += objectNameValidator.CheckDataSourceGroupNameValidation(Group);
             }
-            else if (dataSourceId < 0)
+            else if (_dataSourceId < 0)
             {
-                errorMsg += string.Format("DataSource Id {0} should not be negative.", dataSourceId);
+                errorMsg += string.Format("DataSource Id {0} should not be negative.", _dataSourceId);
                 errorMsg += objectNameValidator.CheckDataSourceNameValidation(Name);
                 errorMsg += objectNameValidator.CheckDataSourceDisplayNameValidation(DisplayName);
                 errorMsg += objectNameValidator.CheckDataSourceGroupNameValidation(Group);

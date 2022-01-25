@@ -57,12 +57,12 @@ references:
   commentId: M:LogicMonitor.DataSDK.Api.Logs.#ctor
   fullName: LogicMonitor.DataSDK.Api.Logs.Logs()
   nameWithType: Logs.Logs()
-- uid: LogicMonitor.DataSDK.Api.Logs.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClients)
-  name: Logs(Boolean, Int32, IResponseInterface, ApiClients)
-  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClients_
-  commentId: M:LogicMonitor.DataSDK.Api.Logs.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClients)
-  fullName: LogicMonitor.DataSDK.Api.Logs.Logs(System.Boolean, System.Int32, LogicMonitor.DataSDK.Api.IResponseInterface, LogicMonitor.DataSDK.ApiClients)
-  nameWithType: Logs.Logs(Boolean, Int32, IResponseInterface, ApiClients)
+- uid: LogicMonitor.DataSDK.Api.Logs.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)
+  name: Logs(Boolean, Int32, IResponseInterface, ApiClient)
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_
+  commentId: M:LogicMonitor.DataSDK.Api.Logs.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)
+  fullName: LogicMonitor.DataSDK.Api.Logs.Logs(System.Boolean, System.Int32, LogicMonitor.DataSDK.Api.IResponseInterface, LogicMonitor.DataSDK.ApiClient)
+  nameWithType: Logs.Logs(Boolean, Int32, IResponseInterface, ApiClient)
 - uid: LogicMonitor.DataSDK.Api.Logs.#ctor*
   name: Logs
   href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs__ctor_
@@ -98,12 +98,12 @@ references:
   commentId: M:LogicMonitor.DataSDK.Api.Metrics.#ctor
   fullName: LogicMonitor.DataSDK.Api.Metrics.Metrics()
   nameWithType: Metrics.Metrics()
-- uid: LogicMonitor.DataSDK.Api.Metrics.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClients)
-  name: Metrics(Boolean, Int32, IResponseInterface, ApiClients)
-  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClients_
-  commentId: M:LogicMonitor.DataSDK.Api.Metrics.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClients)
-  fullName: LogicMonitor.DataSDK.Api.Metrics.Metrics(System.Boolean, System.Int32, LogicMonitor.DataSDK.Api.IResponseInterface, LogicMonitor.DataSDK.ApiClients)
-  nameWithType: Metrics.Metrics(Boolean, Int32, IResponseInterface, ApiClients)
+- uid: LogicMonitor.DataSDK.Api.Metrics.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)
+  name: Metrics(Boolean, Int32, IResponseInterface, ApiClient)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.Metrics(System.Boolean, System.Int32, LogicMonitor.DataSDK.Api.IResponseInterface, LogicMonitor.DataSDK.ApiClient)
+  nameWithType: Metrics.Metrics(Boolean, Int32, IResponseInterface, ApiClient)
 - uid: LogicMonitor.DataSDK.Api.Metrics.#ctor*
   name: Metrics
   href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics__ctor_
@@ -133,95 +133,63 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Api.Metrics.SendMetrics
   nameWithType: Metrics.SendMetrics
-- uid: LogicMonitor.DataSDK.ApiClients
-  name: ApiClients
-  href: api/LogicMonitor.DataSDK.ApiClients.html
-  commentId: T:LogicMonitor.DataSDK.ApiClients
-  fullName: LogicMonitor.DataSDK.ApiClients
-  nameWithType: ApiClients
-- uid: LogicMonitor.DataSDK.ApiClients.#ctor
-  name: ApiClients()
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients__ctor
-  commentId: M:LogicMonitor.DataSDK.ApiClients.#ctor
-  fullName: LogicMonitor.DataSDK.ApiClients.ApiClients()
-  nameWithType: ApiClients.ApiClients()
-- uid: LogicMonitor.DataSDK.ApiClients.#ctor(LogicMonitor.DataSDK.Configuration)
-  name: ApiClients(Configuration)
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients__ctor_LogicMonitor_DataSDK_Configuration_
-  commentId: M:LogicMonitor.DataSDK.ApiClients.#ctor(LogicMonitor.DataSDK.Configuration)
-  fullName: LogicMonitor.DataSDK.ApiClients.ApiClients(LogicMonitor.DataSDK.Configuration)
-  nameWithType: ApiClients.ApiClients(Configuration)
-- uid: LogicMonitor.DataSDK.ApiClients.#ctor*
-  name: ApiClients
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients__ctor_
-  commentId: Overload:LogicMonitor.DataSDK.ApiClients.#ctor
+- uid: LogicMonitor.DataSDK.ApiClient
+  name: ApiClient
+  href: api/LogicMonitor.DataSDK.ApiClient.html
+  commentId: T:LogicMonitor.DataSDK.ApiClient
+  fullName: LogicMonitor.DataSDK.ApiClient
+  nameWithType: ApiClient
+- uid: LogicMonitor.DataSDK.ApiClient.#ctor
+  name: ApiClient()
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient__ctor
+  commentId: M:LogicMonitor.DataSDK.ApiClient.#ctor
+  fullName: LogicMonitor.DataSDK.ApiClient.ApiClient()
+  nameWithType: ApiClient.ApiClient()
+- uid: LogicMonitor.DataSDK.ApiClient.#ctor(LogicMonitor.DataSDK.Configuration)
+  name: ApiClient(Configuration)
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient__ctor_LogicMonitor_DataSDK_Configuration_
+  commentId: M:LogicMonitor.DataSDK.ApiClient.#ctor(LogicMonitor.DataSDK.Configuration)
+  fullName: LogicMonitor.DataSDK.ApiClient.ApiClient(LogicMonitor.DataSDK.Configuration)
+  nameWithType: ApiClient.ApiClient(Configuration)
+- uid: LogicMonitor.DataSDK.ApiClient.#ctor*
+  name: ApiClient
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient__ctor_
+  commentId: Overload:LogicMonitor.DataSDK.ApiClient.#ctor
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.ApiClients.ApiClients
-  nameWithType: ApiClients.ApiClients
-- uid: LogicMonitor.DataSDK.ApiClients.configuration
+  fullName: LogicMonitor.DataSDK.ApiClient.ApiClient
+  nameWithType: ApiClient.ApiClient
+- uid: LogicMonitor.DataSDK.ApiClient.configuration
   name: configuration
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_configuration
-  commentId: F:LogicMonitor.DataSDK.ApiClients.configuration
-  fullName: LogicMonitor.DataSDK.ApiClients.configuration
-  nameWithType: ApiClients.configuration
-- uid: LogicMonitor.DataSDK.ApiClients.Platform
-  name: Platform
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_Platform
-  commentId: P:LogicMonitor.DataSDK.ApiClients.Platform
-  fullName: LogicMonitor.DataSDK.ApiClients.Platform
-  nameWithType: ApiClients.Platform
-- uid: LogicMonitor.DataSDK.ApiClients.Platform*
-  name: Platform
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_Platform_
-  commentId: Overload:LogicMonitor.DataSDK.ApiClients.Platform
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.ApiClients.Platform
-  nameWithType: ApiClients.Platform
-- uid: LogicMonitor.DataSDK.ApiClients.pool
-  name: pool
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_pool
-  commentId: F:LogicMonitor.DataSDK.ApiClients.pool
-  fullName: LogicMonitor.DataSDK.ApiClients.pool
-  nameWithType: ApiClients.pool
-- uid: LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept(System.String)
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient_configuration
+  commentId: F:LogicMonitor.DataSDK.ApiClient.configuration
+  fullName: LogicMonitor.DataSDK.ApiClient.configuration
+  nameWithType: ApiClient.configuration
+- uid: LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept(System.String)
   name: SelectHeaderAccept(String)
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_SelectHeaderAccept_System_String_
-  commentId: M:LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept(System.String)
-  fullName: LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept(System.String)
-  nameWithType: ApiClients.SelectHeaderAccept(String)
-- uid: LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept*
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient_SelectHeaderAccept_System_String_
+  commentId: M:LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept(System.String)
+  fullName: LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept(System.String)
+  nameWithType: ApiClient.SelectHeaderAccept(String)
+- uid: LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept*
   name: SelectHeaderAccept
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_SelectHeaderAccept_
-  commentId: Overload:LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient_SelectHeaderAccept_
+  commentId: Overload:LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.ApiClients.SelectHeaderAccept
-  nameWithType: ApiClients.SelectHeaderAccept
-- uid: LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType(System.String)
+  fullName: LogicMonitor.DataSDK.ApiClient.SelectHeaderAccept
+  nameWithType: ApiClient.SelectHeaderAccept
+- uid: LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType(System.String)
   name: SelectHeaderContentType(String)
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_SelectHeaderContentType_System_String_
-  commentId: M:LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType(System.String)
-  fullName: LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType(System.String)
-  nameWithType: ApiClients.SelectHeaderContentType(String)
-- uid: LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType*
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient_SelectHeaderContentType_System_String_
+  commentId: M:LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType(System.String)
+  fullName: LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType(System.String)
+  nameWithType: ApiClient.SelectHeaderContentType(String)
+- uid: LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType*
   name: SelectHeaderContentType
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_SelectHeaderContentType_
-  commentId: Overload:LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType
+  href: api/LogicMonitor.DataSDK.ApiClient.html#LogicMonitor_DataSDK_ApiClient_SelectHeaderContentType_
+  commentId: Overload:LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.ApiClients.SelectHeaderContentType
-  nameWithType: ApiClients.SelectHeaderContentType
-- uid: LogicMonitor.DataSDK.ApiClients.user_agent
-  name: user_agent
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_user_agent
-  commentId: P:LogicMonitor.DataSDK.ApiClients.user_agent
-  fullName: LogicMonitor.DataSDK.ApiClients.user_agent
-  nameWithType: ApiClients.user_agent
-- uid: LogicMonitor.DataSDK.ApiClients.user_agent*
-  name: user_agent
-  href: api/LogicMonitor.DataSDK.ApiClients.html#LogicMonitor_DataSDK_ApiClients_user_agent_
-  commentId: Overload:LogicMonitor.DataSDK.ApiClients.user_agent
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.ApiClients.user_agent
-  nameWithType: ApiClients.user_agent
+  fullName: LogicMonitor.DataSDK.ApiClient.SelectHeaderContentType
+  nameWithType: ApiClient.SelectHeaderContentType
 - uid: LogicMonitor.DataSDK.Configuration
   name: Configuration
   href: api/LogicMonitor.DataSDK.Configuration.html
@@ -234,12 +202,12 @@ references:
   commentId: M:LogicMonitor.DataSDK.Configuration.#ctor
   fullName: LogicMonitor.DataSDK.Configuration.Configuration()
   nameWithType: Configuration.Configuration()
-- uid: LogicMonitor.DataSDK.Configuration.#ctor(System.String,LogicMonitor.DataSDK.Model.Authenticate)
-  name: Configuration(String, Authenticate)
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration__ctor_System_String_LogicMonitor_DataSDK_Model_Authenticate_
-  commentId: M:LogicMonitor.DataSDK.Configuration.#ctor(System.String,LogicMonitor.DataSDK.Model.Authenticate)
-  fullName: LogicMonitor.DataSDK.Configuration.Configuration(System.String, LogicMonitor.DataSDK.Model.Authenticate)
-  nameWithType: Configuration.Configuration(String, Authenticate)
+- uid: LogicMonitor.DataSDK.Configuration.#ctor(System.String,System.String,System.String,System.String)
+  name: Configuration(String, String, String, String)
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration__ctor_System_String_System_String_System_String_System_String_
+  commentId: M:LogicMonitor.DataSDK.Configuration.#ctor(System.String,System.String,System.String,System.String)
+  fullName: LogicMonitor.DataSDK.Configuration.Configuration(System.String, System.String, System.String, System.String)
+  nameWithType: Configuration.Configuration(String, String, String, String)
 - uid: LogicMonitor.DataSDK.Configuration.#ctor*
   name: Configuration
   href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration__ctor_
@@ -247,19 +215,32 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Configuration.Configuration
   nameWithType: Configuration.Configuration
-- uid: LogicMonitor.DataSDK.Configuration.AppendToFile
-  name: AppendToFile
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AppendToFile
-  commentId: P:LogicMonitor.DataSDK.Configuration.AppendToFile
-  fullName: LogicMonitor.DataSDK.Configuration.AppendToFile
-  nameWithType: Configuration.AppendToFile
-- uid: LogicMonitor.DataSDK.Configuration.AppendToFile*
-  name: AppendToFile
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AppendToFile_
-  commentId: Overload:LogicMonitor.DataSDK.Configuration.AppendToFile
+- uid: LogicMonitor.DataSDK.Configuration.AccessID
+  name: AccessID
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AccessID
+  commentId: P:LogicMonitor.DataSDK.Configuration.AccessID
+  fullName: LogicMonitor.DataSDK.Configuration.AccessID
+  nameWithType: Configuration.AccessID
+- uid: LogicMonitor.DataSDK.Configuration.AccessID*
+  name: AccessID
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AccessID_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.AccessID
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Configuration.AppendToFile
-  nameWithType: Configuration.AppendToFile
+  fullName: LogicMonitor.DataSDK.Configuration.AccessID
+  nameWithType: Configuration.AccessID
+- uid: LogicMonitor.DataSDK.Configuration.AccessKey
+  name: AccessKey
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AccessKey
+  commentId: P:LogicMonitor.DataSDK.Configuration.AccessKey
+  fullName: LogicMonitor.DataSDK.Configuration.AccessKey
+  nameWithType: Configuration.AccessKey
+- uid: LogicMonitor.DataSDK.Configuration.AccessKey*
+  name: AccessKey
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AccessKey_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.AccessKey
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Configuration.AccessKey
+  nameWithType: Configuration.AccessKey
 - uid: LogicMonitor.DataSDK.Configuration.AsyncRequest
   name: AsyncRequest
   href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_AsyncRequest
@@ -273,38 +254,45 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Configuration.AsyncRequest
   nameWithType: Configuration.AsyncRequest
-- uid: LogicMonitor.DataSDK.Configuration.authentication
-  name: authentication
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_authentication
-  commentId: F:LogicMonitor.DataSDK.Configuration.authentication
-  fullName: LogicMonitor.DataSDK.Configuration.authentication
-  nameWithType: Configuration.authentication
-- uid: LogicMonitor.DataSDK.Configuration.check_authentication(LogicMonitor.DataSDK.Model.Authenticate)
-  name: check_authentication(Authenticate)
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_check_authentication_LogicMonitor_DataSDK_Model_Authenticate_
-  commentId: M:LogicMonitor.DataSDK.Configuration.check_authentication(LogicMonitor.DataSDK.Model.Authenticate)
-  fullName: LogicMonitor.DataSDK.Configuration.check_authentication(LogicMonitor.DataSDK.Model.Authenticate)
-  nameWithType: Configuration.check_authentication(Authenticate)
-- uid: LogicMonitor.DataSDK.Configuration.check_authentication*
-  name: check_authentication
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_check_authentication_
-  commentId: Overload:LogicMonitor.DataSDK.Configuration.check_authentication
+- uid: LogicMonitor.DataSDK.Configuration.BearerToken
+  name: BearerToken
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_BearerToken
+  commentId: P:LogicMonitor.DataSDK.Configuration.BearerToken
+  fullName: LogicMonitor.DataSDK.Configuration.BearerToken
+  nameWithType: Configuration.BearerToken
+- uid: LogicMonitor.DataSDK.Configuration.BearerToken*
+  name: BearerToken
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_BearerToken_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.BearerToken
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Configuration.check_authentication
-  nameWithType: Configuration.check_authentication
-- uid: LogicMonitor.DataSDK.Configuration.company
-  name: company
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_company
-  commentId: P:LogicMonitor.DataSDK.Configuration.company
-  fullName: LogicMonitor.DataSDK.Configuration.company
-  nameWithType: Configuration.company
-- uid: LogicMonitor.DataSDK.Configuration.company*
-  name: company
-  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_company_
-  commentId: Overload:LogicMonitor.DataSDK.Configuration.company
+  fullName: LogicMonitor.DataSDK.Configuration.BearerToken
+  nameWithType: Configuration.BearerToken
+- uid: LogicMonitor.DataSDK.Configuration.CheckAuthentication
+  name: CheckAuthentication()
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_CheckAuthentication
+  commentId: M:LogicMonitor.DataSDK.Configuration.CheckAuthentication
+  fullName: LogicMonitor.DataSDK.Configuration.CheckAuthentication()
+  nameWithType: Configuration.CheckAuthentication()
+- uid: LogicMonitor.DataSDK.Configuration.CheckAuthentication*
+  name: CheckAuthentication
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_CheckAuthentication_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.CheckAuthentication
   isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Configuration.company
-  nameWithType: Configuration.company
+  fullName: LogicMonitor.DataSDK.Configuration.CheckAuthentication
+  nameWithType: Configuration.CheckAuthentication
+- uid: LogicMonitor.DataSDK.Configuration.Company
+  name: Company
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_Company
+  commentId: P:LogicMonitor.DataSDK.Configuration.Company
+  fullName: LogicMonitor.DataSDK.Configuration.Company
+  nameWithType: Configuration.Company
+- uid: LogicMonitor.DataSDK.Configuration.Company*
+  name: Company
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_Company_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.Company
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Configuration.Company
+  nameWithType: Configuration.Company
 - uid: LogicMonitor.DataSDK.Configuration.ConnectionPoolMaxsize
   name: ConnectionPoolMaxsize
   href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_ConnectionPoolMaxsize
@@ -343,64 +331,6 @@ references:
   commentId: N:LogicMonitor.DataSDK.Model
   fullName: LogicMonitor.DataSDK.Model
   nameWithType: LogicMonitor.DataSDK.Model
-- uid: LogicMonitor.DataSDK.Model.Authenticate
-  name: Authenticate
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html
-  commentId: T:LogicMonitor.DataSDK.Model.Authenticate
-  fullName: LogicMonitor.DataSDK.Model.Authenticate
-  nameWithType: Authenticate
-- uid: LogicMonitor.DataSDK.Model.Authenticate.#ctor
-  name: Authenticate()
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate__ctor
-  commentId: M:LogicMonitor.DataSDK.Model.Authenticate.#ctor
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Authenticate()
-  nameWithType: Authenticate.Authenticate()
-- uid: LogicMonitor.DataSDK.Model.Authenticate.#ctor*
-  name: Authenticate
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate__ctor_
-  commentId: Overload:LogicMonitor.DataSDK.Model.Authenticate.#ctor
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Authenticate
-  nameWithType: Authenticate.Authenticate
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Id
-  name: Id
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Id
-  commentId: P:LogicMonitor.DataSDK.Model.Authenticate.Id
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Id
-  nameWithType: Authenticate.Id
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Id*
-  name: Id
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Id_
-  commentId: Overload:LogicMonitor.DataSDK.Model.Authenticate.Id
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Id
-  nameWithType: Authenticate.Id
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Key
-  name: Key
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Key
-  commentId: P:LogicMonitor.DataSDK.Model.Authenticate.Key
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Key
-  nameWithType: Authenticate.Key
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Key*
-  name: Key
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Key_
-  commentId: Overload:LogicMonitor.DataSDK.Model.Authenticate.Key
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Key
-  nameWithType: Authenticate.Key
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Type
-  name: Type
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Type
-  commentId: P:LogicMonitor.DataSDK.Model.Authenticate.Type
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Type
-  nameWithType: Authenticate.Type
-- uid: LogicMonitor.DataSDK.Model.Authenticate.Type*
-  name: Type
-  href: api/LogicMonitor.DataSDK.Model.Authenticate.html#LogicMonitor_DataSDK_Model_Authenticate_Type_
-  commentId: Overload:LogicMonitor.DataSDK.Model.Authenticate.Type
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.Authenticate.Type
-  nameWithType: Authenticate.Type
 - uid: LogicMonitor.DataSDK.Model.DataPoint
   name: DataPoint
   href: api/LogicMonitor.DataSDK.Model.DataPoint.html
@@ -716,6 +646,12 @@ references:
   commentId: T:LogicMonitor.DataSDK.Model.Resource
   fullName: LogicMonitor.DataSDK.Model.Resource
   nameWithType: Resource
+- uid: LogicMonitor.DataSDK.Model.Resource.#ctor
+  name: Resource()
+  href: api/LogicMonitor.DataSDK.Model.Resource.html#LogicMonitor_DataSDK_Model_Resource__ctor
+  commentId: M:LogicMonitor.DataSDK.Model.Resource.#ctor
+  fullName: LogicMonitor.DataSDK.Model.Resource.Resource()
+  nameWithType: Resource.Resource()
 - uid: LogicMonitor.DataSDK.Model.Resource.#ctor(Dictionary{System.String,System.String},System.String,System.String,System.Boolean)
   name: Resource(Dictionary<String, String>, String, String, Boolean)
   href: api/LogicMonitor.DataSDK.Model.Resource.html#LogicMonitor_DataSDK_Model_Resource__ctor_Dictionary_System_String_System_String__System_String_System_String_System_Boolean_
@@ -902,15 +838,15 @@ references:
   commentId: M:LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor
   fullName: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.RestDataSourceInstanceV1()
   nameWithType: RestDataSourceInstanceV1.RestDataSourceInstanceV1()
-- uid: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor(List{LogicMonitor.DataSDK.Model.RestDataPointV1},System.String,System.String,System.String,System.Int32,System.String,Dictionary{System.String,System.String},System.String)
-  name: RestDataSourceInstanceV1(List<RestDataPointV1>, String, String, String, Int32, String, Dictionary<String, String>, String)
-  href: api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.html#LogicMonitor_DataSDK_Model_RestDataSourceInstanceV1__ctor_List_LogicMonitor_DataSDK_Model_RestDataPointV1__System_String_System_String_System_String_System_Int32_System_String_Dictionary_System_String_System_String__System_String_
-  commentId: M:LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor(List{LogicMonitor.DataSDK.Model.RestDataPointV1},System.String,System.String,System.String,System.Int32,System.String,Dictionary{System.String,System.String},System.String)
-  name.vb: RestDataSourceInstanceV1(List(Of RestDataPointV1), String, String, String, Int32, String, Dictionary(Of String, String), String)
-  fullName: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.RestDataSourceInstanceV1(List<LogicMonitor.DataSDK.Model.RestDataPointV1>, System.String, System.String, System.String, System.Int32, System.String, Dictionary<System.String, System.String>, System.String)
-  fullName.vb: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.RestDataSourceInstanceV1(List(Of LogicMonitor.DataSDK.Model.RestDataPointV1), System.String, System.String, System.String, System.Int32, System.String, Dictionary(Of System.String, System.String), System.String)
-  nameWithType: RestDataSourceInstanceV1.RestDataSourceInstanceV1(List<RestDataPointV1>, String, String, String, Int32, String, Dictionary<String, String>, String)
-  nameWithType.vb: RestDataSourceInstanceV1.RestDataSourceInstanceV1(List(Of RestDataPointV1), String, String, String, Int32, String, Dictionary(Of String, String), String)
+- uid: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor(System.String,List{LogicMonitor.DataSDK.Model.RestDataPointV1},System.String,System.String,System.Int32,System.String,Dictionary{System.String,System.String},System.String)
+  name: RestDataSourceInstanceV1(String, List<RestDataPointV1>, String, String, Int32, String, Dictionary<String, String>, String)
+  href: api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.html#LogicMonitor_DataSDK_Model_RestDataSourceInstanceV1__ctor_System_String_List_LogicMonitor_DataSDK_Model_RestDataPointV1__System_String_System_String_System_Int32_System_String_Dictionary_System_String_System_String__System_String_
+  commentId: M:LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor(System.String,List{LogicMonitor.DataSDK.Model.RestDataPointV1},System.String,System.String,System.Int32,System.String,Dictionary{System.String,System.String},System.String)
+  name.vb: RestDataSourceInstanceV1(String, List(Of RestDataPointV1), String, String, Int32, String, Dictionary(Of String, String), String)
+  fullName: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.RestDataSourceInstanceV1(System.String, List<LogicMonitor.DataSDK.Model.RestDataPointV1>, System.String, System.String, System.Int32, System.String, Dictionary<System.String, System.String>, System.String)
+  fullName.vb: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.RestDataSourceInstanceV1(System.String, List(Of LogicMonitor.DataSDK.Model.RestDataPointV1), System.String, System.String, System.Int32, System.String, Dictionary(Of System.String, System.String), System.String)
+  nameWithType: RestDataSourceInstanceV1.RestDataSourceInstanceV1(String, List<RestDataPointV1>, String, String, Int32, String, Dictionary<String, String>, String)
+  nameWithType.vb: RestDataSourceInstanceV1.RestDataSourceInstanceV1(String, List(Of RestDataPointV1), String, String, Int32, String, Dictionary(Of String, String), String)
 - uid: LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.#ctor*
   name: RestDataSourceInstanceV1
   href: api/LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1.html#LogicMonitor_DataSDK_Model_RestDataSourceInstanceV1__ctor_

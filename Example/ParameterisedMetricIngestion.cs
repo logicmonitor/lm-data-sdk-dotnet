@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright, 2021, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
@@ -49,7 +49,20 @@ namespace Example
             DataPoint dataPoint = new DataPoint(name: CpuUsage);
             Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
 
-            //Pass the Authenticate Variables as Enviroment variable.
+
+            string yourCompany = "YourCompanyName";
+            //For LMv1 authentication use Following variables.
+            string yourAccessID = "YourAccessID";
+            string yourAccessKey= "YourAccessKey";
+            Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
+
+            //For Bearer authentication use Following.
+            // string myBearerToken = "YourBearerToken";
+            // Configuration configuration = new configuration(yourCompany, yourBearerToken);
+
+            
+            ApiClient apiClient = new ApiClient(configuration);
+
             Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
 
             while (true)

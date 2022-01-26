@@ -4,5 +4,3 @@
   href: MetricsIngestion.md
 - name: Single Logs Ingestion
   href: LogIngestion.md
-- name: Batching Metrics & Log Ingestion
-  href: BatchIngestion.md

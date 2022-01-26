@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2021, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -7,27 +7,29 @@
  */
 
 using System;
+using System.Xml;
 using RestSharp;
 using System.Collections.Generic;
+using System.IO;
 
 namespace LogicMonitor.DataSDK
 {
     public class Rest
     {
 
-        public IRestClient client;
-
-        public Rest( IRestClient restClient= default)
+        public RestClient client;
+        
+        public Rest(RestClient restClient= default)
         {
             if(restClient == default)
             {
-                client = new RestClient(); 
+                client = new RestClient();
             }
             else
             {
-                client = restClient; 
+                client = restClient;
             }
-            
+            client.UserAgent = string.Format("{0}/{1}",Setup.PackageID,Setup.PackageVersion);
         }
 
         public void Request(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams)
@@ -126,5 +128,7 @@ namespace LogicMonitor.DataSDK
             RestResponse response = (RestResponse)client.Execute(request);
             return response;
         }
+
+       
     }
 }

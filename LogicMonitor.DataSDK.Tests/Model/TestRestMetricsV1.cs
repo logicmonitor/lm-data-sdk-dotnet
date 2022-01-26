@@ -9,16 +9,16 @@ namespace LogicMonitor.DataSDK.Tests.Model
     {
         RestMetricsV1 restmv1 = new RestMetricsV1();
 
-        string dataSource;
-        string dataSourceDisplayName;
-        string dataSourceGroup;
-        int dataSourceId;
-        List<RestDataSourceInstanceV1> instances;
-        string resourceDescription;
-        Dictionary<string, string> resourceIds;
-        string resourceName;
-        Dictionary<string, string> resourceProperties;
-        RestDataSourceInstanceV1 item;
+        string dataSource = null;
+        string dataSourceDisplayName = null;
+        string dataSourceGroup = null;
+        int dataSourceId = 0;
+        List<RestDataSourceInstanceV1> instances = null;
+        string resourceDescription = null;
+        Dictionary<string, string> resourceIds = null;
+        string resourceName = null;
+        Dictionary<string, string> resourceProperties = null;
+        RestDataSourceInstanceV1 item = null;
 
         [Test]
         public void TestRestMetricsv1()

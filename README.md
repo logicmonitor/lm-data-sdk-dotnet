@@ -7,7 +7,9 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-beta
+- SDK version: 0.0.6-alpha
+
+:point_right: [API reference docs for this project](https://logicmonitor.github.io/lm-data-sdk-dotnet/) 
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -21,57 +23,38 @@ have to create LMAuth token using access id and key from santaba.
 - [Microsoft.Extenstion.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/) - 5.0.0 or later
 - [Microsoft.Extenstion.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) - 5.0.0 or later
 
+<a name = "Metrics Ingestion Example"></a>
+## Metrics Ingestion Example.
 
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.All properties can be set using environment variable.
 
-<a name = "Configration"></a>
-## Configration
-SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.
+For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model namespace,
+also dictonary should be created in  which 'Key' hold the Time(in epoch) for which data is being emitted and 'Value' will the the value of datapoint.
+
 
 ```csharp
-Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
-authenticate.Key = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
-authenticate.Type = Environment.GetEnvironmentVariable("LM_ACCESS_TYPE");
-Configuration configuration = new Configuration(company: "LM_ACCOUNT_NAME", authentication: authenticate);
-```
+//Pass autheticate variable as Environment variable.
+ApiClient apiClient = new ApiClient();
 
-<a name = "Batching Metrics & Log Ingestion"></a>
-## Batching Metrics & Log Ingestion.
-
-When their is requirement that data is not to be ingested immediately after generation, user can ingest data in bulk i.e multiple metrics and log is to be ingested in single request.
-
-To enable batching, batchs is to be set to 'True' along with proper interval(in seconds) which determine the time between the variable.
-For the set interval, SDK waits for all the data to generate and ingest all the data after completion of interval. 
-
-NOTE:Make sure data should not be older than 10 mins.
-```csharp
-ApiClient apiClient = new ApiClient(configuration);
+Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
-DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
-DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint high = new DataPoint(name: "High");           //Consider a stock price
-Dictionary<string, string> highestPriceValue = new Dictionary<string, string>();
+DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
+DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
+DataPoint dataPoint = new DataPoint(name: CpuUsage);
+Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
     
     
-Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClient);
-highestPriceValue.Add(epochTime, metricData);
-    
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highestPriceValue);
-
-Logs logs = new Logs(batchs: true, intervals: 100, responseCallbacks: responseInterface, apiClient: apiClient);
-logs.SendLogs(message: msg, resource: resource);
+CpuUsageValue.Add(epochTime, metricData);
+metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
 ```
 
-Then Run the program as:
-```csharp
-export LM_ACCESS_ID=<Your access ID>  LM_ACCESS_KEY=<Your access key> LM_ACCESS_TYPE=<('LMv1'/'Bearer')> LM_ACCOUNT_NAME=<Your Account(Company) name>
-dotnet run
-```
+Read below for understanding more about Models in SDK.
 
 <a name="Model"></a>
 ## Model
+
 - Resource
 
 ```csharp

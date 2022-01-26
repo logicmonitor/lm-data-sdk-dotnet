@@ -72,7 +72,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users
 have to create LMAuth token using access id and key from santaba.</p>
 <ul>
-<li>SDK version: 0.0.5-beta</li>
+<li>SDK version: 0.0.6-alpha</li>
 </ul>
 <p><a name="frameworks-supported"></a></p>
 <h2 id="frameworks-supported">Frameworks supported</h2>
@@ -89,24 +89,32 @@ have to create LMAuth token using access id and key from santaba.</p>
 </ul>
 <p><a name="Configration"></a></p>
 <h2 id="configration">Configration</h2>
-<p>SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.</p>
-<pre><code class="lang-csharp">Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable(&quot;API_ACCESS_ID&quot;);
-authenticate.Key = Environment.GetEnvironmentVariable(&quot;API_ACCESS_KEY&quot;);
-authenticate.Type = Environment.GetEnvironmentVariable(&quot;API_ACCESS_TYPE&quot;);
-Configuration configuration = new Configuration(company: &quot;ACCOUNT_NAME&quot;, authentication: authenticate);
+<p>SDK must be configured with LogicMonitor.DataSDK Configuration class.
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Authentication class is no longer supported in version 0.0.6-alpha.</p>
+</div>
+<pre><code class="lang-csharp">
+string yourCompany = &quot;YourCompanyName&quot;;
+//For LMv1 authentication use Following variables.
+string yourAccessID = &quot;YourAccessID&quot;;
+string yourAccessKey= &quot;YourAccessKey&quot;;
+
+//For Bearer authentication use Following variable.
+string myBearerToken = &quot;YourBearerToken&quot;;
+
+Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
 </code></pre>
 <p><a name="Single Log Ingestion"></a></p>
 <h2 id="single-log-ingestion">Single Log Ingestion.</h2>
 <p>For Log ingestion, log message has to be passed along the resource object to idetify the resource.</p>
 <pre><code class="lang-csharp">ApiClient apiClient = new ApiClient(configuration);
+Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
+string msg =  &quot;Program function  has CPU Usage &quot; + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+&quot; Milliseconds&quot;;
 
-Resource resource = new Resource(name: resourceName, ids: resourceIds);
-string logMessage = &quot; This is my logging message&quot;;
-
-Logs logs = new Logs(batchs: false, intervals: 0, apiClient: apiClient);
-logs.SendLogs(message: logMessage, resource: resource);
+Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+logs.SendLogs(message: msg, resource: resource);
 </code></pre>
 <p><a name="Model"></a></p>
 <h2 id="model">Model</h2>

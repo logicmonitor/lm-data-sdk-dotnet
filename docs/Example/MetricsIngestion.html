@@ -72,7 +72,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users
 have to create LMAuth token using access id and key from santaba.</p>
 <ul>
-<li>SDK version: 0.0.5-beta</li>
+<li>SDK version: 0.0.6-alpha</li>
 </ul>
 <p><a name="frameworks-supported"></a></p>
 <h2 id="frameworks-supported">Frameworks supported</h2>
@@ -89,13 +89,22 @@ have to create LMAuth token using access id and key from santaba.</p>
 </ul>
 <p><a name="Configration"></a></p>
 <h2 id="configration">Configration</h2>
-<p>SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.</p>
-<pre><code class="lang-csharp">Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable(&quot;API_ACCESS_ID&quot;);
-authenticate.Key = Environment.GetEnvironmentVariable(&quot;API_ACCESS_KEY&quot;);
-authenticate.Type = Environment.GetEnvironmentVariable(&quot;API_ACCESS_TYPE&quot;);
-Configuration configuration = new Configuration(company: &quot;ACCOUNT_NAME&quot;, authentication: authenticate);
+<p>SDK must be configured with LogicMonitor.DataSDK Configuration class.
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Authentication class is no longer supported in version 0.0.6-alpha.</p>
+</div>
+<pre><code class="lang-csharp">
+string yourCompany = &quot;YourCompanyName&quot;;
+//For LMv1 authentication use Following variables.
+string yourAccessID = &quot;YourAccessID&quot;;
+string yourAccessKey= &quot;YourAccessKey&quot;;
+
+//For Bearer authentication use Following variable.
+string myBearerToken = &quot;YourBearerToken&quot;;
+
+Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
 </code></pre>
 <p><a name="Metrics Ingestion Example"></a></p>
 <h2 id="metrics-ingestion-example">Metrics Ingestion Example.</h2>
@@ -106,16 +115,17 @@ also dictonary should be created in  which 'Key' hold the Time(epoch) for which 
 <pre><code class="lang-csharp">ApiClient apiClient = new ApiClient(configuration);
 
 Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
-DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroupName);
-DataSourceInstance dataSourceInstance = new DataSourceInstance(name: dataSouceInstanceName);
-DataPoint high = new DataPoint(name: &quot;High&quot;);           //Consider a stock price
-Dictionary&lt;string, string&gt; highestPriceValue = new Dictionary&lt;string, string&gt;();
+DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
+DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
+
+DataPoint dataPoint = new DataPoint(name: CpuUsage);
+Dictionary&lt;string, string&gt; CpuUsageValue = new Dictionary&lt;string, string&gt;();
     
     
-Metrics metrics = new Metrics(batchs: false, intervals: 0, responseInterface, apiClients);
-highestPriceValue.Add(epochTime, metricData);
+Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
+CpuUsageValue.Add(epochTime, metricData);
     
-metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: high, values: highestPriceValue);
+ metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
 </code></pre>
 <p><a name="Model"></a></p>
 <h2 id="model">Model</h2>

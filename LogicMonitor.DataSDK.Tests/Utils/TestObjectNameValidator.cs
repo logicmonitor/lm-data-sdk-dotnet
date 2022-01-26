@@ -8,8 +8,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LogicMonitor.DataSDK.Model;
 using LogicMonitor.DataSDK.Utils;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace TestingLogicMonitor.DataSDK.Tests.Utils
 {
@@ -153,7 +155,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         {
             Assert.IsFalse(o.IsValidInstanceName(name));
         }
-        
+
         [Test, TestCaseSource(nameof(TestStringsProvider))]
         public void TestValidCompanyName(string name)
         {
@@ -282,6 +284,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             string expected = "Datasource group name Should not be empty or have tailing spaces.";
             string actual = o.CheckDataSourceGroupNameValidation(source);
             Assert.AreEqual(expected, actual);
+
         }
         [TestCase(null)]
         public void TestNullCheckInstanceNameValidation(string Iname)
@@ -318,7 +321,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase("Name ")]
         public void TestCheckDataPointNameValidation(string dpname)
         {
-            string expected = "Instance Name Should not be empty or have tailing spaces.";
+            string expected = "DataPoint Name Should not be empty or have tailing spaces.";
             string actual = o.CheckDataPointNameValidation(dpname);
             Assert.AreEqual(expected, actual);
         }
@@ -328,7 +331,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             String name = new String('a', 1025);
             Assert.AreEqual("Datapoint description should not be greater than 1024 characters.", o.CheckDataPointDescriptionValidation(name));
         }
-        
+
         [TestCase("Name")]
         public void TestIsValidDataSourceDisplayName(string dsname)
         {
@@ -350,5 +353,18 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             String name = new String('a', 256);
             Assert.AreEqual("Instance display name size should not be greater than 255 characters.", o.CheckInstanceDisplayNameValidation(name));
         }
+
+        [TestCase("avg234")]
+        [TestCase("sum55")]
+        [TestCase("none11")]
+        [TestCase("none23")]
+        public void sum(string s)
+        {
+            string t = "The datapoint aggeration type is having invalid datapoint aggreation Type " + s + ".";
+            var abs = o.CheckDataPointAggerationTypeValidation(s);
+            Assert.AreEqual(t, abs);
+        }
+
+        
     }
 }

@@ -79,20 +79,21 @@
     <div class="level0"><span class="xref">System.Object</span></div>
     <div class="level1"><span class="xref">RestDataPointV1</span></div>
   </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><span class="xref">IValidatableObject</span></div>
-  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="LogicMonitor.DataSDK.Model.html">LogicMonitor.DataSDK.Model</a></h6>
   <h6><strong>Assembly</strong>: LogicMonitor.DataSDK.dll</h6>
   <h5 id="LogicMonitor_DataSDK_Model_RestDataPointV1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class RestDataPointV1 : IEquatable&lt;RestDataPointV1&gt;, IValidatableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public class RestDataPointV1 : object</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1__ctor.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L24">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1__ctor" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor">RestDataPointV1()</h4>
   <div class="markdown level1 summary"></div>
@@ -101,8 +102,13 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public RestDataPointV1()</code></pre>
   </div>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_System_String_System_String_System_String_System_String_Dictionary_System_String_System_String__.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CDictionary%7BSystem.String%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L36">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_System_String_System_String_System_String_System_String_Dictionary_System_String_System_String__" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor(System.String,System.String,System.String,System.String,Dictionary{System.String,System.String})">RestDataPointV1(String, String, String, String, Dictionary&lt;String, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="LogicMonitor.DataSDK.Model.RestDataPointV1.html">RestDataPointV1</a> class.</p>
@@ -110,7 +116,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RestDataPointV1(string dataPointAggregationType = null, string dataPointDescription = null, string dataPointName = null, string dataPointType = null, Dictionary&lt;string, string&gt; values = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public RestDataPointV1(string dataPointName, string dataPointAggregationType = null, string dataPointDescription = null, string dataPointType = null, Dictionary&lt;string, string&gt; values = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -124,6 +130,12 @@
     <tbody>
       <tr>
         <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">dataPointName</span></td>
+        <td><p>dataPointName.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">dataPointAggregationType</span></td>
         <td><p>dataPointAggregationType.</p>
 </td>
@@ -132,12 +144,6 @@
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">dataPointDescription</span></td>
         <td><p>dataPointDescription.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">dataPointName</span></td>
-        <td><p>dataPointName.</p>
 </td>
       </tr>
       <tr>
@@ -156,8 +162,13 @@
   </table>
   <h3 id="properties">Properties
   </h3>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointAggregationType.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointAggregationType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L48">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointAggregationType_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointAggregationType*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointAggregationType" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointAggregationType">DataPointAggregationType</h4>
   <div class="markdown level1 summary"><p>Gets or Sets DataPointAggregationType</p>
@@ -182,8 +193,13 @@
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointDescription.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointDescription%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L54">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointDescription_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointDescription*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointDescription" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointDescription">DataPointDescription</h4>
   <div class="markdown level1 summary"><p>Gets or Sets DataPointDescription</p>
@@ -208,8 +224,13 @@
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointName.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointName%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L60">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointName_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointName*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointName" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointName">DataPointName</h4>
   <div class="markdown level1 summary"><p>Gets or Sets DataPointName</p>
@@ -234,8 +255,13 @@
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointType.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L66">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointType_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointType*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1_DataPointType" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointType">DataPointType</h4>
   <div class="markdown level1 summary"><p>Gets or Sets DataPointType</p>
@@ -260,8 +286,13 @@
       </tr>
     </tbody>
   </table>
-  
-  
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1_Values.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1.Values%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L72">View Source</a>
+  </span>
   <a id="LogicMonitor_DataSDK_Model_RestDataPointV1_Values_" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.Values*"></a>
   <h4 id="LogicMonitor_DataSDK_Model_RestDataPointV1_Values" data-uid="LogicMonitor.DataSDK.Model.RestDataPointV1.Values">Values</h4>
   <div class="markdown level1 summary"><p>Gets or Sets Values</p>
@@ -286,10 +317,6 @@
       </tr>
     </tbody>
   </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">IValidatableObject</span>
-  </div>
 </article>
           </div>
           
@@ -297,6 +324,12 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/new/main/apiSpec/new?filename=LogicMonitor_DataSDK_Model_RestDataPointV1.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Model.RestDataPointV1%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/adityabhairavkar7/lm-data-sdk-dotnet-1/blob/main/LogicMonitor.DataSDK/Model/RestDataPointV1.cs/#L21" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

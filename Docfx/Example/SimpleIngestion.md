@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.5-beta
+- SDK version: 0.0.6-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -24,19 +24,13 @@ NOTE: RestSharp for .Net Core creates a new socket for each api call, which can 
 <a name="Configration"></a>
 ## Configration
 
-SDK must be configured with LogicMonitor.DataSDK Configuration. An API LmAccessId, LmAccessKey and Type are required.
-Authenticate class is to used set the values and its object will be passed to configration class along with account(company) name.
+SDK must be configured with LogicMonitor.DataSDK Configuration class. 
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b> must </b> be passed to Company property.
 
-```csharp
-Authenticate authenticate = new Authenticate();
-authenticate.Id = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
-authenticate.Key = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
-authenticate.Type = Environment.GetEnvironmentVariable("LM_ACCESS_TYPE");
-Configuration configuration = new Configuration(company: "LM_ACCOUNT_NAME", authentication: authenticate);
-```
 <a name="Model"></a>
 ## Model
 - Resource
+
 ```csharp
 Resource resource = new Resource(Ids,Name,Description,Properties,Create);
 ```
@@ -132,19 +126,22 @@ namespace IncludeDll
             string dataSourceGroup = "123";
             string saname = "Instance1";
             string datapointname = "datapoint1";
-            Dictionary<string, string> value = new Dictionary<string, string>();
-            value.Add("1627542978", "4212");
 
             MyResponse responseInterface = new MyResponse();
+
+            ApiClient apiClient = new ApiClient(configuration);
+
+            Metrics metrics = new Metrics(batch:false,interval:0,responseInterface, apiClient);
+
             Resource resource = new Resource(name: resourceName,ids:resourceIds);
             DataSource dataSource = new DataSource( Name:dataSourceName, Group: dataSourceGroup);
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: saname);
             DataPoint dataPoint = new DataPoint(name:datapointname);
-
-            ApiClient apiClient = new ApiClient(configuration);
-
-
-            Metrics metrics = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
+            Dictionary<string, string> value = new Dictionary<string, string>();
+            
+            string epochTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            string metricData = "4212";
+            value.Add(epochTime, metricData);
             metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
 
             

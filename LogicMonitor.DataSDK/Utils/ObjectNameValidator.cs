@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2021, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -284,14 +284,13 @@ namespace LogicMonitor.DataSDK.Utils
         }
 
 
-        public string CheckDataSourceNameValidation( string dataSource)
+        public string CheckDataSourceNameValidation(string dataSource)
         {
             StringBuilder errorMsg = new StringBuilder();
             if (dataSource == null)
                 errorMsg.Append("Datasource is mandatory.");
             else 
             {
-                
                 if (!PassEmptyAndSpellCheck(dataSource))
                     errorMsg.Append("Datasource Name Should not be empty or have tailing spaces.");
                 else if (dataSource.Length > 64)
@@ -399,7 +398,7 @@ namespace LogicMonitor.DataSDK.Utils
             {
                 string str = ValidDataPointName(dataPointName);
                 if (!PassEmptyAndSpellCheck(dataPointName))
-                    errorMsg.Append("Instance Name Should not be empty or have tailing spaces.");
+                    errorMsg.Append("DataPoint Name Should not be empty or have tailing spaces.");
                 else if (dataPointName.Length > 128)
                     errorMsg.Append("Resource Name size should not be greater than 128 characters.");
                 else if (str != null)
@@ -472,5 +471,6 @@ namespace LogicMonitor.DataSDK.Utils
                 errorMsg.Append("DataSource Id cannot be in Exponential form");
             return errorMsg.ToString();
         }
+
     }
 }

@@ -8,15 +8,15 @@ namespace LogicMonitor.DataSDK.Tests.Model
     public class TestRestDataSourceInstanceV1
     {
         RestDataSourceInstanceV1 restdpv1 = new RestDataSourceInstanceV1();
-        List<RestDataPointV1> dataPoints;
-        string instanceDescription;
-        string instanceDisplayName;
-        string instanceGroup;
-        int instanceId;
-        string instanceName;
-        Dictionary<string, string> instanceProperties;
-        string instanceWildValue;
-        RestDataPointV1 item;
+        List<RestDataPointV1> dataPoints = null;
+        string instanceDescription = null;
+        string instanceDisplayName = null;
+        string instanceGroup = null;
+        int instanceId = 0;
+        string instanceName = null;
+        Dictionary<string, string> instanceProperties = null;
+        string instanceWildValue = null;
+        RestDataPointV1 item = null;
 
         [Test]
         public void TestRestDataSourceInstancev1()

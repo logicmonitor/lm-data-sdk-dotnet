@@ -8,11 +8,11 @@ namespace LogicMonitor.DataSDK.Tests.Model
     public class TestRestDataPointV1
     {
         RestDataPointV1 restv1 = new RestDataPointV1();
-        string dataPointAggregationType;
-        string dataPointDescription;
-        string dataPointName;
-        string dataPointType;
-        Dictionary<string, string> values;
+        string dataPointAggregationType = null;
+        string  dataPointDescription = null;
+        string dataPointName = null;
+        string dataPointType = null;
+        Dictionary<string, string> values = null;
 
         [Test]
         public void TestRestDataPoint()

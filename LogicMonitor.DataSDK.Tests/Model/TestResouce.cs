@@ -7,11 +7,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
     [TestFixture]
     public class TestResource
     {
-        Dictionary<string, string> ids;
         
-        string name;
-        string dis;
-        bool create ;
         Resource res=new Resource();
 
         [Test]

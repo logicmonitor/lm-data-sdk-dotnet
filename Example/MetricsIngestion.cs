@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2021, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -49,7 +49,6 @@ namespace Example
             Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
             DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
-
             DataPoint dataPoint = new DataPoint(name: CpuUsage);
             Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
 

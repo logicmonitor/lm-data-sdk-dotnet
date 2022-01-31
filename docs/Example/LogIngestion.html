@@ -87,33 +87,18 @@ have to create LMAuth token using access id and key from santaba.</p>
 <li><a href="https://www.nuget.org/packages/Microsoft.Extensions.Logging/">Microsoft.Extenstion.Logging</a> - 5.0.0 or later</li>
 <li><a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/">Microsoft.Extenstion.Hosting</a> - 5.0.0 or later</li>
 </ul>
-<p><a name="Configration"></a></p>
-<h2 id="configration">Configration</h2>
-<p>SDK must be configured with LogicMonitor.DataSDK Configuration class.
-While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.</p>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Authentication class is no longer supported in version 0.0.6-alpha.</p>
-</div>
-<pre><code class="lang-csharp">
-string yourCompany = &quot;YourCompanyName&quot;;
-//For LMv1 authentication use Following variables.
-string yourAccessID = &quot;YourAccessID&quot;;
-string yourAccessKey= &quot;YourAccessKey&quot;;
-
-//For Bearer authentication use Following variable.
-string myBearerToken = &quot;YourBearerToken&quot;;
-
-Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
-</code></pre>
 <p><a name="Single Log Ingestion"></a></p>
 <h2 id="single-log-ingestion">Single Log Ingestion.</h2>
-<p>For Log ingestion, log message has to be passed along the resource object to idetify the resource.</p>
-<pre><code class="lang-csharp">ApiClient apiClient = new ApiClient(configuration);
+<p>SDK must be configured with LogicMonitor.DataSDK Configuration class.
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.All properties can be set using environment variable.</p>
+<p>For Log ingestion, log message has to be passed along the resource object to idetify the resource.Create a resource object using LogicMonitor.DataSDK.Models namespace.</p>
+<pre><code class="lang-csharp">ApiClient apiClient = new ApiClient();
+
+Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+
 Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
 string msg =  &quot;Program function  has CPU Usage &quot; + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+&quot; Milliseconds&quot;;
 
-Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
 logs.SendLogs(message: msg, resource: resource);
 </code></pre>
 <p><a name="Model"></a></p>

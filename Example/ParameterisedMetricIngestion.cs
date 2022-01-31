@@ -42,14 +42,6 @@ namespace Example
 
             MyResponse responseInterface = new MyResponse();
         
-            Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
-            DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
-            DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
-
-            DataPoint dataPoint = new DataPoint(name: CpuUsage);
-            Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
-
-
             string yourCompany = "YourCompanyName";
             //For LMv1 authentication use Following variables.
             string yourAccessID = "YourAccessID";
@@ -60,10 +52,16 @@ namespace Example
             // string myBearerToken = "YourBearerToken";
             // Configuration configuration = new configuration(yourCompany, yourBearerToken);
 
-            
             ApiClient apiClient = new ApiClient(configuration);
 
             Metrics metrics = new Metrics(batch: false, interval: 0, responseInterface, apiClient);
+
+            Resource resource = new Resource(name: resourceName, ids: resourceIds, create: true);
+            DataSource dataSource = new DataSource(Name: dataSourceName, Group: dataSourceGroup);
+            DataSourceInstance dataSourceInstance = new DataSourceInstance(name: InstanceName);
+
+            DataPoint dataPoint = new DataPoint(name: CpuUsage);
+            Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
 
             while (true)
             {

@@ -18,9 +18,6 @@ have to create LMAuth token using access id and key from santaba.
 - [Microsoft.Extenstion.Logging](https://www.nuget.org/packages/Microsoft.Extensions.Logging/) - 5.0.0 or later
 - [Microsoft.Extenstion.Hosting](https://www.nuget.org/packages/Microsoft.Extensions.Hosting/) - 5.0.0 or later
 
-
-
-
 <a name = "Single Log Ingestion"></a>
 ## Single Log Ingestion.
 

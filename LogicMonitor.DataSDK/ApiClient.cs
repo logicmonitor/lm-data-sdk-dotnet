@@ -175,7 +175,6 @@ namespace LogicMonitor.DataSDK
 
             if (configuration.BearerToken != null)
             {
-                Console.WriteLine("Using Bearer token:{0}",configuration.BearerToken);
                 headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
                 return true;
             }
@@ -197,8 +196,6 @@ namespace LogicMonitor.DataSDK
                 var a = System.Text.Encoding.UTF8.GetBytes(hmac);
                 string signature = Convert.ToBase64String(a);
                 var auth_hash = "LMv1 " + configuration.AccessID + ":" + signature + ":" + epoch;
-
-                Console.WriteLine("Using LMv1 auth {0}",auth_hash);
 
                 headers.Add("Authorization", auth_hash);
                 return true;

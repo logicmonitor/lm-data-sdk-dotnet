@@ -33,11 +33,15 @@ namespace Example
             Dictionary<string, string> resourceIds = new Dictionary<string, string>();
             resourceIds.Add("system.displayname", resourceName.ToString());
             MyResponse responseInterface = new MyResponse();
-            Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
 
             //Pass the Authenticate Variables as Enviroment variable.
+            ApiClient apiClient = new ApiClient();
             Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+
+            Resource resource = new Resource(name: resourceName.ToString(), ids: resourceIds, create: true);
+
             string msg =  "Program function  has CPU Usage " + (cpuUsedMs / (Environment.ProcessorCount * totalMsPassed)).ToString()+" Milliseconds";
+            
             logs.SendLogs(message: msg, resource: resource);
 
         }

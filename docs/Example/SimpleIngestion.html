@@ -93,20 +93,6 @@ NOTE: RestSharp for .Net Core creates a new socket for each api call, which can 
 <h2 id="configration">Configration</h2>
 <p>SDK must be configured with LogicMonitor.DataSDK Configuration class.
 While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b> must </b> be passed to Company property.</p>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Authentication class is no longer supported in version 0.0.6-alpha.</p>
-</div>
-<pre><code class="lang-csharp">string yourCompany = &quot;YourCompanyName&quot;;
-//For LMv1 authentication use Following variables.
-string yourAccessID = &quot;YourAccessID&quot;;
-string yourAccessKey= &quot;YourAccessKey&quot;;
-
-//For Bearer authentication use Following variable.
-string myBearerToken = &quot;YourBearerToken&quot;;
-
-Configuration configuration = new configuration(yourCompany, yourAccessID, yourAccessKey);
-</code></pre>
 <p><a name="Model"></a></p>
 <h2 id="model">Model</h2>
 <ul>
@@ -189,19 +175,22 @@ namespace IncludeDll
             string dataSourceGroup = &quot;123&quot;;
             string saname = &quot;Instance1&quot;;
             string datapointname = &quot;datapoint1&quot;;
-            Dictionary&lt;string, string&gt; value = new Dictionary&lt;string, string&gt;();
-            value.Add(&quot;1627542978&quot;, &quot;4212&quot;);
 
             MyResponse responseInterface = new MyResponse();
+
+            ApiClient apiClient = new ApiClient(configuration);
+
+            Metrics metrics = new Metrics(batch:false,interval:0,responseInterface, apiClient);
+
             Resource resource = new Resource(name: resourceName,ids:resourceIds);
             DataSource dataSource = new DataSource( Name:dataSourceName, Group: dataSourceGroup);
             DataSourceInstance dataSourceInstance = new DataSourceInstance(name: saname);
             DataPoint dataPoint = new DataPoint(name:datapointname);
-
-            ApiClient apiClient = new ApiClient(configuration);
-
-
-            Metrics metrics = new Metrics(batchs:false,intervals:0,responseInterface, apiClients);
+            Dictionary&lt;string, string&gt; value = new Dictionary&lt;string, string&gt;();
+            
+            string epochTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
+            string metricData = &quot;4212&quot;;
+            value.Add(epochTime, metricData);
             metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
 
             

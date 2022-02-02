@@ -35,6 +35,8 @@ namespace Example
             var dataSourceName= "dotnet";
             var startCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
             var endCpuUsage = Process.GetCurrentProcess().TotalProcessorTime;
+            var endTime = DateTime.UtcNow;
+            var startTime = DateTime.UtcNow;
             var cpuUsedMs = (endCpuUsage - startCpuUsage).TotalMilliseconds;
             var totalMsPassed = (endTime - startTime).TotalMilliseconds;
             string CpuUsage = "cpuUsage";

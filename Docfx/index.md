@@ -9,11 +9,11 @@ LogicMonitor’s Push Metrics feature allows you to send metrics directly to the
 
 1. Install the LogicMonitor.DataSDK [NuGet package](https://www.nuget.org/packages/Logicmonitor.DataSDK/) into your project.
 ```csharp
-Install-Package Logicmonitor.DataSDK -Version 0.0.6-alpha
+Install-Package Logicmonitor.DataSDK -Version 0.0.7-alpha
 ```
 OR
 ```csharp
-dotnet add package Logicmonitor.DataSDK --version 0.0.6-alpha
+dotnet add package Logicmonitor.DataSDK --version 0.0.7-alpha
 ```
 
 2.Include all required namespace.

@@ -5,11 +5,12 @@
 LogicMonitor is a SaaS-based performance monitoring platform that provides full visibility into complex, hybrid 
 infrastructures, offering granular performance monitoring and actionable data and insights. API-Ingest provides the 
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
-have to create LMAuth token using access id and key from santaba.
+have to create either LMv1 authentication token or Bearer token from LogicMonitor platform (a.k.a santaba).
 
-- SDK version: 0.0.6-alpha
+- SDK version: 0.0.7-alpha
 
-:point_right: [API reference docs for this project](https://logicmonitor.github.io/lm-data-sdk-dotnet/) 
+:point_right: [API reference docs](https://logicmonitor.github.io/lm-data-sdk-dotnet/) 
+:point_right: [NuGet package](https://www.nuget.org/packages/Logicmonitor.DataSDK) 
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -27,7 +28,7 @@ have to create LMAuth token using access id and key from santaba.
 ## Metrics Ingestion Example.
 
 SDK must be configured with LogicMonitor.DataSDK Configuration class. 
-While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property.Company's name or Account name <b>must</b> be passed to Company property.All properties can be set using environment variable.
+While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property. Company's name or Account name <b>must</b> be passed to Company property. All properties can be set using environment variable.
 
 For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model namespace,
 also dictonary should be created in  which 'Key' hold the Time(in epoch) for which data is being emitted and 'Value' will the the value of datapoint.
@@ -49,7 +50,16 @@ Dictionary<string, string> CpuUsageValue = new Dictionary<string, string>();
 CpuUsageValue.Add(epochTime, metricData);
 metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: CpuUsageValue);
 ```
+To Pass autheticate variable as Environment variable use the following command.:
+While Using LMv1 Authentication:
+```csharp
+export ACCOUNT_NAME=<YourAccountName> API_ACCESS_ID=<YourAccessID> API_ACCESS_KEY=<'YourAccessKey'>
+```
 
+While Using Bearer Authentication:
+```csharp
+export ACCOUNT_NAME=<YourAccountName> API_BEARER_TOKEN=<YourBearerToken>
+```
 Read below for understanding more about Models in SDK.
 
 <a name="Model"></a>

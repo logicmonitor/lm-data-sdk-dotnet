@@ -11,7 +11,7 @@ namespace LogicMonitor.DataSDK
     public class Setup
     {
         public const string PackageID = "LogicMonitor.DataSDK";
-        public const string PackageVersion = "0.0.6-alpha";
+        public const string PackageVersion = "0.0.7-alpha";
         public const string Author = "LogicMonitor";
         public const string AuthorEmail = "support@logicmonior.com";
 

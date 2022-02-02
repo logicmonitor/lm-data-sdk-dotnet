@@ -10,6 +10,7 @@ have to create either LMv1 authentication token or Bearer token from LogicMonito
 - SDK version: 0.0.7-alpha
 
 :point_right: [API reference docs](https://logicmonitor.github.io/lm-data-sdk-dotnet/) 
+
 :point_right: [NuGet package](https://www.nuget.org/packages/Logicmonitor.DataSDK) 
 
 <a name="frameworks-supported"></a>

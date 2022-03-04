@@ -437,13 +437,13 @@ namespace LogicMonitor.DataSDK.Utils
         }
 
 
-        public string CheckDataPointAggerationTypeValidation(string dataPointAggerationType)
+        public string CheckDataPointAggerationTypeValidation(string dataPointAggerationType,int percentileValue =default)
         {
             StringBuilder errorMsg = new StringBuilder();
 
             if (dataPointAggerationType != null)
             {
-                var dataPointAggerationTypes = new List<string> { "none", "avg", "sum"};
+                var dataPointAggerationTypes = new List<string> { "none", "avg", "sum","percentile"};
                 dataPointAggerationType = dataPointAggerationType.ToLower();
                 var counter = 0;
                 foreach (var type in dataPointAggerationTypes)
@@ -455,12 +455,23 @@ namespace LogicMonitor.DataSDK.Utils
                 }
 
                 if (counter == 3)
-                    errorMsg.Append(string.Format("The datapoint aggeration type is having invalid datapoint aggreation Type {0}.", dataPointAggerationType)); 
+                    errorMsg.Append(string.Format("The datapoint aggeration type is having invalid datapoint aggreation Type {0}.", dataPointAggerationType));
+                if (dataPointAggerationType == "percentile")
+                    CheckPercentileValue(percentileValue);
             }
             return errorMsg.ToString();
 
         }
 
+        public string CheckPercentileValue(int percentileValue)
+        {
+            StringBuilder errorMsg = new StringBuilder();
+            if (percentileValue == 0)
+                errorMsg.Append("Percentile value is mandatory for datapoint aggeration type: 'Percentile'");
+            if(percentileValue < 1 || percentileValue > 100)
+                errorMsg.Append("Percentile value muist be in Range of 0-100");
+            return errorMsg.ToString();
+        }
         public string CheckDataSourceId(int dataSourceId)
         {
             StringBuilder errorMsg = new StringBuilder();
@@ -472,5 +483,15 @@ namespace LogicMonitor.DataSDK.Utils
             return errorMsg.ToString();
         }
 
+        public string CheckDataSourceInstanceId(int instanceID)
+        {
+            StringBuilder errorMsg = new StringBuilder();
+
+            if (IsValidDataSourceId9Digit(instanceID) == false)
+                errorMsg.Append("DataSource Id cannot be more than 9 digit");
+            if (IsValidDataSourceIdExpo(instanceID) == true)
+                errorMsg.Append("DataSource Id cannot be in Exponential form");
+            return errorMsg.ToString();
+        }
     }
 }

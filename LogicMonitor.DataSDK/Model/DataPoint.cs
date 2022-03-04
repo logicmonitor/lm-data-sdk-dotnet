@@ -22,12 +22,17 @@ namespace LogicMonitor.DataSDK.Model
     {
         private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
 
-        public DataPoint(string aggregation = default(string), string description = default(string), string name = default(string), string type = default(string) )
+        public DataPoint()
+        {
+
+        }
+        public DataPoint(string aggregation = default(string), string description = default(string), string name = default(string), string type = default(string), int percentileValue = default)
         {
             this.AggregationType = aggregation;
             this.Description = description;
             this.Name = name;
             this.Type = type;
+            this.PercentileValue = percentileValue;
             string errorMsg = ValidField();
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
@@ -58,6 +63,9 @@ namespace LogicMonitor.DataSDK.Model
         [DataMember(Name = "Type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
+        [DataMember(Name = "percentileValue", EmitDefaultValue = false)]
+        public int PercentileValue { get; set; }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -74,7 +82,7 @@ namespace LogicMonitor.DataSDK.Model
         {
             string errorMsg = "";
             errorMsg += objectNameValidator.CheckDataPointNameValidation(Name);
-            errorMsg += objectNameValidator.CheckDataPointAggerationTypeValidation(AggregationType);
+            errorMsg += objectNameValidator.CheckDataPointAggerationTypeValidation(AggregationType,percentileValue);
             errorMsg += objectNameValidator.CheckDataPointDescriptionValidation(Description);
             errorMsg += objectNameValidator.CheckDataPointTypeValidation(Type);
             return errorMsg;

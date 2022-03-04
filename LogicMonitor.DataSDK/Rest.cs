@@ -107,7 +107,6 @@ namespace LogicMonitor.DataSDK
                 request.AddQueryParameter(item.Key, item.Value);
             }
             request.AddJsonBody(body);
-
             Request(method, url, body, headers, queryParams, requestTimeout, postParams);
             RestResponse response = (RestResponse)client.Execute(request);
             return response;

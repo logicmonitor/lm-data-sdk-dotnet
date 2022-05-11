@@ -180,11 +180,7 @@ namespace LogicMonitor.DataSDK
                 return false;
             }
 
-            if (configuration.BearerToken != null)
-            {
-                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
-                return true;
-            }
+            
             if (configuration.AccessKey != null && configuration.AccessID !=null)
             {
                 DateTimeOffset n = DateTimeOffset.UtcNow;

@@ -454,7 +454,7 @@ namespace LogicMonitor.DataSDK.Utils
                     }
                 }
 
-                if (counter == 4)
+                if (counter == dataPointAggerationTypes.count)
                     errorMsg.Append(string.Format("The datapoint aggeration type is having invalid datapoint aggreation Type {0}.", dataPointAggerationType));
                 if (dataPointAggerationType == "percentile")
                     CheckPercentileValue(percentileValue);
@@ -466,9 +466,7 @@ namespace LogicMonitor.DataSDK.Utils
         public string CheckPercentileValue(int percentileValue)
         {
             StringBuilder errorMsg = new StringBuilder();
-            if (percentileValue == 0)
-                errorMsg.Append("Percentile value is mandatory for datapoint aggeration type: 'Percentile'");
-            if(percentileValue < 1 || percentileValue > 100)
+            if(percentileValue < 0 || percentileValue > 100)
                 errorMsg.Append("Percentile value muist be in Range of 0-100");
             return errorMsg.ToString();
         }

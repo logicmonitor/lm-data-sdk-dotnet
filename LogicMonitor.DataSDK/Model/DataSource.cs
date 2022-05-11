@@ -84,7 +84,6 @@ namespace LogicMonitor.DataSDK.Model
         {
             int _dataSourceId = Id;
             string errorMsg = "";
-            
             if (_dataSourceId >= 0)
             {
                 errorMsg += objectNameValidator.CheckDataSourceId(_dataSourceId);

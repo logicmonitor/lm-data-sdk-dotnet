@@ -41,7 +41,7 @@ namespace LogicMonitor.DataSDK.Internal
         public static IResponseInterface ResponseCallback { get; set; }
 
         private readonly Object _Lock = new Object();
-        protected Queue<IInput> rawRequest = new Queue<IInput>();
+        protected Queue<IInput> rawRequest = new Queue<IInput>(100);
         protected Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>> MetricsPayloadCache = new Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>>();
         protected List<LogsV1> logPayloadCache = new List<LogsV1>();
         private long _lastTimeSend;
@@ -130,7 +130,6 @@ namespace LogicMonitor.DataSDK.Internal
                     }
                     if (currentTime > (_lastTimeSend + Interval))
                     {
-
                         RestResponse response = new RestResponse();
                         try
                         {
@@ -143,9 +142,7 @@ namespace LogicMonitor.DataSDK.Internal
                         _lastTimeSend = currentTime;
                     }
                     else
-                    {
                         Thread.Sleep(1000);
-                    }
                 }
             }
         }

@@ -38,7 +38,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="resourceIds">resourceIds.</param>
         /// <param name="resourceName">resourceName.</param>
         /// <param name="resourceProperties">resourceProperties.</param>
-        public RestMetricsV1(string dataSource , string dataSourceDisplayName , string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>),bool singleInstanceDS= false)
+        public RestMetricsV1(string dataSource =null , string dataSourceDisplayName= null , string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>),bool singleInstanceDS= false)
         {
             this.DataSource = dataSource;
             this.DataSourceDisplayName = dataSourceDisplayName;

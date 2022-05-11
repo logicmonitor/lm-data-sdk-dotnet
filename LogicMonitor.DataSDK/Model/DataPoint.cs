@@ -26,6 +26,7 @@ namespace LogicMonitor.DataSDK.Model
         {
 
         }
+
         public DataPoint(string aggregation = default(string), string description = default(string), string name = default(string), string type = default(string), int percentileValue = default)
         {
             this.AggregationType = aggregation;
@@ -40,9 +41,9 @@ namespace LogicMonitor.DataSDK.Model
         /// <summary>
         /// The aggregation method, if any, that should be used if data is pushed in sub-minute intervals. Allowed options are “sum”,
         /// “average” and “none”(default) where “none” would take last value for that minute. Only considered when creating a new
-        /// datapoint. See the About the Push Metrics REST API section of this guide for more information on datapoint value aggregation intervals.
+        /// datapoint.See the About the Push Metrics REST API section of this guide for more information on datapoint value aggregation intervals.
         /// </summary>
-        [DataMember(Name = "Aggreaation", EmitDefaultValue = false)]
+        [DataMember(Name = "Aggregation", EmitDefaultValue = false)]
         public string AggregationType { get; set; }
 
         /// <summary>
@@ -63,6 +64,9 @@ namespace LogicMonitor.DataSDK.Model
         [DataMember(Name = "Type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
+        /// <summary>
+        /// PercentileValue accept value from 0-100. Only considered when Aggregation Type is "percentile".
+        /// </summary>
         [DataMember(Name = "percentileValue", EmitDefaultValue = false)]
         public int PercentileValue { get; set; }
 
@@ -82,7 +86,7 @@ namespace LogicMonitor.DataSDK.Model
         {
             string errorMsg = "";
             errorMsg += objectNameValidator.CheckDataPointNameValidation(Name);
-            errorMsg += objectNameValidator.CheckDataPointAggerationTypeValidation(AggregationType,percentileValue);
+            errorMsg += objectNameValidator.CheckDataPointAggerationTypeValidation(AggregationType,PercentileValue);
             errorMsg += objectNameValidator.CheckDataPointDescriptionValidation(Description);
             errorMsg += objectNameValidator.CheckDataPointTypeValidation(Type);
             return errorMsg;

@@ -106,7 +106,7 @@ namespace LogicMonitor.DataSDK.Api
 
                 logsV1s.Add(bodyString);
             }
-
+            logPayloadCache.Clear();
             return logsV1s;
         }
 

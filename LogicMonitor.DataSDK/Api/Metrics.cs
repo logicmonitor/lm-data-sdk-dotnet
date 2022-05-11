@@ -43,24 +43,14 @@ namespace LogicMonitor.DataSDK.Api
         /// <param name="values"></param>
         public RestResponse SendMetrics(Resource resource, DataSource dataSource, DataSourceInstance dataSourceInstance, DataPoint dataPoint, Dictionary<string, string> values)
         {
-            //var body = CreateRestMetricsBody(resource, dataSource, dataSourceInstance, dataPoint, values);
+            
             string errorMsg = ValidField(dataSource:dataSource, dataSourceInstance:dataSourceInstance);
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
 
 
-            MetricsV1 input = new MetricsV1();
-            input.resource = resource;
-            input.dataSource = dataSource;
-            input.dataSourceInstance = dataSourceInstance;
-            input.dataPoint = dataPoint;
-
+            MetricsV1 input = new MetricsV1(resource,dataSource,dataSourceInstance,dataPoint,values);
             
-            foreach (var item in values)
-            {
-                input.values.Add(item.Key, item.Value);
-            }
-
             if (Batch)
             {
                 AddRequest(input);
@@ -75,7 +65,6 @@ namespace LogicMonitor.DataSDK.Api
         public override void _mergeRequest()
         {
             var singleRequest = (MetricsV1)GetRequest().Dequeue();
-
             if (!MetricsPayloadCache.ContainsKey(singleRequest.resource))
             {
                 MetricsPayloadCache.Add(singleRequest.resource, new Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>());
@@ -101,104 +90,107 @@ namespace LogicMonitor.DataSDK.Api
             {
                 _value.Add(item.Key, item.Value);
             }
-
-           
         }
 
         public override void _doRequest()
         {
             var responseList = new List<RestResponse>();
-            List<RestMetricsV1> listOfRestMetricsV1 = new List<RestMetricsV1>();
-            var body = GetMetricsPayload();
-            listOfRestMetricsV1 = CreateRestMetricsBody(body);
+            List<RestMetricsV1> listOfRestMetricsV1True = new List<RestMetricsV1>();
+            List<RestMetricsV1> listOfRestMetricsV1False = new List<RestMetricsV1>();
+
+            Resource _removeElement = null;
+            RestMetricsV1 restMetrics;
             RestResponse response;
+            var payload = GetMetricsPayload();
+            foreach (var res in payload)
+            {
+                Resource _resource = res.Key;
+                DataSource _dataSource = new DataSource();
+                var instances = new List<RestDataSourceInstanceV1>();
+                foreach (var ds in res.Value)
+                {
+                    _dataSource = ds.Key;
+                    if (ds.Value.Count <= 100)
+                    {
+                        foreach (var ins in ds.Value)
+                        {
+                            DataSourceInstance _dataSourceInstance = ins.Key;
+                            var listDataPoints = new List<RestDataPointV1>();
+                            foreach (var dp in ins.Value)
+                            {
+                                DataPoint _dataPoint = dp.Key;
+                                Dictionary<string, string> valuePairs = new Dictionary<string, string>();
+                                foreach (var value in dp.Value)
+                                {
+                                    valuePairs.Add(value.Key, value.Value);
+                                }
+                                var restDataPoint = new RestDataPointV1(
+                                dataPointAggregationType: _dataPoint.AggregationType,
+                                dataPointDescription: _dataPoint.Description,
+                                dataPointName: _dataPoint.Name,
+                                dataPointType: _dataPoint.Type,
+                                percentileValue: _dataPoint.PercentileValue,
+                                values: valuePairs
+                                );
+                                listDataPoints.Add(restDataPoint);
+                            }
+
+                            var restInstance = new RestDataSourceInstanceV1(
+                            dataPoints: listDataPoints,
+                            instanceDescription: _dataSourceInstance.Description,
+                            instanceDisplayName: _dataSourceInstance.DisplayName,
+                            instanceName: _dataSourceInstance.Name,
+                            instanceProperties: _dataSourceInstance.Properties,
+                            instanceId: _dataSourceInstance.InstanceId
+                            );
+                            instances.Add(restInstance);
+                        }
+                    }
+                    restMetrics = new RestMetricsV1(
+                    resourceIds: _resource.Ids,
+                    resourceName: _resource.Name,
+                    resourceProperties: _resource.Properties,
+                    resourceDescription: _resource.Description,
+                    dataSource: _dataSource.Name,
+                    dataSourceDisplayName: _dataSource.DisplayName,
+                    dataSourceGroup: _dataSource.Group,
+                    dataSourceId: _dataSource.Id,
+                    singleInstanceDS: _dataSource.SingleInstanceDS,
+                    instances: instances
+                    );
+                    if (_resource.Create)
+                    {
+                        listOfRestMetricsV1True.Add(restMetrics);
+                    }
+                    else
+                    {
+                        listOfRestMetricsV1False.Add(restMetrics);
+                    }
+                }
+                _removeElement = _resource;
+            }
+            GetMetricsPayload().Remove(_removeElement);
+
             try
             {
-                var body1 = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1);
-                response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: body1);
-                responseList.Add(response);
+                if (listOfRestMetricsV1True.Count != 0)
+                {
+                    var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True);
+                    response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
+                    responseList.Add(response);
+                }
+                if (listOfRestMetricsV1False.Count != 0 )
+                {
+                    var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True);
+                    response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
+                    responseList.Add(response);
+                }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Got exception" + ex);
                 //BatchingCache.ResponseHandler(response: response);
             }
-        }
-
-
-
-
-        private List<RestMetricsV1> CreateRestMetricsBody(Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>> body)
-        {
-
-            List<RestMetricsV1> listOfRestMetricsV1 = new List<RestMetricsV1>();
-            Resource _removeElement = null;
-            RestMetricsV1 restMetrics;
-            foreach (var item in body)
-            {
-                Resource _resource = item.Key;
-                DataSource _dataSource = new DataSource();
-                var instances = new List<RestDataSourceInstanceV1>();
-
-                foreach (var ds in item.Value)
-                {
-                    _dataSource = ds.Key;
-                    foreach (var ins in ds.Value)
-                    {
-                        DataSourceInstance _dataSourceInstance = ins.Key;
-                        var listDataPoints = new List<RestDataPointV1>();
-
-                        foreach (var dp in ins.Value)
-                        {
-                            DataPoint _dataPoint = dp.Key;
-                            Dictionary<string, string> valuePairs = new Dictionary<string, string>();
-                            foreach (var value in dp.Value)
-                            {
-                                valuePairs.Add(value.Key, value.Value);
-                            }
-                            var restDataPoint = new RestDataPointV1(
-                            dataPointAggregationType: _dataPoint.AggregationType,
-                            dataPointDescription: _dataPoint.Description,
-                            dataPointName: _dataPoint.Name,
-                            dataPointType: _dataPoint.Type,
-                            percentileValue: _dataPoint.percentileValue,
-                            values: valuePairs
-                            );
-                            listDataPoints.Add(restDataPoint);
-                        }
-
-                        var restInstance = new RestDataSourceInstanceV1(
-                        dataPoints: listDataPoints,
-                        instanceDescription: _dataSourceInstance.Description,
-                        instanceDisplayName: _dataSourceInstance.DisplayName,
-                        instanceName: _dataSourceInstance.Name,
-                        instanceProperties: _dataSourceInstance.Properties,
-                        instanceId:_dataSourceInstance.InstanceId
-                        );
-                        instances.Add(restInstance);
-
-                        //if (_dataSource.SingleInstanceDS == true)
-                        //    break;
-
-                    }
-                        restMetrics = new RestMetricsV1(
-                        resourceIds: _resource.Ids,
-                        resourceName: _resource.Name,
-                        resourceProperties: _resource.Properties,
-                        resourceDescription: _resource.Description,
-                        dataSource: _dataSource.Name,
-                        dataSourceDisplayName: _dataSource.DisplayName,
-                        dataSourceGroup: _dataSource.Group,
-                        dataSourceId: _dataSource.Id,
-                        singleInstanceDS:_dataSource.SingleInstanceDS,
-                        instances: instances
-                        );
-                    listOfRestMetricsV1.Add(restMetrics);
-                }
-                _removeElement = _resource;
-            }
-            _ = GetMetricsPayload().Remove(_removeElement);
-            return listOfRestMetricsV1;
         }
         public static RestResponse SingleRequest(MetricsV1 input)
         {
@@ -209,8 +201,9 @@ namespace LogicMonitor.DataSDK.Api
             dataPointDescription: input.dataPoint.Description,
             dataPointName: input.dataPoint.Name,
             dataPointType: input.dataPoint.Type,
+            percentileValue: input.dataPoint.PercentileValue,
             values: input.values
-            );
+            ) ;
             dataPoints.Add(restDataPoint);
 
             var instances = new List<RestDataSourceInstanceV1>();
@@ -250,6 +243,60 @@ namespace LogicMonitor.DataSDK.Api
 
         }
 
+
+        public RestResponse UpdateResourceProperties(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
+        {
+            BatchingCache b = new Metrics();
+            var method = patch ? "PATCH" : "PUT";
+            if (resourceIds != null)
+                objectNameValidator.CheckResourceIdsValidation(resourceIds);
+            if (resourceProperties != null)
+                objectNameValidator.CheckResourcePropertiesValidation(resourceProperties);
+
+            var restMetrics = new RestMetricsV1(
+                resourceIds: resourceIds,
+                resourceProperties: resourceProperties
+                );
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(restMetrics);
+            body = body.Replace(@"\", "");
+            body = body.Replace("\"{", "{");
+            body = body.Replace("}\"", "}");
+            return b.MakeRequest(path: "/resource_property/ingest", method: method, body: body, asyncRequest: false);
+        }
+
+        public RestResponse UpdateInstanceProperties(Dictionary<string, string> resourceIds, string dataSourceName, string instanceName, Dictionary<string, string> instanceProperties, bool patch = true)
+        {
+
+            BatchingCache b = new Metrics();
+            var method = patch ? "PATCH" : "PUT";
+            if (resourceIds != null)
+                objectNameValidator.CheckResourceIdsValidation(resourceIds);
+            if (dataSourceName != null)
+                objectNameValidator.CheckDataSourceNameValidation(dataSourceName);
+            if (instanceName != null)
+                objectNameValidator.CheckInstanceNameValidation(instanceName);
+            if (instanceProperties != null)
+                objectNameValidator.CheckInstancePropertiesValidation(instanceProperties);
+
+            var instance = new RestDataSourceInstanceV1(
+                instanceName: instanceName,
+                instanceProperties: instanceProperties
+                );
+            List<RestDataSourceInstanceV1> instances = new List<RestDataSourceInstanceV1>();
+            instances.Add(instance);
+            var restMetrics = new RestMetricsV1(
+                resourceIds: resourceIds,
+                dataSource: dataSourceName,
+                instances: instances
+                );
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(restMetrics);
+            body = body.Replace(@"\", "");
+            body = body.Replace("\"{", "{");
+            body = body.Replace("}\"", "}");
+            body = body.Replace("\"instances\":[{", "");
+            body = body.Replace("}]", "");
+            return b.MakeRequest(path: "/instance_property/ingest", method: method, body: body, asyncRequest: false);
+        }
         public string ValidField(DataSource dataSource, DataSourceInstance dataSourceInstance)
         {
             string errorMsg = "";
@@ -263,7 +310,6 @@ namespace LogicMonitor.DataSDK.Api
                         errorMsg += objectNameValidator.CheckInstanceDisplayNameValidation(dataSourceInstance.DisplayName);
                     if (dataSourceInstance.Properties != null)
                         errorMsg += objectNameValidator.CheckInstancePropertiesValidation(dataSourceInstance.Properties);
-
                 }
                 else
                 {

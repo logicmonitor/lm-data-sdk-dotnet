@@ -11,13 +11,13 @@ namespace LogicMonitor.DataSDK.Model
         public DataPoint dataPoint;
         public Dictionary<string, string> values;
 
-        public MetricsV1()
+        public MetricsV1(Resource _resource, DataSource _dataSource, DataSourceInstance _dataSourceInstance, DataPoint _dataPoint, Dictionary<string, string> _values)
         {
-            resource = new Resource();
-            dataSource = new DataSource();
-            dataSourceInstance = new DataSourceInstance();
-            dataPoint = new DataPoint();
-            values = new Dictionary<string, string>();
+            resource = _resource;
+            dataSource = _dataSource;
+            dataSourceInstance = _dataSourceInstance;
+            dataPoint = _dataPoint;
+            values = _values;
         }
     }
 }

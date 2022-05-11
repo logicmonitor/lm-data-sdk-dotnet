@@ -37,7 +37,8 @@ namespace LogicMonitor.DataSDK.Model
         }
         /// <summary>
         /// DataSource unique name. Used to match an existing DataSource. If no existing DataSource matches the name provided here,
-        /// a new DataSource is created with this name.        /// </summary>
+        /// a new DataSource is created with this name.
+        /// </summary>
         [DataMember(Name ="Name",EmitDefaultValue =false)]
         public string Name { get; set; }
 
@@ -61,7 +62,7 @@ namespace LogicMonitor.DataSDK.Model
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets SingleInstanceDS
+        /// When set to "true", DataSource Instance are not to be set, when "true".
         /// </summary>
         [DataMember(Name = "singleInstanceDS", EmitDefaultValue = true)]
         public bool SingleInstanceDS { get; set; }

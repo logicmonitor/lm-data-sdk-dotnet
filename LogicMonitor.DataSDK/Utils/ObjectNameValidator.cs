@@ -454,7 +454,7 @@ namespace LogicMonitor.DataSDK.Utils
                     }
                 }
 
-                if (counter == dataPointAggerationTypes.count)
+                if (counter == dataPointAggerationTypes.Count)
                     errorMsg.Append(string.Format("The datapoint aggeration type is having invalid datapoint aggreation Type {0}.", dataPointAggerationType));
                 if (dataPointAggerationType == "percentile")
                     CheckPercentileValue(percentileValue);

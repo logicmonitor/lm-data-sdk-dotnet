@@ -17,7 +17,7 @@ namespace LogicMonitor.DataSDK.Tests.Model
         [Test]
         public void TestRestDataPoint()
         {
-            RestDataPointV1 a = new RestDataPointV1(dataPointAggregationType,dataPointDescription,dataPointName,dataPointType,values);
+            RestDataPointV1 a = new RestDataPointV1(dataPointAggregationType,dataPointDescription,dataPointName,dataPointType);
             a.DataPointAggregationType = "DataPointAggregationType";
             Assert.AreEqual("DataPointAggregationType", a.DataPointAggregationType);
 

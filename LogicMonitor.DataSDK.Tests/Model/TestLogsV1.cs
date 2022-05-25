@@ -83,21 +83,5 @@ namespace LogicMonitor.DataSDK.Tests.Model
             Dictionary<string, string> msg = a.ResourceId;
             Assert.AreEqual(msg, res);
         }
-        [Test]
-        public void TestCreateBody()
-        {
-            LogsV1 a = new LogsV1();
-            string i = "1683263926";
-            a.Timestamp = i;
-            Dictionary<string, string> res = new Dictionary<string, string>();
-            res.Add("test", "test");
-            string m = "Sample msg for testing";
-            a.Message = m;
-            a.ResourceId = res;
-            string expected = "[{\"message\":\"Sample msg for testing\",\"_lm.resourceId\":{\"test\":\"test\"},\"timestamp\":\"1683263926\",\"metadata\":\"null\"}]";
-            System.Console.WriteLine(a.ToString());
-            Assert.AreEqual(expected, a.ToString());
-
-        }
     }
 }

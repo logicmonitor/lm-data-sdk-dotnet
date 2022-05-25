@@ -20,7 +20,7 @@ namespace LogicMonitor.DataSDK.Tests.@internal
        public Task t;
        public BatchingCache b;
 
-       [SetUp]
+    [SetUp]
        public void Setup()
        {
 
@@ -28,7 +28,7 @@ namespace LogicMonitor.DataSDK.Tests.@internal
            string resourceName = "abcd";
            Dictionary<string, string> resourceIds = new Dictionary<string, string>();
            resourceIds.Add("system.displayname", "abcdtest");
-           b = new BatchingCache();
+           b = new Metrics();
            string dataSourceGroup = "dotnetSDK";
            string saname = "Instance1";
            string AggType = "None";
@@ -36,9 +36,7 @@ namespace LogicMonitor.DataSDK.Tests.@internal
            Dictionary<string, string> value = new Dictionary<string, string>();
            value.Add(DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), string.Format("12" + 10));
 
-
            MyResponse responseInterface = new MyResponse();
-
 
            Resource resource = new Resource(name: resourceName, ids: resourceIds);
            string dataSourceName = "Mac2";
@@ -53,40 +51,20 @@ namespace LogicMonitor.DataSDK.Tests.@internal
            Metrics metrics1 = new Metrics(batch: false, interval: 5000, responseInterface, apiClient);
 
        }
-
-       [TestCase("body", "/metric/ingest")]
-       [TestCase("body", "/log/ingest")]
-       public void TestAddRequest(string body, string path)
-       {
-           b.AddRequest(body, path);
-           int count = b.rawRequest.Count;
-           Assert.AreEqual(1,count);
-           b.rawRequest.Clear();
-       }
-
        [Test]
-       public void TestGetPayload()
+       public void TestAddRequest()
        {
-           List<string> testlist = new List<string>();
-           testlist.Add("A");
-           testlist.Add("B");
-           b.PayloadCache = testlist;
-           List<string> testpayload = b.GetPayload();
-           Assert.AreEqual(testpayload, testlist);
-       }
+          Dictionary<string, string> resourceIds = new Dictionary<string, string>();
+          resourceIds.Add("system.displayname", "abcdtest");
+          MyResponse responseInterface = new MyResponse();
 
-       [Test]
-       public void TestDoRequest()
-       {
-           MyResponse responseInterface = new MyResponse();
-           BatchingCache b = new BatchingCache(apiClient, 0, true, responseInterface);
-           b.rawRequest.Clear();
-           b.AddRequest("body", "metric/ingest");
-           b.AddRequest("body1", "metric/ingest");
-           b.AddRequest("body2", "metric/ingest");
-           t = Task.Run(() => b.DoRequest());
-           Thread.Sleep(2000);
-           Assert.AreEqual(0, b.PayloadCache.Count);
+          LogsV1 logsv1 = new LogsV1(message: "Logs", resourceIds);
+
+          Logs logs = new Logs(batch: false, interval: 0, responseCallback: responseInterface, apiClient: apiClient);
+
+          logs.AddRequest(logsv1);
+          int count = logs.GetRequest().Count;
+          Assert.AreEqual(1,count);
        }
    }
 

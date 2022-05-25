@@ -97,14 +97,11 @@ namespace LogicMonitor.DataSDK
                 var compressedBytes = GZip(body);
                 request.AddHeader("Content-Encoding", "gzip");
                 request.AddParameter("application/x-gzip", compressedBytes, ParameterType.RequestBody);
-                Console.WriteLine("Body Length {0}",body.Length);
-                Console.WriteLine("Compress Length {0}",compressedBytes.Length);
             }
             else
             {
                 request.AddJsonBody(body);
             }
-            Console.WriteLine(body);
             Request(method, url, body, headers, queryParams, requestTimeout, postParams);
             RestResponse response = (RestResponse)client.Execute(request);
             return response;

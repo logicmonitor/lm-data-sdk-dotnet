@@ -15,9 +15,12 @@ namespace LogicMonitor.DataSDK
         public const string Author = "LogicMonitor";
         public const string AuthorEmail = "support@logicmonior.com";
 
-        public Setup()
+        public struct Path
         {
-            
-        }
+            public static readonly string IngestPath = "/v2/metric/ingest";
+            public static readonly string UpdateResourcePropertyPath = "/resource_property/ingest";
+            public static readonly string UpdateInsatancePropertyPath = "/instance_property/ingest";
+        };
+    
     }
 }

@@ -20,19 +20,25 @@ namespace LogicMonitor.DataSDK.Model
     public class DataSource
     {
         private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        public DataSource(string name = default(string), string displayName = default(string), string group = default(string), int id = default(int) )
+        public DataSource()
+        {
+            
+        }
+        public DataSource(string name = default(string), string displayName = default(string), string group = default(string), int id = default(int), bool singleInstanceDS = false )
         {
             this.Name = name;
             this.DisplayName = displayName;
             this.Group = group;
             this.Id = id;
+            SingleInstanceDS = singleInstanceDS;
             string errorMsg = ValidField();
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
         }
         /// <summary>
         /// DataSource unique name. Used to match an existing DataSource. If no existing DataSource matches the name provided here,
-        /// a new DataSource is created with this name.        /// </summary>
+        /// a new DataSource is created with this name.
+        /// </summary>
         [DataMember(Name ="Name",EmitDefaultValue =false)]
         public string Name { get; set; }
 
@@ -55,6 +61,12 @@ namespace LogicMonitor.DataSDK.Model
         [DataMember(Name = "Id", EmitDefaultValue = false)]
         public int Id { get; set; }
 
+        /// <summary>
+        /// When set to "true", DataSource Instance are not to be set, when "true".
+        /// </summary>
+        [DataMember(Name = "singleInstanceDS", EmitDefaultValue = true)]
+        public bool SingleInstanceDS { get; set; }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -63,6 +75,7 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Group: ").Append(Group).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  SingleInstanceDS: ").Append(SingleInstanceDS).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -71,7 +84,6 @@ namespace LogicMonitor.DataSDK.Model
         {
             int _dataSourceId = Id;
             string errorMsg = "";
-
             if (_dataSourceId >= 0)
             {
                 errorMsg += objectNameValidator.CheckDataSourceId(_dataSourceId);

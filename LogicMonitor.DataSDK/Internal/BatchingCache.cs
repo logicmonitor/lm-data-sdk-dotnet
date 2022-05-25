@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using LogicMonitor.DataSDK.Api;
 using System.Threading;
 using Microsoft.Extensions.Logging;
+using LogicMonitor.DataSDK.Model;
 
 namespace LogicMonitor.DataSDK.Internal
 {
-
-    public class BatchingCache
+    public abstract class BatchingCache
     {
         public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
@@ -35,39 +35,38 @@ namespace LogicMonitor.DataSDK.Internal
         public const char _PayloadTotal = 'T';
         public const char _PayloadException = 'E';
 
-
         public static ApiClient ApiClient { get; set; }
         public int Interval { get; set; }
         public static bool Batch { get; set; }
         public static IResponseInterface ResponseCallback { get; set; }
 
-        private  readonly Object _Lock = new Object();
-        public Queue<string> rawRequest = new Queue<string>();
-        public List<string> PayloadCache = new List<string>();
-        private List<string> Payload = new List<string>();
+        private readonly Object _Lock = new Object();
+        protected Queue<IInput> rawRequest = new Queue<IInput>(100);
+        protected Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>> MetricsPayloadCache = new Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>>();
+        protected List<LogsV1> logPayloadCache = new List<LogsV1>();
         private long _lastTimeSend;
         private long _lastTimeStat;
         private Thread mergeThread;
         private Thread requestThread;
         private Semaphore _hasRequest;
-        private  string Path { get; set; }
 
         public BatchingCache()
         {
         }
-        public BatchingCache(ApiClient apiClient , int interval = 0, bool batch = false, IResponseInterface responseCallback = default)
+
+        public BatchingCache(ApiClient apiClient, int interval = 0, bool batch = false, IResponseInterface responseCallback = default)
         {
             if (apiClient == null)
                 apiClient = new ApiClient();
 
             ApiClient = apiClient;
-            this.Interval = interval;
+            Interval = interval;
             Batch = batch;
 
             if (responseCallback is IResponseInterface)
                 ResponseCallback = responseCallback;
             else
-                _logger.LogWarning("Resonse callback is not a defined or valid");
+                _logger.LogWarning("Response callback is not a defined or valid");
 
             _lastTimeSend = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds()); //seconds since epoch
 
@@ -93,27 +92,26 @@ namespace LogicMonitor.DataSDK.Internal
         {
             return _hasRequest;
         }
-        public  Queue<string> GetRequest()
+        public Queue<IInput> GetRequest()
         {
             return rawRequest;
         }
 
-        public  List<string> GetPayload()
+        public Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>> GetMetricsPayload()
         {
-            return PayloadCache;
+            return MetricsPayloadCache;
         }
+
+        public abstract void _mergeRequest();
+        public abstract void _doRequest();
 
         public void MergeRequest()
         {
             while (_hasRequest.WaitOne())
             {
-                while (GetRequest().Count > 0)
+                while (GetRequest().Count > 0 )
                 {
-                    var singleRequest = GetRequest().Dequeue();
-                    lock (_Lock)
-                    {
-                        PayloadCache.Add(singleRequest);
-                    }
+                    this._mergeRequest();
                 }
             }
         }
@@ -132,68 +130,21 @@ namespace LogicMonitor.DataSDK.Internal
                     }
                     if (currentTime > (_lastTimeSend + Interval))
                     {
-                        try
-                        {
-                            foreach (var item in PayloadCache)
-                            {
-                                Payload.Add(item);
-                            }
-                            PayloadCache.Clear();
-                            DoRequest(Payload, path: Path);
-                            Payload.Clear();
-                        }
-                        catch (Exception ex)
-                        {
-                            _logger.LogError("Got exception" + ex);
-
-                        }
-                        _lastTimeSend = currentTime;
-
-                    }
-                    else
-                    {
-                        Thread.Sleep(1000);
-                    }
-
-                }
-            }
-        }
-        private void DoRequest(List<string> body, string path)
-        {
-            var responseList = new List<RestResponse>();
-            if (body.Count != 0)
-            {
-                lock (_Lock)
-                {
-                    foreach (var item in body)
-                    {
-
-                        var pathparam = item.Substring(0, 1);
-                        if (pathparam.Equals("M"))
-                        {
-                            path = "/metric/ingest";
-                        }
-                        else
-                        {
-                            path = "/log/ingest";
-
-                        }
-                        string bodystring = item.Substring(1);
                         RestResponse response = new RestResponse();
                         try
                         {
-                            response = MakeRequest(path: path, method: "POST", body: bodystring, create: true);
-                            responseList.Add(response);
+                            this._doRequest();
                         }
                         catch (Exception ex)
                         {
                             _logger.LogError("Got exception" + ex);
-                            BatchingCache.ResponseHandler(response: response);
                         }
+                        _lastTimeSend = currentTime;
                     }
+                    else
+                        Thread.Sleep(1000);
                 }
             }
-
         }
 
         public void PrintStat()
@@ -230,29 +181,17 @@ namespace LogicMonitor.DataSDK.Internal
                         ResponseCallback.ErrorCallback(response);
                 }
             }
-
             catch (Exception ex)
             {
                 _logger.LogError("Got Exception in response callback {0}", Convert.ToString(ex));
             }
         }
 
-        public void AddRequest(string body, string path)
+        public void AddRequest(IInput body)
         {
             try
             {
-
-                if (path.Contains("metric"))
-                {
-                    rawRequest.Enqueue("M" + body);
-
-                }
-
-                else if (path.Contains("log"))
-                {
-                    rawRequest.Enqueue("L" + body);
-
-                }
+                rawRequest.Enqueue(body);
                 //Semaphore release
                 _hasRequest.Release();
             }
@@ -263,18 +202,17 @@ namespace LogicMonitor.DataSDK.Internal
         }
         public RestResponse MakeRequest(string body, string path = default, string method = default, bool create = false, bool asyncRequest = false)
         {
+
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
             var queryParams = new Dictionary<string, string>();
-
-            if (create && path == "/metric/ingest")
+            if (create && path == "/v2/metric/ingest")
             {
                 queryParams.Add("create", "true");
             }
-            var headersParams = new Dictionary<String, string>();
+            var headersParams = new Dictionary<string, string>();
             string authSetting = "LMv1";
             if (ApiClient == null)
                 ApiClient = new ApiClient();
-
             headersParams.Add("Accept", ApiClient.SelectHeaderAccept("application/json"));
             headersParams.Add("Content-Type", ApiClient.SelectHeaderContentType("application/json"));
 

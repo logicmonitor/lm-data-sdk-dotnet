@@ -25,12 +25,13 @@ namespace LogicMonitor.DataSDK.Model
         {
 
         }
-        public Resource(Dictionary<string,string> ids = default(Dictionary<string,string>), string name = default(string), string description = null, bool create = false)
+        public Resource(Dictionary<string,string> ids = default(Dictionary<string,string>), string name = default(string), string description = null, Dictionary<string,string> properties=null, bool create = false)
         {
             this.Ids = ids;
             this.Name = name;
             this.Description = description;
             this.Create = create;
+            this.Properties = properties;
             string errorMsg = ValidField();
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);

@@ -38,7 +38,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="resourceIds">resourceIds.</param>
         /// <param name="resourceName">resourceName.</param>
         /// <param name="resourceProperties">resourceProperties.</param>
-        public RestMetricsV1(string dataSource , string dataSourceDisplayName , string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>))
+        public RestMetricsV1(string dataSource =null , string dataSourceDisplayName= null , string dataSourceGroup = default(string), int dataSourceId = default(int), List<RestDataSourceInstanceV1> instances = default(List<RestDataSourceInstanceV1>), string resourceDescription = default(string), Dictionary<string, string> resourceIds = default(Dictionary<string, string>), string resourceName = default(string), Dictionary<string, string> resourceProperties = default(Dictionary<string, string>),bool singleInstanceDS= false)
         {
             this.DataSource = dataSource;
             this.DataSourceDisplayName = dataSourceDisplayName;
@@ -49,6 +49,7 @@ namespace LogicMonitor.DataSDK.Model
             this.ResourceIds = resourceIds;
             this.ResourceName = resourceName;
             this.ResourceProperties = resourceProperties;
+            this.SingleInstanceDS = singleInstanceDS;
         }
 
         /// <summary>
@@ -104,6 +105,12 @@ namespace LogicMonitor.DataSDK.Model
         /// </summary>
         [DataMember(Name = "resourceProperties", EmitDefaultValue = false)]
         public Dictionary<string, string> ResourceProperties { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SingleInstanceDS
+        /// </summary>
+        [DataMember(Name = "singleInstanceDS", EmitDefaultValue = true)]
+        public bool SingleInstanceDS { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

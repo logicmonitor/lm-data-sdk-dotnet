@@ -16,7 +16,7 @@ namespace LogicMonitor.DataSDK.Tests
 
        public static Configuration configuration;
        public static string method = "GET";
-       public static string url = "/metric/ingest";
+       public static string url = "/v2/metric/ingest";
        public static string body = "body";
        public static Dictionary<string, string> headers = new Dictionary<string, string>();
        public static Dictionary<string, string> queryParams = new Dictionary<string, string>();
@@ -25,8 +25,8 @@ namespace LogicMonitor.DataSDK.Tests
        [SetUp]
        public void Setup()
         {
-            string AccessID = "Shkjafhdfhjshs";
-            string AccessKey = "sdkHfi924urlasfd";
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey";
             Configuration config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
 
         }

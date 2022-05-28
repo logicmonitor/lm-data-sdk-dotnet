@@ -26,11 +26,10 @@ namespace LogicMonitor.DataSDK.Tests.Api
        public void Setup()
         {
            MyResponse responseInterface = new MyResponse();
-           string AccessID = "Shkjafhdfhjshs";
-           message = "Sample Log";
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey"; message = "Sample Log";
            timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-           string AccessKey = "sdkHfi924urlasfd";
-           Configuration config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
+           Configuration config = new Configuration(company: "YourCompanyName", accessID: AccessID, accessKey: AccessKey);
            apiClient = new ApiClient(config);
            resourceName = "abcd";
            resourceIds = new Dictionary<string, string>();

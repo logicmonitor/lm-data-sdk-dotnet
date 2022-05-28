@@ -33,9 +33,9 @@ namespace LogicMonitor.DataSDK.Tests.Api
       [SetUp]
        public void Setup()
        {
-           string AccessID = "Shkjafhdfhjshs";
-           string AccessKey = "sdkHfi924urlasfd";
-           Configuration config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey";
+            Configuration config = new Configuration(company: "YourCompanyName", accessID: AccessID, accessKey: AccessKey);
            apiClient = new ApiClient(config);
 
            dataSourceGroup = "dotnetSDK";

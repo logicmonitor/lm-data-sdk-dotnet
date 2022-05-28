@@ -205,7 +205,7 @@ namespace LogicMonitor.DataSDK.Internal
 
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
             var queryParams = new Dictionary<string, string>();
-            if (create && path == "/v2/metric/ingest")
+            if (create && path == Constants.Path.MetricIngestPath)
             {
                 queryParams.Add("create", "true");
             }
@@ -213,8 +213,8 @@ namespace LogicMonitor.DataSDK.Internal
             string authSetting = "LMv1";
             if (ApiClient == null)
                 ApiClient = new ApiClient();
-            headersParams.Add("Accept", ApiClient.SelectHeaderAccept("application/json"));
-            headersParams.Add("Content-Type", ApiClient.SelectHeaderContentType("application/json"));
+            headersParams.Add(Constants.HeaderKey.Accept, ApiClient.SelectHeaderAccept("application/json"));
+            headersParams.Add(Constants.HeaderKey.ContentType, ApiClient.SelectHeaderContentType("application/json"));
 
             return ApiClient.CallApi(
                 path,

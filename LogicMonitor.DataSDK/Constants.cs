@@ -8,7 +8,7 @@
 using System;
 namespace LogicMonitor.DataSDK
 {
-    public class Setup
+    public class Constants
     {
         public const string PackageID = "LogicMonitor.DataSDK";
         public const string PackageVersion = "0.0.7-alpha";

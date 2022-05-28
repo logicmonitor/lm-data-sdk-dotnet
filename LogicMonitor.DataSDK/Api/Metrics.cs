@@ -60,7 +60,7 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 string body = SingleRequest(input);
-                return Send(Setup.Path.MetricIngestPath,body,"POST",input.resource.Create);
+                return Send(Constants.Path.MetricIngestPath,body,"POST",input.resource.Create);
             }
         }
 
@@ -181,14 +181,14 @@ namespace LogicMonitor.DataSDK.Api
                 if (listOfRestMetricsV1True.Count != 0)
                 {
                     var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True);
-                    response = Send(Setup.Path.MetricIngestPath,bodyTrue,"POST",true);
+                    response = Send(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
                 }
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
                     var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1False);
-                    response = Send(Setup.Path.MetricIngestPath,bodyFalse, "POST",false);
+                    response = Send(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
                 }
@@ -260,7 +260,7 @@ namespace LogicMonitor.DataSDK.Api
     {
       var method = patch ? "PATCH" : "PUT";
       string body = GetResourcePropertyBody(resourceIds,resourceProperties,patch);
-      return Send(Setup.Path.UpdateResourcePropertyPath, body, method, false);
+      return Send(Constants.Path.UpdateResourcePropertyPath, body, method, false);
 
     }
     public string GetResourcePropertyBody(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
@@ -290,7 +290,7 @@ namespace LogicMonitor.DataSDK.Api
     {
       var method = patch ? "PATCH" : "PUT";
       string body = GetInstancePropertyBody(resourceIds, dataSourceName, instanceName, instanceProperties, patch);
-      return Send(Setup.Path.UpdateInsatancePropertyPath, body, method, false);
+      return Send(Constants.Path.UpdateInsatancePropertyPath, body, method, false);
     }
     public string GetInstancePropertyBody(Dictionary<string, string> resourceIds, string dataSourceName, string instanceName, Dictionary<string, string> instanceProperties, bool patch = true)
     {

@@ -19,12 +19,9 @@ namespace LogicMonitor.DataSDK.Model
             dataSource = _dataSource;
             dataSourceInstance = _dataSourceInstance;
             dataPoint = _dataPoint;
-            //Values = _values;
-
-
-            foreach (var i in _values)
+            foreach (var item in _values)
             {
-                Values.Add(i.Key,i.Value);
+                Values.Add(item.Key,item.Value);
             }
 
         }

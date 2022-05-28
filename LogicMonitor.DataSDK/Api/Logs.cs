@@ -84,7 +84,7 @@ namespace LogicMonitor.DataSDK.Api
         public RestResponse Send(string body)
         {
           BatchingCache b = new Logs();
-          return b.MakeRequest(path: Setup.Path.LogIngestPath, method: "POST", body: body);
+          return b.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
         }
         public override void _mergeRequest()
         {

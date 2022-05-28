@@ -21,9 +21,9 @@ namespace LogicMonitor.DataSDK.Tests
        [Test]
        public void TestCheckAuthenticationLMv1()
         {
-           string AccessID  = "Shkjafhdfhjshs";
-           string AccessKey ="sdkHfi924urlasfd";
-           string msg = null;
+            string AccessID = "DUMMY_LM_ACCESS_ID";
+            string AccessKey = "DUMMY_LM_ACCESS_KEY";
+            string msg = null;
            try
            {
                config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);

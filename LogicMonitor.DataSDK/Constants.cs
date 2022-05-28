@@ -17,9 +17,25 @@ namespace LogicMonitor.DataSDK
 
         public struct Path
         {
-            public static readonly string IngestPath = "/v2/metric/ingest";
+            public static readonly string MetricIngestPath = "/v2/metric/ingest";
+            public static readonly string LogIngestPath = "/log/ingest";
             public static readonly string UpdateResourcePropertyPath = "/resource_property/ingest";
             public static readonly string UpdateInsatancePropertyPath = "/instance_property/ingest";
+        };
+
+        public struct HeaderKey
+        {
+            public static readonly string Accept = "Accept";
+            public static readonly string ContentType = "Content-Type";
+            public static readonly string XVersion = "X-version";
+            public static readonly string Authorization = "Authorization";
+            public static readonly string ApplicationJson = "application/json";
+            public static readonly string ContentEncoding = "Content-Encoding";
+            public static readonly string ApplicationXGzip = "application/x-gzip";
+            public static readonly string GZip = "gzip";
+            
+
+
         };
     
     }

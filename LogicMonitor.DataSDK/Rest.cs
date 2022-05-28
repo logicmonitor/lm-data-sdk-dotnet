@@ -40,8 +40,8 @@ namespace LogicMonitor.DataSDK
             {
                 throw new ArgumentException(string.Format("Invalid method {0}", method));
             }
-            if (!headers.ContainsKey("Content-Type"))
-                headers["Content-Type"] = "application/json";
+            if (!headers.ContainsKey(Setup.HeaderKey.ContentType))
+                headers[Setup.HeaderKey.ContentType] = Setup.HeaderKey.ApplicationJson;
         }
 
         public RestResponse Get(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
@@ -85,7 +85,7 @@ namespace LogicMonitor.DataSDK
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.POST;
-            headers.Add("X-Version", "2");
+            headers.Add(Setup.HeaderKey.XVersion, "2");
             request.AddHeaders(headers);
             foreach (var item in queryParams)
             {
@@ -95,8 +95,8 @@ namespace LogicMonitor.DataSDK
             {
 
                 var compressedBytes = GZip(body);
-                request.AddHeader("Content-Encoding", "gzip");
-                request.AddParameter("application/x-gzip", compressedBytes, ParameterType.RequestBody);
+                request.AddHeader(Setup.HeaderKey.ContentEncoding, Setup.HeaderKey.GZip);
+                request.AddParameter(Setup.HeaderKey.ApplicationXGzip, compressedBytes, ParameterType.RequestBody);
             }
             else
             {
@@ -121,8 +121,8 @@ namespace LogicMonitor.DataSDK
             {
 
                 var compressedBytes = GZip(body);
-                request.AddHeader("Content-Encoding", "gzip");
-                request.AddParameter("application/x-gzip", compressedBytes, ParameterType.RequestBody);
+                request.AddHeader(Setup.HeaderKey.ContentEncoding, Setup.HeaderKey.GZip);
+                request.AddParameter(Setup.HeaderKey.ApplicationXGzip, compressedBytes, ParameterType.RequestBody);
             }
             else
             {
@@ -146,8 +146,8 @@ namespace LogicMonitor.DataSDK
             if (gzip == true)
             {
                 var compressedBytes = GZip(body);
-                request.AddHeader("Content-Encoding", "gzip");
-                request.AddParameter("application/x-gzip", compressedBytes, ParameterType.RequestBody);
+                request.AddHeader(Setup.HeaderKey.ContentEncoding, Setup.HeaderKey.GZip);
+                request.AddParameter(Setup.HeaderKey.ApplicationXGzip, compressedBytes, ParameterType.RequestBody);
             }
             else
             {

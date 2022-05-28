@@ -22,14 +22,15 @@ namespace LogicMonitor.DataSDK.Tests.Api
        public LogsV1 logsv1;
        string message;
        string timestamp;
+
        [SetUp]
        public void Setup()
         {
            MyResponse responseInterface = new MyResponse();
-           string AccessID = "Shkjafhdfhjshs";
-           message = "Sample Log";
+            string AccessID = "DUMMY_LM_ACCESS_ID";
+            string AccessKey = "DUMMY_LM_ACCESS_KEY";
+            message = "Sample Log";
            timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
-           string AccessKey = "sdkHfi924urlasfd";
            Configuration config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
            apiClient = new ApiClient(config);
            resourceName = "abcd";

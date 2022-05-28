@@ -29,7 +29,7 @@ namespace LogicMonitor.DataSDK
             configuration = new Configuration();
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Setup.HeaderKey.XVersion, "1");
         }
         public ApiClient(Configuration configuration)
         {
@@ -39,7 +39,7 @@ namespace LogicMonitor.DataSDK
             this.configuration = configuration;
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Setup.HeaderKey.XVersion, "1");
         }
 
         public RestResponse Callapi(
@@ -142,7 +142,7 @@ namespace LogicMonitor.DataSDK
 
             if (accepts.Contains("application/json"))
             {
-                return "application/json";
+                return Setup.HeaderKey.ApplicationJson;
             }
             else
             {
@@ -153,12 +153,12 @@ namespace LogicMonitor.DataSDK
         {
             if (content_types == "")
             {
-                return "application/json";
+                return Setup.HeaderKey.ApplicationJson;
             }
 
             if (content_types.Contains("application/json") || content_types.Contains("*/*"))
             {
-                return "application/json";
+                return Setup.HeaderKey.ApplicationJson;
             }
             else
             {
@@ -200,12 +200,12 @@ namespace LogicMonitor.DataSDK
                 string signature = Convert.ToBase64String(a);
                 var auth_hash = "LMv1 " + configuration.AccessID + ":" + signature + ":" + epoch;
 
-                headers.Add("Authorization", auth_hash);
+                headers.Add(Setup.HeaderKey.Authorization, auth_hash);
                 return true;
             }
             else if (configuration.BearerToken != null)
             {
-                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
+                headers.Add(Setup.HeaderKey.Authorization, string.Format("Bearer={0}", configuration.BearerToken));
                 return true;
             }
             else

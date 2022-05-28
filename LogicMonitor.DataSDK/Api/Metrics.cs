@@ -50,7 +50,6 @@ namespace LogicMonitor.DataSDK.Api
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
 
-
             MetricsV1 input = new MetricsV1(resource,dataSource,dataSourceInstance,dataPoint,values);
             
             if (Batch)
@@ -61,18 +60,21 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 string body = SingleRequest(input);
-                return Send(Setup.Path.IngestPath,body,"POST",input.resource.Create);
+                return Send(Setup.Path.MetricIngestPath,body,"POST",input.resource.Create);
             }
         }
 
         public override void _mergeRequest()
         {
             var singleRequest = (MetricsV1)GetRequest().Dequeue();
+
+
             if (!MetricsPayloadCache.ContainsKey(singleRequest.resource))
             {
                 MetricsPayloadCache.Add(singleRequest.resource, new Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>());
             }
             var _dataS = MetricsPayloadCache[singleRequest.resource];
+
             if(!_dataS.ContainsKey(singleRequest.dataSource))
             {
                 _dataS.Add(singleRequest.dataSource, new Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>());
@@ -88,8 +90,7 @@ namespace LogicMonitor.DataSDK.Api
                 _dataPoint.Add(singleRequest.dataPoint, new Dictionary<string, string>());
             }
             var _value = _dataPoint[singleRequest.dataPoint];
-
-            foreach(var item in singleRequest.values)
+            foreach (var item in singleRequest.Values)
             {
                 _value.Add(item.Key, item.Value);
             }
@@ -112,6 +113,7 @@ namespace LogicMonitor.DataSDK.Api
                 var instances = new List<RestDataSourceInstanceV1>();
                 foreach (var ds in res.Value)
                 {
+
                     _dataSource = ds.Key;
                     if (ds.Value.Count <= 100)
                     {
@@ -179,14 +181,14 @@ namespace LogicMonitor.DataSDK.Api
                 if (listOfRestMetricsV1True.Count != 0)
                 {
                     var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True);
-                    response = Send(Setup.Path.IngestPath,bodyTrue,"POST",true);
+                    response = Send(Setup.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
                 }
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
                     var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1False);
-                    response = Send(Setup.Path.IngestPath,bodyFalse, "POST",false);
+                    response = Send(Setup.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
                 }
@@ -207,7 +209,7 @@ namespace LogicMonitor.DataSDK.Api
             dataPointName: input.dataPoint.Name,
             dataPointType: input.dataPoint.Type,
             percentileValue: input.dataPoint.PercentileValue,
-            values: input.values
+            values: input.Values
             ) ;
             dataPoints.Add(restDataPoint);
 

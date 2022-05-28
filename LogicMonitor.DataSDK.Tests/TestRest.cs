@@ -25,8 +25,8 @@ namespace LogicMonitor.DataSDK.Tests
        [SetUp]
        public void Setup()
         {
-            string AccessID = "Shkjafhdfhjshs";
-            string AccessKey = "sdkHfi924urlasfd";
+            string AccessID = "DUMMY_ACCESS_ID";
+            string AccessKey = "DUMMY_ACCESS_KEY";
             Configuration config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
 
         }

@@ -9,7 +9,9 @@ namespace LogicMonitor.DataSDK.Model
         public DataSource dataSource;
         public DataSourceInstance dataSourceInstance;
         public DataPoint dataPoint;
-        public Dictionary<string, string> values;
+        public string k;
+        public string v;
+        public Dictionary<string, string> Values = new Dictionary<string, string>();
 
         public MetricsV1(Resource _resource, DataSource _dataSource, DataSourceInstance _dataSourceInstance, DataPoint _dataPoint, Dictionary<string, string> _values)
         {
@@ -17,7 +19,14 @@ namespace LogicMonitor.DataSDK.Model
             dataSource = _dataSource;
             dataSourceInstance = _dataSourceInstance;
             dataPoint = _dataPoint;
-            values = _values;
+            //Values = _values;
+
+
+            foreach (var i in _values)
+            {
+                Values.Add(i.Key,i.Value);
+            }
+
         }
     }
 }

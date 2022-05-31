@@ -22,6 +22,7 @@ namespace LogicMonitor.DataSDK.Tests.Api
        public LogsV1 logsv1;
        string message;
        string timestamp;
+
        [SetUp]
        public void Setup()
         {

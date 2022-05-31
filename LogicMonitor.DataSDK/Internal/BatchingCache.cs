@@ -41,7 +41,7 @@ namespace LogicMonitor.DataSDK.Internal
         public static IResponseInterface ResponseCallback { get; set; }
 
         private readonly Object _Lock = new Object();
-        protected Queue<IInput> rawRequest = new Queue<IInput>(100);
+        protected Queue<IInput> rawRequest = new Queue<IInput>();
         protected Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>> MetricsPayloadCache = new Dictionary<Resource, Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>>();
         protected List<LogsV1> logPayloadCache = new List<LogsV1>();
         private long _lastTimeSend;
@@ -94,6 +94,7 @@ namespace LogicMonitor.DataSDK.Internal
         }
         public Queue<IInput> GetRequest()
         {
+
             return rawRequest;
         }
 
@@ -107,6 +108,7 @@ namespace LogicMonitor.DataSDK.Internal
 
         public void MergeRequest()
         {
+
             while (_hasRequest.WaitOne())
             {
                 while (GetRequest().Count > 0 )

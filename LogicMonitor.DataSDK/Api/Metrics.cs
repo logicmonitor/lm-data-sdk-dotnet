@@ -50,7 +50,6 @@ namespace LogicMonitor.DataSDK.Api
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
 
-
             MetricsV1 input = new MetricsV1(resource,dataSource,dataSourceInstance,dataPoint,values);
             
             if (Batch)
@@ -61,18 +60,21 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 string body = SingleRequest(input);
-                return Send(Constants .Path.MetricIngestPath,body,"POST",input.resource.Create);
+                return Send(Constants.Path.MetricIngestPath,body,"POST",input.resource.Create);
             }
         }
 
         public override void _mergeRequest()
         {
             var singleRequest = (MetricsV1)GetRequest().Dequeue();
+
+
             if (!MetricsPayloadCache.ContainsKey(singleRequest.resource))
             {
                 MetricsPayloadCache.Add(singleRequest.resource, new Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>());
             }
             var _dataS = MetricsPayloadCache[singleRequest.resource];
+
             if(!_dataS.ContainsKey(singleRequest.dataSource))
             {
                 _dataS.Add(singleRequest.dataSource, new Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>());
@@ -88,8 +90,7 @@ namespace LogicMonitor.DataSDK.Api
                 _dataPoint.Add(singleRequest.dataPoint, new Dictionary<string, string>());
             }
             var _value = _dataPoint[singleRequest.dataPoint];
-
-            foreach(var item in singleRequest.values)
+            foreach (var item in singleRequest.Values)
             {
                 _value.Add(item.Key, item.Value);
             }
@@ -112,6 +113,7 @@ namespace LogicMonitor.DataSDK.Api
                 var instances = new List<RestDataSourceInstanceV1>();
                 foreach (var ds in res.Value)
                 {
+
                     _dataSource = ds.Key;
                     if (ds.Value.Count <= 100)
                     {
@@ -207,7 +209,7 @@ namespace LogicMonitor.DataSDK.Api
             dataPointName: input.dataPoint.Name,
             dataPointType: input.dataPoint.Type,
             percentileValue: input.dataPoint.PercentileValue,
-            values: input.values
+            values: input.Values
             ) ;
             dataPoints.Add(restDataPoint);
 

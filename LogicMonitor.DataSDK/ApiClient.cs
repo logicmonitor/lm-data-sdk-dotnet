@@ -200,12 +200,12 @@ namespace LogicMonitor.DataSDK
                 string signature = Convert.ToBase64String(a);
                 var auth_hash = "LMv1 " + configuration.AccessID + ":" + signature + ":" + epoch;
 
-                headers.Add("Authorization", auth_hash);
+                headers.Add(Constants.HeaderKey.Authorization, auth_hash);
                 return true;
             }
             else if (configuration.BearerToken != null)
             {
-                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
+                headers.Add(Constants.HeaderKey.Authorization, string.Format("Bearer={0}", configuration.BearerToken));
                 return true;
             }
             else

@@ -5,6 +5,7 @@
  * was not distributed with this file, You can obtain 
  * one at https://mozilla.org/MPL/2.0/.
  */
+using System;
 namespace LogicMonitor.DataSDK
 {
     public class Constants
@@ -21,6 +22,7 @@ namespace LogicMonitor.DataSDK
             public static readonly string UpdateResourcePropertyPath = "/resource_property/ingest";
             public static readonly string UpdateInsatancePropertyPath = "/instance_property/ingest";
         };
+
         public struct HeaderKey
         {
             public static readonly string Accept = "Accept";
@@ -31,6 +33,10 @@ namespace LogicMonitor.DataSDK
             public static readonly string ContentEncoding = "Content-Encoding";
             public static readonly string ApplicationXGzip = "application/x-gzip";
             public static readonly string GZip = "gzip";
+            
+
+
         };
+    
     }
 }

@@ -55,7 +55,8 @@ namespace LogicMonitor.DataSDK.Internal
         public BatchingCache()
         {
         }
-        public BatchingCache(ApiClient apiClient , int interval = 0, bool batch = false, IResponseInterface responseCallback = default)
+
+        public BatchingCache(ApiClient apiClient, int interval = 10, bool batch = true, IResponseInterface responseCallback = default)
         {
             if (apiClient == null)
                 apiClient = new ApiClient();
@@ -67,7 +68,7 @@ namespace LogicMonitor.DataSDK.Internal
             if (responseCallback is IResponseInterface)
                 ResponseCallback = responseCallback;
             else
-                _logger.LogWarning("Resonse callback is not a defined or valid");
+                _logger.LogWarning("Response callback is not defined or is invalid");
 
             _lastTimeSend = Convert.ToInt64(DateTimeOffset.UtcNow.ToUnixTimeSeconds()); //seconds since epoch
 
@@ -265,8 +266,7 @@ namespace LogicMonitor.DataSDK.Internal
         {
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
             var queryParams = new Dictionary<string, string>();
-
-            if (create && path == "/metric/ingest")
+            if (create && path == Constants.Path.MetricIngestPath)
             {
                 queryParams.Add("create", "true");
             }
@@ -274,9 +274,8 @@ namespace LogicMonitor.DataSDK.Internal
             string authSetting = "LMv1";
             if (ApiClient == null)
                 ApiClient = new ApiClient();
-
-            headersParams.Add("Accept", ApiClient.SelectHeaderAccept("application/json"));
-            headersParams.Add("Content-Type", ApiClient.SelectHeaderContentType("application/json"));
+            headersParams.Add(Constants.HeaderKey.Accept, ApiClient.SelectHeaderAccept("application/json"));
+            headersParams.Add(Constants.HeaderKey.ContentType, ApiClient.SelectHeaderContentType("application/json"));
 
             return ApiClient.CallApi(
                 path,

@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.0.7-alpha
+- SDK version: 0.1.0-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
@@ -143,12 +143,8 @@ namespace IncludeDll
             string metricData = "4212";
             value.Add(epochTime, metricData);
             metrics.SendMetrics(resource: resource, dataSource: dataSource, dataSourceInstance: dataSourceInstance, dataPoint: dataPoint, values: value);
-
-            
         }
-
     }
-    
 }
 ```
 

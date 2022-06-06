@@ -9,14 +9,23 @@ apiRules:
     uidRegex: ^LogicMonitor\.DataSDK\.Client$
     type: Namespace 
 - exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Constants$
+    type: Type 
+- exclude:
     uidRegex: ^LogicMonitor\.DataSDK\.Rest$
     type: Type
 - exclude:
     uidRegex: ^LogicMonitor\.DataSDK\.ApiClient\.ApiClient$
     type: Type
 - exclude:
-    uidRegex: ^LogicMonitor\.DataSDK\.Setup$
-    type: Type
+    uidRegex: ^LogicMonitor\.DataSDK\.Model\.IInput$
+    type: Type 
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Model\.LogsV1$
+    type: Type 
+- exclude:
+    uidRegex: ^LogicMonitor\.DataSDK\.Model\.MetricsV1$
+    type: Type 
 - exclude:
     uidRegex: 'Callapi'
     type: Method

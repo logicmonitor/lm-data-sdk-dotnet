@@ -7,7 +7,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create either LMv1 authentication token or Bearer token from LogicMonitor platform (a.k.a santaba).
 
-- SDK version: 0.0.7-alpha
+- SDK version: 0.1.0-alpha
 
 :point_right: [API reference docs](https://logicmonitor.github.io/lm-data-sdk-dotnet/) 
 
@@ -31,9 +31,15 @@ have to create either LMv1 authentication token or Bearer token from LogicMonito
 SDK must be configured with LogicMonitor.DataSDK Configuration class. 
 While using LMv1 authentication set AccessID and AccessKey properties, In Case of BearerToken Authentication set Bearer Token property. Company's name or Account name <b>must</b> be passed to Company property. All properties can be set using environment variable.
 
+ System property   |      Environment variable      |  Description |
+|----------|-------------|:------|
+| `Configration.company` |  `ACCOUNT_NAME` |  Account name (Company Name) is your organization name |
+| `Configration.AccessID` |  `API_ACCESS_ID` |  Access id while using LMv1 authentication. (Not needed while using Bearer API )  |
+| `Configration.AccessKey` |  `API_ACCESS_KEY` |    Access key while using LMv1 authentication. (Not needed while using Bearer API ) |
+| `Configration.BearerToken` |  `API_BEARER_TOKEN` |    BearerToken while using Bearer authentication. (Not needed while using LMv1 API) |
+
 For metrics ingestion user must create a object of Resource, DataSource, DataSourceInstance and DataPoint using LogicMonitor.DataSDK.Model namespace,
 also dictonary should be created in  which 'Key' hold the Time(in epoch) for which data is being emitted and 'Value' will the the value of datapoint.
-
 
 ```csharp
 //Pass autheticate variable as Environment variable.

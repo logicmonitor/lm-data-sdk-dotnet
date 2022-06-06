@@ -70,15 +70,41 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Api.Logs.Logs
   nameWithType: Logs.Logs
-- uid: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String})
-  name: SendLogs(String, Resource, Dictionary<String, String>)
-  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__
-  commentId: M:LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String})
-  name.vb: SendLogs(String, Resource, Dictionary(Of String, String))
-  fullName: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String, LogicMonitor.DataSDK.Model.Resource, Dictionary<System.String, System.String>)
-  fullName.vb: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String, LogicMonitor.DataSDK.Model.Resource, Dictionary(Of System.String, System.String))
-  nameWithType: Logs.SendLogs(String, Resource, Dictionary<String, String>)
-  nameWithType.vb: Logs.SendLogs(String, Resource, Dictionary(Of String, String))
+- uid: LogicMonitor.DataSDK.Api.Logs.CreateLogBody(LogicMonitor.DataSDK.Model.LogsV1)
+  name: CreateLogBody(LogsV1)
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_CreateLogBody_LogicMonitor_DataSDK_Model_LogsV1_
+  commentId: M:LogicMonitor.DataSDK.Api.Logs.CreateLogBody(LogicMonitor.DataSDK.Model.LogsV1)
+  fullName: LogicMonitor.DataSDK.Api.Logs.CreateLogBody(LogicMonitor.DataSDK.Model.LogsV1)
+  nameWithType: Logs.CreateLogBody(LogsV1)
+- uid: LogicMonitor.DataSDK.Api.Logs.CreateLogBody*
+  name: CreateLogBody
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_CreateLogBody_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Logs.CreateLogBody
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Logs.CreateLogBody
+  nameWithType: Logs.CreateLogBody
+- uid: LogicMonitor.DataSDK.Api.Logs.Send(System.String)
+  name: Send(String)
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_Send_System_String_
+  commentId: M:LogicMonitor.DataSDK.Api.Logs.Send(System.String)
+  fullName: LogicMonitor.DataSDK.Api.Logs.Send(System.String)
+  nameWithType: Logs.Send(String)
+- uid: LogicMonitor.DataSDK.Api.Logs.Send*
+  name: Send
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_Send_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Logs.Send
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Logs.Send
+  nameWithType: Logs.Send
+- uid: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String},System.String)
+  name: SendLogs(String, Resource, Dictionary<String, String>, String)
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__System_String_
+  commentId: M:LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String},System.String)
+  name.vb: SendLogs(String, Resource, Dictionary(Of String, String), String)
+  fullName: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String, LogicMonitor.DataSDK.Model.Resource, Dictionary<System.String, System.String>, System.String)
+  fullName.vb: LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String, LogicMonitor.DataSDK.Model.Resource, Dictionary(Of System.String, System.String), System.String)
+  nameWithType: Logs.SendLogs(String, Resource, Dictionary<String, String>, String)
+  nameWithType.vb: Logs.SendLogs(String, Resource, Dictionary(Of String, String), String)
 - uid: LogicMonitor.DataSDK.Api.Logs.SendLogs*
   name: SendLogs
   href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_SendLogs_
@@ -86,6 +112,22 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Api.Logs.SendLogs
   nameWithType: Logs.SendLogs
+- uid: LogicMonitor.DataSDK.Api.Logs.SerializeList(List{System.String})
+  name: SerializeList(List<String>)
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_SerializeList_List_System_String__
+  commentId: M:LogicMonitor.DataSDK.Api.Logs.SerializeList(List{System.String})
+  name.vb: SerializeList(List(Of String))
+  fullName: LogicMonitor.DataSDK.Api.Logs.SerializeList(List<System.String>)
+  fullName.vb: LogicMonitor.DataSDK.Api.Logs.SerializeList(List(Of System.String))
+  nameWithType: Logs.SerializeList(List<String>)
+  nameWithType.vb: Logs.SerializeList(List(Of String))
+- uid: LogicMonitor.DataSDK.Api.Logs.SerializeList*
+  name: SerializeList
+  href: api/LogicMonitor.DataSDK.Api.Logs.html#LogicMonitor_DataSDK_Api_Logs_SerializeList_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Logs.SerializeList
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Logs.SerializeList
+  nameWithType: Logs.SerializeList
 - uid: LogicMonitor.DataSDK.Api.Metrics
   name: Metrics
   href: api/LogicMonitor.DataSDK.Api.Metrics.html
@@ -117,6 +159,51 @@ references:
   commentId: F:LogicMonitor.DataSDK.Api.Metrics._lock
   fullName: LogicMonitor.DataSDK.Api.Metrics._lock
   nameWithType: Metrics._lock
+- uid: LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name: GetInstancePropertyBody(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_GetInstancePropertyBody_Dictionary_System_String_System_String__System_String_System_String_Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name.vb: GetInstancePropertyBody(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody(Dictionary<System.String, System.String>, System.String, System.String, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody(Dictionary(Of System.String, System.String), System.String, System.String, Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: Metrics.GetInstancePropertyBody(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  nameWithType.vb: Metrics.GetInstancePropertyBody(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
+- uid: LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody*
+  name: GetInstancePropertyBody
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_GetInstancePropertyBody_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Metrics.GetInstancePropertyBody
+  nameWithType: Metrics.GetInstancePropertyBody
+- uid: LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody(Dictionary{System.String,System.String},Dictionary{System.String,System.String},System.Boolean)
+  name: GetResourcePropertyBody(Dictionary<String, String>, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_GetResourcePropertyBody_Dictionary_System_String_System_String__Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody(Dictionary{System.String,System.String},Dictionary{System.String,System.String},System.Boolean)
+  name.vb: GetResourcePropertyBody(Dictionary(Of String, String), Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody(Dictionary<System.String, System.String>, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody(Dictionary(Of System.String, System.String), Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: Metrics.GetResourcePropertyBody(Dictionary<String, String>, Dictionary<String, String>, Boolean)
+  nameWithType.vb: Metrics.GetResourcePropertyBody(Dictionary(Of String, String), Dictionary(Of String, String), Boolean)
+- uid: LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody*
+  name: GetResourcePropertyBody
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_GetResourcePropertyBody_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Metrics.GetResourcePropertyBody
+  nameWithType: Metrics.GetResourcePropertyBody
+- uid: LogicMonitor.DataSDK.Api.Metrics.Send(System.String,System.String,System.String,System.Boolean)
+  name: Send(String, String, String, Boolean)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_Send_System_String_System_String_System_String_System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.Send(System.String,System.String,System.String,System.Boolean)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.Send(System.String, System.String, System.String, System.Boolean)
+  nameWithType: Metrics.Send(String, String, String, Boolean)
+- uid: LogicMonitor.DataSDK.Api.Metrics.Send*
+  name: Send
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_Send_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Metrics.Send
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Metrics.Send
+  nameWithType: Metrics.Send
 - uid: LogicMonitor.DataSDK.Api.Metrics.SendMetrics(LogicMonitor.DataSDK.Model.Resource,LogicMonitor.DataSDK.Model.DataSource,LogicMonitor.DataSDK.Model.DataSourceInstance,LogicMonitor.DataSDK.Model.DataPoint,Dictionary{System.String,System.String})
   name: SendMetrics(Resource, DataSource, DataSourceInstance, DataPoint, Dictionary<String, String>)
   href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_SendMetrics_LogicMonitor_DataSDK_Model_Resource_LogicMonitor_DataSDK_Model_DataSource_LogicMonitor_DataSDK_Model_DataSourceInstance_LogicMonitor_DataSDK_Model_DataPoint_Dictionary_System_String_System_String__
@@ -133,6 +220,38 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Api.Metrics.SendMetrics
   nameWithType: Metrics.SendMetrics
+- uid: LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name: UpdateInstanceProperties(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_UpdateInstanceProperties_Dictionary_System_String_System_String__System_String_System_String_Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name.vb: UpdateInstanceProperties(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties(Dictionary<System.String, System.String>, System.String, System.String, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties(Dictionary(Of System.String, System.String), System.String, System.String, Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: Metrics.UpdateInstanceProperties(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  nameWithType.vb: Metrics.UpdateInstanceProperties(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
+- uid: LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties*
+  name: UpdateInstanceProperties
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_UpdateInstanceProperties_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Metrics.UpdateInstanceProperties
+  nameWithType: Metrics.UpdateInstanceProperties
+- uid: LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties(Dictionary{System.String,System.String},Dictionary{System.String,System.String},System.Boolean)
+  name: UpdateResourceProperties(Dictionary<String, String>, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_UpdateResourceProperties_Dictionary_System_String_System_String__Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties(Dictionary{System.String,System.String},Dictionary{System.String,System.String},System.Boolean)
+  name.vb: UpdateResourceProperties(Dictionary(Of String, String), Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties(Dictionary<System.String, System.String>, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties(Dictionary(Of System.String, System.String), Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: Metrics.UpdateResourceProperties(Dictionary<String, String>, Dictionary<String, String>, Boolean)
+  nameWithType.vb: Metrics.UpdateResourceProperties(Dictionary(Of String, String), Dictionary(Of String, String), Boolean)
+- uid: LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties*
+  name: UpdateResourceProperties
+  href: api/LogicMonitor.DataSDK.Api.Metrics.html#LogicMonitor_DataSDK_Api_Metrics_UpdateResourceProperties_
+  commentId: Overload:LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Api.Metrics.UpdateResourceProperties
+  nameWithType: Metrics.UpdateResourceProperties
 - uid: LogicMonitor.DataSDK.ApiClient
   name: ApiClient
   href: api/LogicMonitor.DataSDK.ApiClient.html
@@ -299,6 +418,19 @@ references:
   commentId: F:LogicMonitor.DataSDK.Configuration.ConnectionPoolMaxsize
   fullName: LogicMonitor.DataSDK.Configuration.ConnectionPoolMaxsize
   nameWithType: Configuration.ConnectionPoolMaxsize
+- uid: LogicMonitor.DataSDK.Configuration.GZip
+  name: GZip
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_GZip
+  commentId: P:LogicMonitor.DataSDK.Configuration.GZip
+  fullName: LogicMonitor.DataSDK.Configuration.GZip
+  nameWithType: Configuration.GZip
+- uid: LogicMonitor.DataSDK.Configuration.GZip*
+  name: GZip
+  href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_GZip_
+  commentId: Overload:LogicMonitor.DataSDK.Configuration.GZip
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Configuration.GZip
+  nameWithType: Configuration.GZip
 - uid: LogicMonitor.DataSDK.Configuration.host
   name: host
   href: api/LogicMonitor.DataSDK.Configuration.html#LogicMonitor_DataSDK_Configuration_host
@@ -337,12 +469,18 @@ references:
   commentId: T:LogicMonitor.DataSDK.Model.DataPoint
   fullName: LogicMonitor.DataSDK.Model.DataPoint
   nameWithType: DataPoint
-- uid: LogicMonitor.DataSDK.Model.DataPoint.#ctor(System.String,System.String,System.String,System.String)
-  name: DataPoint(String, String, String, String)
-  href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint__ctor_System_String_System_String_System_String_System_String_
-  commentId: M:LogicMonitor.DataSDK.Model.DataPoint.#ctor(System.String,System.String,System.String,System.String)
-  fullName: LogicMonitor.DataSDK.Model.DataPoint.DataPoint(System.String, System.String, System.String, System.String)
-  nameWithType: DataPoint.DataPoint(String, String, String, String)
+- uid: LogicMonitor.DataSDK.Model.DataPoint.#ctor
+  name: DataPoint()
+  href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint__ctor
+  commentId: M:LogicMonitor.DataSDK.Model.DataPoint.#ctor
+  fullName: LogicMonitor.DataSDK.Model.DataPoint.DataPoint()
+  nameWithType: DataPoint.DataPoint()
+- uid: LogicMonitor.DataSDK.Model.DataPoint.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  name: DataPoint(String, String, String, String, Int32)
+  href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint__ctor_System_String_System_String_System_String_System_String_System_Int32_
+  commentId: M:LogicMonitor.DataSDK.Model.DataPoint.#ctor(System.String,System.String,System.String,System.String,System.Int32)
+  fullName: LogicMonitor.DataSDK.Model.DataPoint.DataPoint(System.String, System.String, System.String, System.String, System.Int32)
+  nameWithType: DataPoint.DataPoint(String, String, String, String, Int32)
 - uid: LogicMonitor.DataSDK.Model.DataPoint.#ctor*
   name: DataPoint
   href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint__ctor_
@@ -389,6 +527,19 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.DataPoint.Name
   nameWithType: DataPoint.Name
+- uid: LogicMonitor.DataSDK.Model.DataPoint.PercentileValue
+  name: PercentileValue
+  href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint_PercentileValue
+  commentId: P:LogicMonitor.DataSDK.Model.DataPoint.PercentileValue
+  fullName: LogicMonitor.DataSDK.Model.DataPoint.PercentileValue
+  nameWithType: DataPoint.PercentileValue
+- uid: LogicMonitor.DataSDK.Model.DataPoint.PercentileValue*
+  name: PercentileValue
+  href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint_PercentileValue_
+  commentId: Overload:LogicMonitor.DataSDK.Model.DataPoint.PercentileValue
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Model.DataPoint.PercentileValue
+  nameWithType: DataPoint.PercentileValue
 - uid: LogicMonitor.DataSDK.Model.DataPoint.Type
   name: Type
   href: api/LogicMonitor.DataSDK.Model.DataPoint.html#LogicMonitor_DataSDK_Model_DataPoint_Type
@@ -408,12 +559,18 @@ references:
   commentId: T:LogicMonitor.DataSDK.Model.DataSource
   fullName: LogicMonitor.DataSDK.Model.DataSource
   nameWithType: DataSource
-- uid: LogicMonitor.DataSDK.Model.DataSource.#ctor(System.String,System.String,System.String,System.Int32)
-  name: DataSource(String, String, String, Int32)
-  href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource__ctor_System_String_System_String_System_String_System_Int32_
-  commentId: M:LogicMonitor.DataSDK.Model.DataSource.#ctor(System.String,System.String,System.String,System.Int32)
-  fullName: LogicMonitor.DataSDK.Model.DataSource.DataSource(System.String, System.String, System.String, System.Int32)
-  nameWithType: DataSource.DataSource(String, String, String, Int32)
+- uid: LogicMonitor.DataSDK.Model.DataSource.#ctor
+  name: DataSource()
+  href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource__ctor
+  commentId: M:LogicMonitor.DataSDK.Model.DataSource.#ctor
+  fullName: LogicMonitor.DataSDK.Model.DataSource.DataSource()
+  nameWithType: DataSource.DataSource()
+- uid: LogicMonitor.DataSDK.Model.DataSource.#ctor(System.String,System.String,System.String,System.Int32,System.Boolean)
+  name: DataSource(String, String, String, Int32, Boolean)
+  href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource__ctor_System_String_System_String_System_String_System_Int32_System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Model.DataSource.#ctor(System.String,System.String,System.String,System.Int32,System.Boolean)
+  fullName: LogicMonitor.DataSDK.Model.DataSource.DataSource(System.String, System.String, System.String, System.Int32, System.Boolean)
+  nameWithType: DataSource.DataSource(String, String, String, Int32, Boolean)
 - uid: LogicMonitor.DataSDK.Model.DataSource.#ctor*
   name: DataSource
   href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource__ctor_
@@ -473,21 +630,40 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.DataSource.Name
   nameWithType: DataSource.Name
+- uid: LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS
+  name: SingleInstanceDS
+  href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource_SingleInstanceDS
+  commentId: P:LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS
+  fullName: LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS
+  nameWithType: DataSource.SingleInstanceDS
+- uid: LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS*
+  name: SingleInstanceDS
+  href: api/LogicMonitor.DataSDK.Model.DataSource.html#LogicMonitor_DataSDK_Model_DataSource_SingleInstanceDS_
+  commentId: Overload:LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Model.DataSource.SingleInstanceDS
+  nameWithType: DataSource.SingleInstanceDS
 - uid: LogicMonitor.DataSDK.Model.DataSourceInstance
   name: DataSourceInstance
   href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html
   commentId: T:LogicMonitor.DataSDK.Model.DataSourceInstance
   fullName: LogicMonitor.DataSDK.Model.DataSourceInstance
   nameWithType: DataSourceInstance
-- uid: LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor(System.String,System.String,System.String,Dictionary{System.String,System.String})
-  name: DataSourceInstance(String, String, String, Dictionary<String, String>)
-  href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance__ctor_System_String_System_String_System_String_Dictionary_System_String_System_String__
-  commentId: M:LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor(System.String,System.String,System.String,Dictionary{System.String,System.String})
-  name.vb: DataSourceInstance(String, String, String, Dictionary(Of String, String))
-  fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.DataSourceInstance(System.String, System.String, System.String, Dictionary<System.String, System.String>)
-  fullName.vb: LogicMonitor.DataSDK.Model.DataSourceInstance.DataSourceInstance(System.String, System.String, System.String, Dictionary(Of System.String, System.String))
-  nameWithType: DataSourceInstance.DataSourceInstance(String, String, String, Dictionary<String, String>)
-  nameWithType.vb: DataSourceInstance.DataSourceInstance(String, String, String, Dictionary(Of String, String))
+- uid: LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor
+  name: DataSourceInstance()
+  href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance__ctor
+  commentId: M:LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor
+  fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.DataSourceInstance()
+  nameWithType: DataSourceInstance.DataSourceInstance()
+- uid: LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor(System.String,System.String,System.String,Dictionary{System.String,System.String},System.Int32)
+  name: DataSourceInstance(String, String, String, Dictionary<String, String>, Int32)
+  href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance__ctor_System_String_System_String_System_String_Dictionary_System_String_System_String__System_Int32_
+  commentId: M:LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor(System.String,System.String,System.String,Dictionary{System.String,System.String},System.Int32)
+  name.vb: DataSourceInstance(String, String, String, Dictionary(Of String, String), Int32)
+  fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.DataSourceInstance(System.String, System.String, System.String, Dictionary<System.String, System.String>, System.Int32)
+  fullName.vb: LogicMonitor.DataSDK.Model.DataSourceInstance.DataSourceInstance(System.String, System.String, System.String, Dictionary(Of System.String, System.String), System.Int32)
+  nameWithType: DataSourceInstance.DataSourceInstance(String, String, String, Dictionary<String, String>, Int32)
+  nameWithType.vb: DataSourceInstance.DataSourceInstance(String, String, String, Dictionary(Of String, String), Int32)
 - uid: LogicMonitor.DataSDK.Model.DataSourceInstance.#ctor*
   name: DataSourceInstance
   href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance__ctor_
@@ -521,6 +697,19 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.DisplayName
   nameWithType: DataSourceInstance.DisplayName
+- uid: LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId
+  name: InstanceId
+  href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance_InstanceId
+  commentId: P:LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId
+  fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId
+  nameWithType: DataSourceInstance.InstanceId
+- uid: LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId*
+  name: InstanceId
+  href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance_InstanceId_
+  commentId: Overload:LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.InstanceId
+  nameWithType: DataSourceInstance.InstanceId
 - uid: LogicMonitor.DataSDK.Model.DataSourceInstance.Name
   name: Name
   href: api/LogicMonitor.DataSDK.Model.DataSourceInstance.html#LogicMonitor_DataSDK_Model_DataSourceInstance_Name
@@ -547,99 +736,6 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.DataSourceInstance.Properties
   nameWithType: DataSourceInstance.Properties
-- uid: LogicMonitor.DataSDK.Model.LogsV1
-  name: LogsV1
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html
-  commentId: T:LogicMonitor.DataSDK.Model.LogsV1
-  fullName: LogicMonitor.DataSDK.Model.LogsV1
-  nameWithType: LogsV1
-- uid: LogicMonitor.DataSDK.Model.LogsV1.#ctor
-  name: LogsV1()
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1__ctor
-  commentId: M:LogicMonitor.DataSDK.Model.LogsV1.#ctor
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.LogsV1()
-  nameWithType: LogsV1.LogsV1()
-- uid: LogicMonitor.DataSDK.Model.LogsV1.#ctor(System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String})
-  name: LogsV1(String, Dictionary<String, String>, String, Dictionary<String, String>)
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1__ctor_System_String_Dictionary_System_String_System_String__System_String_Dictionary_System_String_System_String__
-  commentId: M:LogicMonitor.DataSDK.Model.LogsV1.#ctor(System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String})
-  name.vb: LogsV1(String, Dictionary(Of String, String), String, Dictionary(Of String, String))
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.LogsV1(System.String, Dictionary<System.String, System.String>, System.String, Dictionary<System.String, System.String>)
-  fullName.vb: LogicMonitor.DataSDK.Model.LogsV1.LogsV1(System.String, Dictionary(Of System.String, System.String), System.String, Dictionary(Of System.String, System.String))
-  nameWithType: LogsV1.LogsV1(String, Dictionary<String, String>, String, Dictionary<String, String>)
-  nameWithType.vb: LogsV1.LogsV1(String, Dictionary(Of String, String), String, Dictionary(Of String, String))
-- uid: LogicMonitor.DataSDK.Model.LogsV1.#ctor*
-  name: LogsV1
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1__ctor_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.#ctor
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.LogsV1
-  nameWithType: LogsV1.LogsV1
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Body
-  name: Body
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Body
-  commentId: P:LogicMonitor.DataSDK.Model.LogsV1.Body
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Body
-  nameWithType: LogsV1.Body
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Body*
-  name: Body
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Body_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.Body
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Body
-  nameWithType: LogsV1.Body
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Message
-  name: Message
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Message
-  commentId: P:LogicMonitor.DataSDK.Model.LogsV1.Message
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Message
-  nameWithType: LogsV1.Message
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Message*
-  name: Message
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Message_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.Message
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Message
-  nameWithType: LogsV1.Message
-- uid: LogicMonitor.DataSDK.Model.LogsV1.MetaData
-  name: MetaData
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_MetaData
-  commentId: P:LogicMonitor.DataSDK.Model.LogsV1.MetaData
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.MetaData
-  nameWithType: LogsV1.MetaData
-- uid: LogicMonitor.DataSDK.Model.LogsV1.MetaData*
-  name: MetaData
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_MetaData_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.MetaData
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.MetaData
-  nameWithType: LogsV1.MetaData
-- uid: LogicMonitor.DataSDK.Model.LogsV1.ResourceId
-  name: ResourceId
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_ResourceId
-  commentId: P:LogicMonitor.DataSDK.Model.LogsV1.ResourceId
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.ResourceId
-  nameWithType: LogsV1.ResourceId
-- uid: LogicMonitor.DataSDK.Model.LogsV1.ResourceId*
-  name: ResourceId
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_ResourceId_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.ResourceId
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.ResourceId
-  nameWithType: LogsV1.ResourceId
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Timestamp
-  name: Timestamp
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Timestamp
-  commentId: P:LogicMonitor.DataSDK.Model.LogsV1.Timestamp
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Timestamp
-  nameWithType: LogsV1.Timestamp
-- uid: LogicMonitor.DataSDK.Model.LogsV1.Timestamp*
-  name: Timestamp
-  href: api/LogicMonitor.DataSDK.Model.LogsV1.html#LogicMonitor_DataSDK_Model_LogsV1_Timestamp_
-  commentId: Overload:LogicMonitor.DataSDK.Model.LogsV1.Timestamp
-  isSpec: "True"
-  fullName: LogicMonitor.DataSDK.Model.LogsV1.Timestamp
-  nameWithType: LogsV1.Timestamp
 - uid: LogicMonitor.DataSDK.Model.Resource
   name: Resource
   href: api/LogicMonitor.DataSDK.Model.Resource.html
@@ -652,15 +748,15 @@ references:
   commentId: M:LogicMonitor.DataSDK.Model.Resource.#ctor
   fullName: LogicMonitor.DataSDK.Model.Resource.Resource()
   nameWithType: Resource.Resource()
-- uid: LogicMonitor.DataSDK.Model.Resource.#ctor(Dictionary{System.String,System.String},System.String,System.String,System.Boolean)
-  name: Resource(Dictionary<String, String>, String, String, Boolean)
-  href: api/LogicMonitor.DataSDK.Model.Resource.html#LogicMonitor_DataSDK_Model_Resource__ctor_Dictionary_System_String_System_String__System_String_System_String_System_Boolean_
-  commentId: M:LogicMonitor.DataSDK.Model.Resource.#ctor(Dictionary{System.String,System.String},System.String,System.String,System.Boolean)
-  name.vb: Resource(Dictionary(Of String, String), String, String, Boolean)
-  fullName: LogicMonitor.DataSDK.Model.Resource.Resource(Dictionary<System.String, System.String>, System.String, System.String, System.Boolean)
-  fullName.vb: LogicMonitor.DataSDK.Model.Resource.Resource(Dictionary(Of System.String, System.String), System.String, System.String, System.Boolean)
-  nameWithType: Resource.Resource(Dictionary<String, String>, String, String, Boolean)
-  nameWithType.vb: Resource.Resource(Dictionary(Of String, String), String, String, Boolean)
+- uid: LogicMonitor.DataSDK.Model.Resource.#ctor(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name: Resource(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Model.Resource.html#LogicMonitor_DataSDK_Model_Resource__ctor_Dictionary_System_String_System_String__System_String_System_String_Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Model.Resource.#ctor(Dictionary{System.String,System.String},System.String,System.String,Dictionary{System.String,System.String},System.Boolean)
+  name.vb: Resource(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Model.Resource.Resource(Dictionary<System.String, System.String>, System.String, System.String, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Model.Resource.Resource(Dictionary(Of System.String, System.String), System.String, System.String, Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: Resource.Resource(Dictionary<String, String>, String, String, Dictionary<String, String>, Boolean)
+  nameWithType.vb: Resource.Resource(Dictionary(Of String, String), String, String, Dictionary(Of String, String), Boolean)
 - uid: LogicMonitor.DataSDK.Model.Resource.#ctor*
   name: Resource
   href: api/LogicMonitor.DataSDK.Model.Resource.html#LogicMonitor_DataSDK_Model_Resource__ctor_
@@ -745,15 +841,15 @@ references:
   commentId: M:LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor
   fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.RestDataPointV1()
   nameWithType: RestDataPointV1.RestDataPointV1()
-- uid: LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor(System.String,System.String,System.String,System.String,Dictionary{System.String,System.String})
-  name: RestDataPointV1(String, String, String, String, Dictionary<String, String>)
-  href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_System_String_System_String_System_String_System_String_Dictionary_System_String_System_String__
-  commentId: M:LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor(System.String,System.String,System.String,System.String,Dictionary{System.String,System.String})
-  name.vb: RestDataPointV1(String, String, String, String, Dictionary(Of String, String))
-  fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.RestDataPointV1(System.String, System.String, System.String, System.String, Dictionary<System.String, System.String>)
-  fullName.vb: LogicMonitor.DataSDK.Model.RestDataPointV1.RestDataPointV1(System.String, System.String, System.String, System.String, Dictionary(Of System.String, System.String))
-  nameWithType: RestDataPointV1.RestDataPointV1(String, String, String, String, Dictionary<String, String>)
-  nameWithType.vb: RestDataPointV1.RestDataPointV1(String, String, String, String, Dictionary(Of String, String))
+- uid: LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor(System.String,System.String,System.String,System.String,System.Int32,Dictionary{System.String,System.String})
+  name: RestDataPointV1(String, String, String, String, Int32, Dictionary<String, String>)
+  href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_System_String_System_String_System_String_System_String_System_Int32_Dictionary_System_String_System_String__
+  commentId: M:LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor(System.String,System.String,System.String,System.String,System.Int32,Dictionary{System.String,System.String})
+  name.vb: RestDataPointV1(String, String, String, String, Int32, Dictionary(Of String, String))
+  fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.RestDataPointV1(System.String, System.String, System.String, System.String, System.Int32, Dictionary<System.String, System.String>)
+  fullName.vb: LogicMonitor.DataSDK.Model.RestDataPointV1.RestDataPointV1(System.String, System.String, System.String, System.String, System.Int32, Dictionary(Of System.String, System.String))
+  nameWithType: RestDataPointV1.RestDataPointV1(String, String, String, String, Int32, Dictionary<String, String>)
+  nameWithType.vb: RestDataPointV1.RestDataPointV1(String, String, String, String, Int32, Dictionary(Of String, String))
 - uid: LogicMonitor.DataSDK.Model.RestDataPointV1.#ctor*
   name: RestDataPointV1
   href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1__ctor_
@@ -813,6 +909,19 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.DataPointType
   nameWithType: RestDataPointV1.DataPointType
+- uid: LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue
+  name: PercentileValue
+  href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1_PercentileValue
+  commentId: P:LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue
+  fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue
+  nameWithType: RestDataPointV1.PercentileValue
+- uid: LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue*
+  name: PercentileValue
+  href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1_PercentileValue_
+  commentId: Overload:LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Model.RestDataPointV1.PercentileValue
+  nameWithType: RestDataPointV1.PercentileValue
 - uid: LogicMonitor.DataSDK.Model.RestDataPointV1.Values
   name: Values
   href: api/LogicMonitor.DataSDK.Model.RestDataPointV1.html#LogicMonitor_DataSDK_Model_RestDataPointV1_Values
@@ -1076,15 +1185,15 @@ references:
   commentId: M:LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor
   fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.RestMetricsV1()
   nameWithType: RestMetricsV1.RestMetricsV1()
-- uid: LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor(System.String,System.String,System.String,System.Int32,List{LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1},System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String})
-  name: RestMetricsV1(String, String, String, Int32, List<RestDataSourceInstanceV1>, String, Dictionary<String, String>, String, Dictionary<String, String>)
-  href: api/LogicMonitor.DataSDK.Model.RestMetricsV1.html#LogicMonitor_DataSDK_Model_RestMetricsV1__ctor_System_String_System_String_System_String_System_Int32_List_LogicMonitor_DataSDK_Model_RestDataSourceInstanceV1__System_String_Dictionary_System_String_System_String__System_String_Dictionary_System_String_System_String__
-  commentId: M:LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor(System.String,System.String,System.String,System.Int32,List{LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1},System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String})
-  name.vb: RestMetricsV1(String, String, String, Int32, List(Of RestDataSourceInstanceV1), String, Dictionary(Of String, String), String, Dictionary(Of String, String))
-  fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.RestMetricsV1(System.String, System.String, System.String, System.Int32, List<LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1>, System.String, Dictionary<System.String, System.String>, System.String, Dictionary<System.String, System.String>)
-  fullName.vb: LogicMonitor.DataSDK.Model.RestMetricsV1.RestMetricsV1(System.String, System.String, System.String, System.Int32, List(Of LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1), System.String, Dictionary(Of System.String, System.String), System.String, Dictionary(Of System.String, System.String))
-  nameWithType: RestMetricsV1.RestMetricsV1(String, String, String, Int32, List<RestDataSourceInstanceV1>, String, Dictionary<String, String>, String, Dictionary<String, String>)
-  nameWithType.vb: RestMetricsV1.RestMetricsV1(String, String, String, Int32, List(Of RestDataSourceInstanceV1), String, Dictionary(Of String, String), String, Dictionary(Of String, String))
+- uid: LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor(System.String,System.String,System.String,System.Int32,List{LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1},System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String},System.Boolean)
+  name: RestMetricsV1(String, String, String, Int32, List<RestDataSourceInstanceV1>, String, Dictionary<String, String>, String, Dictionary<String, String>, Boolean)
+  href: api/LogicMonitor.DataSDK.Model.RestMetricsV1.html#LogicMonitor_DataSDK_Model_RestMetricsV1__ctor_System_String_System_String_System_String_System_Int32_List_LogicMonitor_DataSDK_Model_RestDataSourceInstanceV1__System_String_Dictionary_System_String_System_String__System_String_Dictionary_System_String_System_String__System_Boolean_
+  commentId: M:LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor(System.String,System.String,System.String,System.Int32,List{LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1},System.String,Dictionary{System.String,System.String},System.String,Dictionary{System.String,System.String},System.Boolean)
+  name.vb: RestMetricsV1(String, String, String, Int32, List(Of RestDataSourceInstanceV1), String, Dictionary(Of String, String), String, Dictionary(Of String, String), Boolean)
+  fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.RestMetricsV1(System.String, System.String, System.String, System.Int32, List<LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1>, System.String, Dictionary<System.String, System.String>, System.String, Dictionary<System.String, System.String>, System.Boolean)
+  fullName.vb: LogicMonitor.DataSDK.Model.RestMetricsV1.RestMetricsV1(System.String, System.String, System.String, System.Int32, List(Of LogicMonitor.DataSDK.Model.RestDataSourceInstanceV1), System.String, Dictionary(Of System.String, System.String), System.String, Dictionary(Of System.String, System.String), System.Boolean)
+  nameWithType: RestMetricsV1.RestMetricsV1(String, String, String, Int32, List<RestDataSourceInstanceV1>, String, Dictionary<String, String>, String, Dictionary<String, String>, Boolean)
+  nameWithType.vb: RestMetricsV1.RestMetricsV1(String, String, String, Int32, List(Of RestDataSourceInstanceV1), String, Dictionary(Of String, String), String, Dictionary(Of String, String), Boolean)
 - uid: LogicMonitor.DataSDK.Model.RestMetricsV1.#ctor*
   name: RestMetricsV1
   href: api/LogicMonitor.DataSDK.Model.RestMetricsV1.html#LogicMonitor_DataSDK_Model_RestMetricsV1__ctor_
@@ -1209,6 +1318,19 @@ references:
   isSpec: "True"
   fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.ResourceProperties
   nameWithType: RestMetricsV1.ResourceProperties
+- uid: LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS
+  name: SingleInstanceDS
+  href: api/LogicMonitor.DataSDK.Model.RestMetricsV1.html#LogicMonitor_DataSDK_Model_RestMetricsV1_SingleInstanceDS
+  commentId: P:LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS
+  fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS
+  nameWithType: RestMetricsV1.SingleInstanceDS
+- uid: LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS*
+  name: SingleInstanceDS
+  href: api/LogicMonitor.DataSDK.Model.RestMetricsV1.html#LogicMonitor_DataSDK_Model_RestMetricsV1_SingleInstanceDS_
+  commentId: Overload:LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS
+  isSpec: "True"
+  fullName: LogicMonitor.DataSDK.Model.RestMetricsV1.SingleInstanceDS
+  nameWithType: RestMetricsV1.SingleInstanceDS
 - uid: LogicMonitor.DataSDK.Model.RestResourcePropertiesV1
   name: RestResourcePropertiesV1
   href: api/LogicMonitor.DataSDK.Model.RestResourcePropertiesV1.html

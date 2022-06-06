@@ -21,9 +21,9 @@ namespace LogicMonitor.DataSDK.Tests
        [Test]
        public void TestCheckAuthenticationLMv1()
         {
-           string AccessID  = "Shkjafhdfhjshs";
-           string AccessKey ="sdkHfi924urlasfd";
-           string msg = null;
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey";
+            string msg = null;
            try
            {
                config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
@@ -41,7 +41,7 @@ namespace LogicMonitor.DataSDK.Tests
         public void TestCheckAuthenticationBearer()
         {
             string msg = null;
-            string bearToken = "SDAASDadasihu83ir510{}[]";
+            string bearToken = "DummyLMBearerToken{}[]";
             try
             {
                 config = new Configuration(company: "lmabcd", bearerToken:bearToken);
@@ -75,19 +75,18 @@ namespace LogicMonitor.DataSDK.Tests
        [TestCase(false)]
        public void TestAsyncRequestGet(bool async)
        {
-
-            string AccessID = "Shkjafhdfhjshs";
-            string AccessKey = "sdkHfi924urlasfd";
-            config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey";
+            config = new Configuration(company: "YourCompanyName", accessID: AccessID, accessKey: AccessKey);
             Assert.AreEqual(async, config.AsyncRequest);
        }
 
        [TestCase(true)]
        public void TestAsyncRequestSet(bool async)
        {
-           string AccessID = "Shkjafhdfhjshs";
-           string AccessKey = "sdkHfi924urlasfd";
-           config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
+            string AccessID = "DummyLmAccessID";
+            string AccessKey = "DummyAccessKey";
+            config = new Configuration(company: "lmabcd", accessID: AccessID, accessKey: AccessKey);
            config.AsyncRequest = true;
            Assert.AreEqual(async, config.AsyncRequest);
        }

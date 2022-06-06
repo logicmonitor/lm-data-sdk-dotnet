@@ -29,7 +29,7 @@ namespace LogicMonitor.DataSDK
             configuration = new Configuration();
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Constants.HeaderKey.XVersion, "1");
         }
         public ApiClient(Configuration configuration)
         {
@@ -39,7 +39,7 @@ namespace LogicMonitor.DataSDK
             this.configuration = configuration;
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Constants.HeaderKey.XVersion, "1");
         }
 
         public RestResponse Callapi(
@@ -133,9 +133,9 @@ namespace LogicMonitor.DataSDK
                 return null;
             }
 
-            if (accepts.Contains("application/json"))
+            if (accepts.Contains(Constants.HeaderKey.ApplicationJson))
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
             else
             {
@@ -146,12 +146,12 @@ namespace LogicMonitor.DataSDK
         {
             if (content_types == "")
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
 
-            if (content_types.Contains("application/json") || content_types.Contains("*/*"))
+            if (content_types.Contains(Constants.HeaderKey.ApplicationJson) || content_types.Contains("*/*"))
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
             else
             {

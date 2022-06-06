@@ -365,6 +365,106 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
             Assert.AreEqual(t, abs);
         }
 
-        
+        [TestCase(1234567890)]
+        public void TestCheckDataSourceInstanceIdlength(int id)
+        {
+          string error = "DataSource Instance Id cannot be more than 9 digit";
+          string actual = o.CheckDataSourceInstanceId(id);
+          Assert.AreEqual(error, actual);
+        }
+
+        [TestCase(1234567890)]
+        public void TestCheckDataSourceIdlength(int id)
+        {
+          string error = "DataSource Id cannot be more than 9 digit";
+          string actual = o.CheckDataSourceId(id);
+          Assert.AreEqual(error, actual);
+        }
+
+        [TestCase(-1)]
+        [TestCase(101)]
+        public void TestCheckPercentileValue(int percentileValue)
+        {
+          string expected = "Percentile value muist be in Range of 0-100";
+          string actual = o.CheckPercentileValue(percentileValue);
+          Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase("metrics")]
+        [TestCase("seconds")]
+        [TestCase("count")]
+        public void CheckDataPointTypeValidation(string dataPointType)
+        {
+          string expected = "The datapoint type is having invalid dataPointType "+dataPointType+".";
+          string actual = o.CheckDataPointTypeValidation(dataPointType);
+          Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestCase("authkey")]
+        [TestCase("1231key")]
+        [TestCase("authdf23r9-=key")]
+        [TestCase("authkey20i34-2uel;ca")]
+        public void  TestIsValidAuthKey(string authKey)
+ 	      {
+	        bool actual= o.IsValidAuthKey(authKey);
+          Assert.IsTrue(actual);
+ 	      }
+
+        [TestCase("authkey2 0i34-2uel;ca")]
+        public void TestIsInValidAuthKey(string authKey)
+        {
+            bool actual = o.IsValidAuthKey(authKey);
+            Assert.IsFalse(actual);
+        }
+
+        [Test]
+    public void TestCheckResourcePropertiesValidation()
+    {
+      Dictionary<string, string> resourceProperties = new Dictionary<string, string>();
+      resourceProperties.Add("", "");
+      string expected = "Resource Properties Key should not be null, empty or have trailing spaces.";
+      string actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
+
+      int length = 256;
+      Random random = new Random();
+      var rString = "";
+      for (var i = 0; i < length; i++)
+      {
+        rString += ((char)(random.Next(1, 26) + 64)).ToString().ToLower();
+      }
+
+      resourceProperties.Clear();
+      resourceProperties.Add(rString, "");
+      expected = "Resource Properties Key should not be greater than 255 characters.";
+      actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
+
+      resourceProperties.Clear();
+      resourceProperties.Add("Abc##", "");
+      expected = "Cannot use '##' in property name.";
+      actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
+
+      resourceProperties.Clear();
+      resourceProperties.Add("system.display", "");
+      expected = "Resource Properties Should not contain System or auto properties :: system.display.";
+      actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
+
+      resourceProperties.Clear();
+      resourceProperties.Add("auto.display", "");
+      expected = "Resource Properties Should not contain System or auto properties :: auto.display.";
+      actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
+
+     
+      resourceProperties.Clear();
+      resourceProperties.Add("resource.display", "");
+      expected = "Resource Properties Value should not be null, empty or have trailing spaces.";
+      actual = o.CheckResourcePropertiesValidation(resourceProperties);
+      Assert.AreEqual(expected, actual);
     }
+  }
 }

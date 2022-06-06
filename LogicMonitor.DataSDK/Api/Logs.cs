@@ -24,7 +24,7 @@ namespace LogicMonitor.DataSDK.Api
 
         }
 
-        public Logs(bool batch , int interval = default, IResponseInterface responseCallback = default,
+        public Logs(bool batch =true, int interval = 10, IResponseInterface responseCallback = default,
             ApiClient apiClient = default) : base(apiClient: apiClient, interval: interval, batch: batch, responseCallback: responseCallback)
         {
 
@@ -53,5 +53,37 @@ namespace LogicMonitor.DataSDK.Api
 
             return b.MakeRequest(path: "/log/ingest", method: "POST", body: logs.ToString(), asyncRequest: false);
         }
+        public string SerializeList(List<string> list)
+        {
+          var body = Newtonsoft.Json.JsonConvert.SerializeObject(list);
+          body = body.Replace(@"\", "");
+          body = body.Replace("\"{", "{");
+          body = body.Replace("}\"", "}");
+          return body;
+
+        }
+        public RestResponse Send(string body)
+        {
+          BatchingCache b = new Logs();
+          return b.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
+        }
+        public override void _mergeRequest()
+        {
+            List<LogsV1> v1s = new List<LogsV1>();
+
+            logPayloadCache.Add((LogsV1)rawRequest.Dequeue());
+        }
+
+        public string CreateLogBody(LogsV1 item)
+        {
+            Dictionary<string, string> Body = new Dictionary<string, string>();
+            Body.Add("message", item.Message);
+            Body.Add("_lm.resourceId", Newtonsoft.Json.JsonConvert.SerializeObject(item.ResourceId));
+            Body.Add("timestamp", item.Timestamp);
+            Body.Add("metadata", Newtonsoft.Json.JsonConvert.SerializeObject(item.MetaData));
+            var bodyString = Newtonsoft.Json.JsonConvert.SerializeObject(Body);
+            return bodyString;
+        }
+
     }
 }

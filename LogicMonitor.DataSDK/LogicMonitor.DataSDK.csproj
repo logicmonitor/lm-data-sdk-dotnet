@@ -21,16 +21,21 @@ API reference: https://logicmonitor.github.io/lm-data-sdk-dotnet
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>	
     <PackageIcon>LM_Icon.png</PackageIcon>	
     <repositorytype>SDK</repositorytype>
-    <Version>0.0.7-alpha</Version>
-    <PackageReleaseNotes>Summary: What's new in 0.0.7-alpha
-Simplified configuration related to authentication based on environment variables.
+    <Version>0.1.0-alpha</Version>
+    <PackageReleaseNotes>Summary: What's new in 0.1.0-alpha:-
+- Metric ingestion now support multiple resources in single api.
+- Added new api for Update resources properties and  update instance properties.
+- Support for percentile value added in data Point for data aggregation.
+- Single Instance Datasource added.
+- Gzip support for log and metrics.
+- Batching improved.
     </PackageReleaseNotes>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>Logicmonitor</Owners>
     <Summary>Allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.</Summary>
     <Title>LogicMonitor PushMetricSDK</Title>
-    <PackageVersion>0.0.7-alpha</PackageVersion>
+    <PackageVersion>0.1.0-alpha</PackageVersion>
     <Configurations>Release;Debug</Configurations>
   </PropertyGroup>
 

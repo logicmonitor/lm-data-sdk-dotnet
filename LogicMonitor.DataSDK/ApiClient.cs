@@ -19,7 +19,7 @@ namespace LogicMonitor.DataSDK
     /// This class Bind the SDK configration and Model used.Object of this class passed to Metrics/Logs object.
     /// This client handles the client-server communication, and is invariant across implementations.
     /// </summary>
-    public class ApiClient 
+    public class ApiClient
     {
         public Configuration configuration;
         private Rest rest_client;
@@ -29,7 +29,7 @@ namespace LogicMonitor.DataSDK
             configuration = new Configuration();
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Constants.HeaderKey.XVersion, "1");
         }
         public ApiClient(Configuration configuration)
         {
@@ -39,7 +39,7 @@ namespace LogicMonitor.DataSDK
             this.configuration = configuration;
             this.rest_client = new Rest();
             // Set default API version
-            default_headers.Add("X-version", "1");
+            default_headers.Add(Constants.HeaderKey.XVersion, "1");
         }
 
         public RestResponse Callapi(
@@ -64,8 +64,8 @@ namespace LogicMonitor.DataSDK
         }
 
         public RestResponse CallApi(
-            string path,string method,TimeSpan _request_timeout,Dictionary<string, string> queryParams = default,
-            Dictionary<string, string> headerParams = default,string body = default,string authSetting = null,bool asyncRequest = true)
+            string path, string method, TimeSpan _request_timeout, Dictionary<string, string> queryParams = default,
+            Dictionary<string, string> headerParams = default, string body = default, string authSetting = null, bool asyncRequest = true)
         {
             if (!asyncRequest)
             {
@@ -86,7 +86,7 @@ namespace LogicMonitor.DataSDK
             Dictionary<string, string> headerParams = null,
             string body = null,
             string authSetting = null
-  
+
             )
         {
             var thread = await Task.FromResult(this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting));
@@ -105,20 +105,27 @@ namespace LogicMonitor.DataSDK
         {
             if (rest_client == null)
                 rest_client = new Rest();
-            
+
             if (method == "GET")
             {
                 return rest_client.Get("GET", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
             }
             else if (method == "POST")
             {
-
-                return rest_client.Post("POST", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body);
+                return rest_client.Post("POST", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
 
             }
             else if (method == "DELETE")
             {
                 return this.rest_client.Delete("DELETE", url, headers: headers, requestTimeout: _request_timeout, body: body, queryParams: queryParams);
+            }
+            else if (method == "PUT")
+            {
+                return rest_client.Put("PUT", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
+            }
+            else if (method == "PATCH")
+            {
+                return rest_client.Patch("PATCH", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
             }
             else
             {
@@ -133,9 +140,9 @@ namespace LogicMonitor.DataSDK
                 return null;
             }
 
-            if (accepts.Contains("application/json"))
+            if (accepts.Contains(Constants.HeaderKey.ApplicationJson))
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
             else
             {
@@ -146,12 +153,12 @@ namespace LogicMonitor.DataSDK
         {
             if (content_types == "")
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
 
-            if (content_types.Contains("application/json") || content_types.Contains("*/*"))
+            if (content_types.Contains(Constants.HeaderKey.ApplicationJson) || content_types.Contains("*/*"))
             {
-                return "application/json";
+                return Constants.HeaderKey.ApplicationJson;
             }
             else
             {
@@ -173,11 +180,7 @@ namespace LogicMonitor.DataSDK
                 return false;
             }
 
-            if (configuration.BearerToken != null)
-            {
-                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
-                return true;
-            }
+            
             if (configuration.AccessKey != null && configuration.AccessID !=null)
             {
                 DateTimeOffset n = DateTimeOffset.UtcNow;
@@ -199,8 +202,11 @@ namespace LogicMonitor.DataSDK
 
                 headers.Add("Authorization", auth_hash);
                 return true;
-
-                
+            }
+            else if (configuration.BearerToken != null)
+            {
+                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
+                return true;
             }
             else
             {

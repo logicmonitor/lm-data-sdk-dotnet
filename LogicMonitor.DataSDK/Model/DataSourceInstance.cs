@@ -21,15 +21,18 @@ namespace LogicMonitor.DataSDK.Model
     public class DataSourceInstance
     {
         private readonly ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        public DataSourceInstance(string name,string description = null, string displayName = null, Dictionary<string,string> properties = default(Dictionary<string, string>))
+        public DataSourceInstance()
+        {
+
+        }
+        public DataSourceInstance(string name = null,string description = null, string displayName = null, Dictionary<string,string> properties = default(Dictionary<string, string>),int instanceId= default)
         {
             this.Description = description;
             this.DisplayName = displayName;
             this.Name = name;
             this.Properties = properties;
-            string errorMsg = ValidField();
-            if (errorMsg != null && errorMsg.Length > 0)
-                throw new ArgumentException(errorMsg);
+            InstanceId = instanceId;
+            
         }
 
         /// <summary>
@@ -57,6 +60,12 @@ namespace LogicMonitor.DataSDK.Model
         [DataMember(Name = "Properties", EmitDefaultValue = false)]
         public Dictionary<string, string> Properties { get; set; }
 
+        /// <summary>
+        /// Gets or Sets InstanceId
+        /// </summary>
+        [DataMember(Name = "instanceId", EmitDefaultValue = false)]
+        public int InstanceId { get; set; }
+
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -64,24 +73,18 @@ namespace LogicMonitor.DataSDK.Model
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            foreach (var item in Properties)
+            if (Properties.Count != 0)
             {
-                sb.Append("  Properties: ").Append(item.Key).Append(":").Append(item.Value).Append("\n");
+                foreach (var item in Properties)
+                {
+                    sb.Append("  Properties: ").Append(item.Key).Append(":").Append(item.Value).Append("\n");
+                }
             }
             sb.Append("}\n");
             return sb.ToString();
         }
 
-        public string ValidField()
-        {
-            string errorMsg = "";
-                errorMsg += objectNameValidator.CheckInstanceNameValidation(Name);
-            if(DisplayName!=null)
-                errorMsg += objectNameValidator.CheckInstanceDisplayNameValidation(DisplayName);
-            if (Properties != null)
-                errorMsg += objectNameValidator.CheckInstancePropertiesValidation(Properties);
-            return errorMsg;
-        }
+        
 
     }
 }

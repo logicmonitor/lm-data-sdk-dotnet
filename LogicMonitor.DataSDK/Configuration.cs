@@ -14,9 +14,9 @@ using System.Text;
 
 namespace LogicMonitor.DataSDK
 {
-   /// <summary>
-   /// This Class is used to configure the device with account name and Lm access credinatial(by using autenticate model).
-   /// </summary>
+    /// <summary>
+    /// This Class is used to configure the device with account name and Lm access credinatial(by using autenticate model).
+    /// </summary>
     public class Configuration
     {
         private readonly ObjectNameValidator objectNameValidator;
@@ -24,7 +24,10 @@ namespace LogicMonitor.DataSDK
         private string _host;
         public int ConnectionPoolMaxsize;
         public bool AsyncRequest { get; set; }
-
+        /// <summary>
+        /// Use GZip to set if body is to be compressed while sending the data.Gzip compression algorithm is used for compression.
+        /// </summary>
+        public bool GZip { get; set; }
         /// <summary>
         /// Use AcceessID to set the LMv1's access id while using LMv1 authentication.
         /// </summary>
@@ -54,37 +57,38 @@ namespace LogicMonitor.DataSDK
         {
             objectNameValidator = new ObjectNameValidator();
 
-            _company    = Environment.GetEnvironmentVariable("ACCOUNT_NAME");
-            AccessID    = Environment.GetEnvironmentVariable("API_ACCESS_ID");
-            AccessKey   = Environment.GetEnvironmentVariable("API_ACCESS_KEY");
-            BearerToken = Environment.GetEnvironmentVariable("API_BEARER_TOKEN");
+            _company = Environment.GetEnvironmentVariable("LM_COMPANY");
+            AccessID = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
+            AccessKey = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
+            BearerToken = Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
 
             CheckAuthentication();
 
         }
 
-        public Configuration(string company =null,string accessID=null,string accessKey=null,string bearerToken=null)
+        public Configuration(string company = null, string accessID = null, string accessKey = null, string bearerToken = null)
         {
             objectNameValidator = new ObjectNameValidator();
 
-            _company    = company ??= Environment.GetEnvironmentVariable("ACCOUNT_NAME");
-            AccessID    = accessID ??= Environment.GetEnvironmentVariable("API_ACCESS_ID");
-            AccessKey   = accessKey ??= Environment.GetEnvironmentVariable("API_ACCESS_KEY");
-            BearerToken = bearerToken ??= Environment.GetEnvironmentVariable("API_BEARER_TOKEN"); 
+            _company = company ??= Environment.GetEnvironmentVariable("LM_COMPANY");
+            AccessID = accessID ??= Environment.GetEnvironmentVariable("LM_ACCESS_ID");
+            AccessKey = accessKey ??= Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
+            BearerToken = bearerToken ??= Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
 
             CheckAuthentication();
         }
-     
+
 
         public bool CheckAuthentication()
         {
             bool flagBearerCheck = true;
             bool flagLMv1Check = true;
 
-            if ( BearerToken != null)
-                flagLMv1Check = false;
+
             if (AccessID != null && AccessKey != null)
                 flagBearerCheck = false;
+            if (BearerToken != null)
+                flagLMv1Check = false;
 
             if ((AccessID == null || AccessKey == null) && flagLMv1Check == true)
             {
@@ -95,6 +99,10 @@ namespace LogicMonitor.DataSDK
                 if (!objectNameValidator.IsValidAuthId(AccessID))
                 {
                     throw new ArgumentException("Invalid Access ID");
+                }
+                if (!objectNameValidator.IsValidAuthKey(AccessKey))
+                {
+                    throw new ArgumentException("Invalid Access Key");
                 }
             }
             if (BearerToken == null && flagBearerCheck == true)
@@ -122,7 +130,7 @@ namespace LogicMonitor.DataSDK
                 return this._host;
             }
         }
-       
+
         public PlatformID Platform { get; }
     }
 }

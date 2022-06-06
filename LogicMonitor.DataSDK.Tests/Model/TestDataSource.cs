@@ -58,9 +58,19 @@ namespace LogicMonitor.DataSDK.Tests.Model
             int o = 12345;
             dataSource.Id = o;
 
-            string expected = "class DataSource {\n  Name: 1683263926\n  DisplayName: Sample msg for testing\n  Group: Sample msg for testing\n  Id: 12345\n}\n";
+            string expected = "class DataSource {\n  Name: 1683263926\n  DisplayName: Sample msg for testing\n  Group: Sample msg for testing\n  Id: 12345\n  SingleInstanceDS: False\n}\n";
             Assert.AreEqual(expected, dataSource.ToString());
 
+        }
+
+        [Test]
+        public void TestValidFields()
+        {
+          int o = -12345;
+          dataSource.Id = o;
+          string expected = "DataSource Id " + o + " should not be negative.";
+          string actual = dataSource.ValidField();
+          Assert.AreEqual(expected, actual);
         }
     }
 }

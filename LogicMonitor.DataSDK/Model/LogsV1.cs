@@ -15,15 +15,15 @@ namespace LogicMonitor.DataSDK.Model
     /// This Class is used to define the Logs data.
     /// </summary>
     [DataContract]
-    public class LogsV1
+    public class LogsV1:IInput
     {
 
-        
+
         public LogsV1()
         {
         }
 
-        public LogsV1(string message,Dictionary<string,string> resourceIds, string timeStamp = default, Dictionary<string,string> metaData = default)
+        public LogsV1(string message, Dictionary<string, string> resourceIds, string timeStamp = default, Dictionary<string, string> metaData = default)
         {
             Message = message;
             Timestamp = timeStamp;
@@ -31,7 +31,7 @@ namespace LogicMonitor.DataSDK.Model
             ResourceId = new Dictionary<string, string>();
 
             MetaData = metaData;
-            ResourceId = resourceIds; 
+            ResourceId = resourceIds;
         }
 
         [DataMember]
@@ -47,29 +47,9 @@ namespace LogicMonitor.DataSDK.Model
         public Dictionary<string, string> MetaData { get; set; }
 
         [DataMember]
-        public Dictionary<string,string> ResourceId { get; set; }
+        public Dictionary<string, string> ResourceId { get; set; }
 
 
-        private void CreateBody()
-        {
-            string resource = JsonConvert.SerializeObject(ResourceId);
-
-            Body = new Dictionary<string, string>();
-            Body.Add("message", Message);
-            Body.Add("_lm.resourceId", resource);
-            Body.Add("timestamp", Timestamp);
-            Body.Add("metadata", JsonConvert.SerializeObject(MetaData));
-        }
-        
-        public override string ToString()
-        {
-            CreateBody();
-            var bodyString = JsonConvert.SerializeObject(Body);
-            bodyString = bodyString.Replace(@"\", "");
-            bodyString = bodyString.Replace("\"{", "{");
-            bodyString = bodyString.Replace("}\"", "}");
-            bodyString = "[" + bodyString + "]";
-            return bodyString;
-        }
+       
     }
 }

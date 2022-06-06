@@ -90,10 +90,10 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/gh-pages/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs__ctor.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs__ctor.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/gh-pages/LogicMonitor.DataSDK/Api/Logs.cs/#L22">View Source</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L23">View Source</a>
   </span>
   <a id="LogicMonitor_DataSDK_Api_Logs__ctor_" data-uid="LogicMonitor.DataSDK.Api.Logs.#ctor*"></a>
   <h4 id="LogicMonitor_DataSDK_Api_Logs__ctor" data-uid="LogicMonitor.DataSDK.Api.Logs.#ctor">Logs()</h4>
@@ -105,10 +105,10 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/gh-pages/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.%23ctor(System.Boolean%2CSystem.Int32%2CLogicMonitor.DataSDK.Api.IResponseInterface%2CLogicMonitor.DataSDK.ApiClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.%23ctor(System.Boolean%2CSystem.Int32%2CLogicMonitor.DataSDK.Api.IResponseInterface%2CLogicMonitor.DataSDK.ApiClient)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/gh-pages/LogicMonitor.DataSDK/Api/Logs.cs/#L27">View Source</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L28">View Source</a>
   </span>
   <a id="LogicMonitor_DataSDK_Api_Logs__ctor_" data-uid="LogicMonitor.DataSDK.Api.Logs.#ctor*"></a>
   <h4 id="LogicMonitor_DataSDK_Api_Logs__ctor_System_Boolean_System_Int32_LogicMonitor_DataSDK_Api_IResponseInterface_LogicMonitor_DataSDK_ApiClient_" data-uid="LogicMonitor.DataSDK.Api.Logs.#ctor(System.Boolean,System.Int32,LogicMonitor.DataSDK.Api.IResponseInterface,LogicMonitor.DataSDK.ApiClient)">Logs(Boolean, Int32, IResponseInterface, ApiClient)</h4>
@@ -116,7 +116,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Logs(bool batch, int interval = null, IResponseInterface responseCallback = null, ApiClient apiClient = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Logs(bool batch = true, int interval = 10, IResponseInterface responseCallback = null, ApiClient apiClient = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -154,18 +154,112 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/gh-pages/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String%2CLogicMonitor.DataSDK.Model.Resource%2CDictionary%7BSystem.String%2CSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs_CreateLogBody_LogicMonitor_DataSDK_Model_LogsV1_.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.CreateLogBody(LogicMonitor.DataSDK.Model.LogsV1)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/gh-pages/LogicMonitor.DataSDK/Api/Logs.cs/#L36">View Source</a>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L96">View Source</a>
   </span>
-  <a id="LogicMonitor_DataSDK_Api_Logs_SendLogs_" data-uid="LogicMonitor.DataSDK.Api.Logs.SendLogs*"></a>
-  <h4 id="LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__" data-uid="LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String})">SendLogs(String, Resource, Dictionary&lt;String, String&gt;)</h4>
+  <a id="LogicMonitor_DataSDK_Api_Logs_CreateLogBody_" data-uid="LogicMonitor.DataSDK.Api.Logs.CreateLogBody*"></a>
+  <h4 id="LogicMonitor_DataSDK_Api_Logs_CreateLogBody_LogicMonitor_DataSDK_Model_LogsV1_" data-uid="LogicMonitor.DataSDK.Api.Logs.CreateLogBody(LogicMonitor.DataSDK.Model.LogsV1)">CreateLogBody(LogsV1)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RestResponse SendLogs(string message, Resource resource, Dictionary&lt;string, string&gt; metadata = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public string CreateLogBody(LogsV1 item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">LogicMonitor.DataSDK.Model.LogsV1</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs_Send_System_String_.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.Send(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L84">View Source</a>
+  </span>
+  <a id="LogicMonitor_DataSDK_Api_Logs_Send_" data-uid="LogicMonitor.DataSDK.Api.Logs.Send*"></a>
+  <h4 id="LogicMonitor_DataSDK_Api_Logs_Send_System_String_" data-uid="LogicMonitor.DataSDK.Api.Logs.Send(System.String)">Send(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RestResponse Send(string body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RestResponse</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__System_String_.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String%2CLogicMonitor.DataSDK.Model.Resource%2CDictionary%7BSystem.String%2CSystem.String%7D%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L37">View Source</a>
+  </span>
+  <a id="LogicMonitor_DataSDK_Api_Logs_SendLogs_" data-uid="LogicMonitor.DataSDK.Api.Logs.SendLogs*"></a>
+  <h4 id="LogicMonitor_DataSDK_Api_Logs_SendLogs_System_String_LogicMonitor_DataSDK_Model_Resource_Dictionary_System_String_System_String__System_String_" data-uid="LogicMonitor.DataSDK.Api.Logs.SendLogs(System.String,LogicMonitor.DataSDK.Model.Resource,Dictionary{System.String,System.String},System.String)">SendLogs(String, Resource, Dictionary&lt;String, String&gt;, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RestResponse SendLogs(string message, Resource resource, Dictionary&lt;string, string&gt; metadata = null, string timestamp = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,6 +288,11 @@
         <td><span class="parametername">metadata</span></td>
         <td></td>
       </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">timestamp</span></td>
+        <td></td>
+      </tr>
     </tbody>
   </table>
   <h5 class="returns">Returns</h5>
@@ -211,6 +310,53 @@
       </tr>
     </tbody>
   </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs_SerializeList_List_System_String__.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs.SerializeList(List%7BSystem.String%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L75">View Source</a>
+  </span>
+  <a id="LogicMonitor_DataSDK_Api_Logs_SerializeList_" data-uid="LogicMonitor.DataSDK.Api.Logs.SerializeList*"></a>
+  <h4 id="LogicMonitor_DataSDK_Api_Logs_SerializeList_List_System_String__" data-uid="LogicMonitor.DataSDK.Api.Logs.SerializeList(List{System.String})">SerializeList(List&lt;String&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SerializeList(List&lt;string&gt; list)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="parametername">list</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -219,10 +365,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/gh-pages/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/new/v2_changes/apiSpec/new?filename=LogicMonitor_DataSDK_Api_Logs.md&amp;value=---%0Auid%3A%20LogicMonitor.DataSDK.Api.Logs%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/gh-pages/LogicMonitor.DataSDK/Api/Logs.cs/#L20" class="contribution-link">View Source</a>
+                    <a href="https://github.com/AakashKhopade/lm-data-sdk-dotnet/blob/v2_changes/LogicMonitor.DataSDK/Api/Logs.cs/#L21" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

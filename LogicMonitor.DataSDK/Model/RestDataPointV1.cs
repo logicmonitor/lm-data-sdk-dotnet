@@ -33,13 +33,14 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="dataPointName">dataPointName.</param>
         /// <param name="dataPointType">dataPointType.</param>
         /// <param name="values">values.</param>
-        public RestDataPointV1(string dataPointName,string dataPointAggregationType = default(string), string dataPointDescription = default(string),  string dataPointType = default(string), Dictionary<string, string> values = default(Dictionary<string, string>))
+        public RestDataPointV1(string dataPointName,string dataPointAggregationType = default(string), string dataPointDescription = default(string),  string dataPointType = default(string),int percentileValue = default, Dictionary<string, string> values = default(Dictionary<string, string>))
         {
             this.DataPointAggregationType = dataPointAggregationType;
             this.DataPointDescription = dataPointDescription;
             this.DataPointName = dataPointName;
             this.DataPointType = dataPointType;
             this.Values = values;
+            this.PercentileValue = percentileValue;
         }
 
         /// <summary>
@@ -65,6 +66,9 @@ namespace LogicMonitor.DataSDK.Model
         /// </summary>
         [DataMember(Name = "dataPointType", EmitDefaultValue = false)]
         public string DataPointType { get; set; }
+
+        [DataMember(Name = "percentileValue", EmitDefaultValue = false)]
+        public int PercentileValue { get; set; }
 
         /// <summary>
         /// Gets or Sets Values

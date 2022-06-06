@@ -1,7 +1,7 @@
 ﻿/*
  * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
- * Mozilla Public License, v. 2.0. If a copy of the MPL 
+ * Mozilla Public License, v. 2.0. If  copy of the MPL 
  * was not distributed with this file, You can obtain 
  * one at https://mozilla.org/MPL/2.0/.
  */
@@ -11,6 +11,7 @@ using System.Xml;
 using RestSharp;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 
 namespace LogicMonitor.DataSDK
 {
@@ -79,7 +80,7 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-        public RestResponse Post(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
+        public RestResponse Post(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default,bool gzip = true )
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -106,7 +107,7 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-        public RestResponse Put(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
+        public RestResponse Put(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -116,7 +117,8 @@ namespace LogicMonitor.DataSDK
             {
                 request.AddQueryParameter(item.Key, item.Value);
             }
-            request.AddJsonBody(body);
+            if (gzip == true)
+            {
 
                 var compressedBytes = GZip(body);
                 request.AddHeader(Constants.HeaderKey.ContentEncoding, Constants.HeaderKey.GZip);
@@ -131,7 +133,7 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-        public RestResponse Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams,  TimeSpan requestTimeout, Dictionary<string, string> postParams = default)
+        public RestResponse Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams,  TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -156,6 +158,15 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-       
+        public byte[] GZip(string body)
+        {
+            var dataStream = new MemoryStream();
+            using (var zipStream = new GZipStream(dataStream, CompressionMode.Compress))
+            using (var writer = new StreamWriter(zipStream))
+                writer.Write(body);
+
+            var compressedBytes = dataStream.ToArray();
+            return compressedBytes;
+        }
     }
 }

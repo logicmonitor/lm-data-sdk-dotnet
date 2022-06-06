@@ -36,7 +36,7 @@ namespace LogicMonitor.DataSDK.Model
         /// <param name="instanceName">instanceName.</param>
         /// <param name="instanceProperties">instanceProperties.</param>
         /// <param name="instanceWildValue">instanceWildValue.</param>
-        public RestDataSourceInstanceV1(string instanceDisplayName ,List<RestDataPointV1> dataPoints = default(List<RestDataPointV1>), string instanceDescription = default(string),  string instanceGroup = default(string), int instanceId = default(int), string instanceName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), string instanceWildValue = default(string))
+        public RestDataSourceInstanceV1(string instanceName, List<RestDataPointV1> dataPoints = default(List<RestDataPointV1>), string instanceDescription = default(string),  string instanceGroup = default(string), int instanceId = default(int), string instanceDisplayName = default(string), Dictionary<string, string> instanceProperties = default(Dictionary<string, string>), string instanceWildValue = default(string))
         {
             this.DataPoints = dataPoints;
             this.InstanceDescription = instanceDescription;

@@ -20,7 +20,7 @@ namespace LogicMonitor.DataSDK.Internal
         public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
             builder
-                .AddFilter("Microsoft", LogLevel.Warning)
+                .AddFilter("Microsoft", LogLevel.Information)
                 .AddFilter("System", LogLevel.Warning)
                 .AddFilter("LogicMonitor.DataSDK.Internal.BatchingCache", LogLevel.Information)
                 .AddConsole();
@@ -109,9 +109,12 @@ namespace LogicMonitor.DataSDK.Internal
         {
             while (_hasRequest.WaitOne())
             {
-                while (GetRequest().Count > 0 )
+                lock (_Lock)
                 {
-                    this._mergeRequest();
+                    while (GetRequest().Count > 0)
+                    {
+                        this._mergeRequest();
+                    }
                 }
             }
         }
@@ -159,18 +162,16 @@ namespace LogicMonitor.DataSDK.Internal
             DateTime lastRequestTime = new DateTime(_lastTimeSend);
 
 
-            var smsg = string.Format("{0} CurrentTime:{1} LastReqestTime:{2} SendMetricsCalls:{3}" +
-                " MergedRequest:{4} BuildingRestPayload:{5} RestApiSend:{6} PossibleRestApiReqests:{7} RestException:{8}", GetType().Name, DateTime.Now.ToString("HH:mm:ss GMT")
+            var smsg = string.Format("Class Name :{0} CurrentTime:{1} LastReqestTime:{2} SendMetricsCalls:{3} MergedRequest:{4} BuildingRestPayload:{5} RestApiSend:{6} PossibleRestApiReqests:{7} RestException:{8}",
+                GetType().Name, DateTime.Now.ToString("HH:mm:ss GMT")
                 , lastRequestTime.ToString("HH:mm:ss"),
                 addRequest, mergeRequest, payloadBuild, payloadSend, payloadTotal, payloadException);
-
             _logger.LogDebug(smsg);
         }
 
         public static void ResponseHandler(RestResponse response = default)
         {
-            _logger.LogDebug("Response is {0}  {1}  \n{2}", response, response.StatusCode, response.Headers.ToString());
-
+            _logger.LogDebug("Response is {0} : {1}  \n{2}", response.Content.ToString(), response.StatusCode.ToString(), response.Headers.ToString());
             try
             {
                 if (ResponseCallback != null)
@@ -183,7 +184,7 @@ namespace LogicMonitor.DataSDK.Internal
             }
             catch (Exception ex)
             {
-                _logger.LogError("Got Exception in response callback {0}", Convert.ToString(ex));
+                _logger.LogError("Got Exception in response callback {0}",ex.Message.ToString());
             }
         }
 

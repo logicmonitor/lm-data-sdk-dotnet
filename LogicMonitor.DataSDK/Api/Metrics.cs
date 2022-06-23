@@ -24,9 +24,7 @@ namespace LogicMonitor.DataSDK.Api
 
 
         private ObjectNameValidator objectNameValidator = new ObjectNameValidator();
-        //Input input;
-        //Input input = new Input();
-        Dictionary<string, string> classDictionary = new Dictionary<string, string>();
+
         public Metrics():base()
         {
 
@@ -68,31 +66,39 @@ namespace LogicMonitor.DataSDK.Api
         public override void _mergeRequest()
         {
             var singleRequest = (MetricsV1)GetRequest().Dequeue();
+            if (singleRequest == null)
+            {
+                return;
+            }
             if (!MetricsPayloadCache.ContainsKey(singleRequest.resource))
             {
                 MetricsPayloadCache.Add(singleRequest.resource, new Dictionary<DataSource, Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>>());
             }
+
             var _dataS = MetricsPayloadCache[singleRequest.resource];
-            if(!_dataS.ContainsKey(singleRequest.dataSource))
+            if (!_dataS.ContainsKey(singleRequest.dataSource))
             {
                 _dataS.Add(singleRequest.dataSource, new Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>());
             }
+
             var _instance = _dataS[singleRequest.dataSource];
-            if(!_instance.ContainsKey(singleRequest.dataSourceInstance))
+            if (!_instance.ContainsKey(singleRequest.dataSourceInstance))
             {
                 _instance.Add(singleRequest.dataSourceInstance, new Dictionary<DataPoint, Dictionary<string, string>>());
             }
+
             var _dataPoint = _instance[singleRequest.dataSourceInstance];
-            if(!_dataPoint.ContainsKey(singleRequest.dataPoint))
+            if (!_dataPoint.ContainsKey(singleRequest.dataPoint))
             {
                 _dataPoint.Add(singleRequest.dataPoint, new Dictionary<string, string>());
             }
-            var _value = _dataPoint[singleRequest.dataPoint];
 
-            foreach(var item in singleRequest.values)
+            var _value = _dataPoint[singleRequest.dataPoint];
+            foreach (var item in singleRequest.values)
             {
                 _value.Add(item.Key, item.Value);
             }
+            
         }
       
         public override void _doRequest()
@@ -105,6 +111,10 @@ namespace LogicMonitor.DataSDK.Api
             RestMetricsV1 restMetrics;
             RestResponse response;
             var payload = GetMetricsPayload();
+            if(payload.Count == 0)
+            {
+                return;
+            }
             foreach (var res in payload)
             {
                 Resource _resource = res.Key;
@@ -182,6 +192,7 @@ namespace LogicMonitor.DataSDK.Api
                     response = Send(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
+                    BatchingCache.ResponseHandler(response: response);
                 }
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
@@ -189,14 +200,16 @@ namespace LogicMonitor.DataSDK.Api
                     response = Send(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
+                    BatchingCache.ResponseHandler(response: response);
+
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError("Got exception" + ex);
-                //BatchingCache.ResponseHandler(response: response);
             }
         }
+
         public string SingleRequest(MetricsV1 input)
         {
             var dataPoints = new List<RestDataPointV1>();

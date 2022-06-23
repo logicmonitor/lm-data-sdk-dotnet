@@ -358,7 +358,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase("sum55")]
         [TestCase("none11")]
         [TestCase("none23")]
-        public void sum(string s)
+        public void TestCheckDataPointAggerationTypeValidation(string s)
         {
             string t = "The datapoint aggeration type is having invalid datapoint aggreation Type " + s + ".";
             var abs = o.CheckDataPointAggerationTypeValidation(s);
@@ -385,7 +385,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         [TestCase(101)]
         public void TestCheckPercentileValue(int percentileValue)
         {
-          string expected = "Percentile value muist be in Range of 0-100";
+          string expected = "Percentile value must be in Range of 0-100";
           string actual = o.CheckPercentileValue(percentileValue);
           Assert.AreEqual(expected, actual);
         }
@@ -408,7 +408,7 @@ namespace TestingLogicMonitor.DataSDK.Tests.Utils
         public void  TestIsValidAuthKey(string authKey)
  	      {
 	        bool actual= o.IsValidAuthKey(authKey);
-          Assert.IsTrue(actual);
+            Assert.IsTrue(actual);
  	      }
 
         [TestCase("authkey2 0i34-2uel;ca")]

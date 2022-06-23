@@ -68,8 +68,11 @@ namespace LogicMonitor.DataSDK.Api
               logsV1s.Add(bodystring);
             }
             logPayloadCache.Clear();
-            var body = SerializeList(logsV1s);
-            Send(body);
+            if(logsV1s.Count > 0)
+            {
+                var body = SerializeList(logsV1s);
+                Send(body);
+            }    
 
         }
         public string SerializeList(List<string> list)

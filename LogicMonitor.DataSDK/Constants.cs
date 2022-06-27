@@ -10,7 +10,7 @@ namespace LogicMonitor.DataSDK
     public class Constants
     {
         public const string PackageID = "LogicMonitor.DataSDK";
-        public const string PackageVersion = "0.1.0-alpha";
+        public const string PackageVersion = "0.1.1-alpha";
         public const string Author = "LogicMonitor";
         public const string AuthorEmail = "support@logicmonior.com";
 

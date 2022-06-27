@@ -4,7 +4,7 @@ infrastructures, offering granular performance monitoring and actionable data an
 entry point in the form of public rest APIs for ingesting metrics into LogicMonitor. For using this application users 
 have to create LMAuth token using access id and key from santaba.
 
-- SDK version: 0.1.0-alpha
+- SDK version: 0.1.1-alpha
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported

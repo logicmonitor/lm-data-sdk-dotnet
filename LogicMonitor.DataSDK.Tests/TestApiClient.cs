@@ -109,5 +109,35 @@ namespace LogicMonitor.DataSDK.Tests
            var authcheck = apiClient.Update_params_for_auth(method: "POST", querys: query, auth_settings: "LMv1", resource_path: "/metric/ingest", headers: header);
            Assert.AreEqual(true, authcheck);
        }
-   }
+
+        [Test]
+        public void TestCheckNumberOfRequestMetrics()
+        {
+            apiClient.startTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            bool var = apiClient.CheckNumberOfRequest("/v2/metric/ingest");
+            Assert.AreEqual(var, true);
+        }
+        [Test]
+        public void TestFalseCheckNumberOfRequest()
+        {
+
+            apiClient.startTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            bool var = apiClient.CheckNumberOfRequest("/resource_property/ingest");
+            Assert.AreEqual(var, false);
+        }
+        [Test]
+        public void TestCheckNumberOfRequestLogs()
+        {
+            apiClient.startTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            bool var = apiClient.CheckNumberOfRequest("/log/ingest");
+            Assert.AreEqual(var, true);
+        }
+        [Test]
+        public void TestCheckNumberOfRequestDiff()
+        {
+            apiClient.startTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - 60;
+            bool var = apiClient.CheckNumberOfRequest("/log/ingest");
+            Assert.AreEqual(var, true);
+        }
+    }
 }

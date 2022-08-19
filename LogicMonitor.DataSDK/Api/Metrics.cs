@@ -21,17 +21,13 @@ namespace LogicMonitor.DataSDK.Api
     public class Metrics : BatchingCache
     {
         public static readonly object _lock;
-
-
         private ObjectNameValidator objectNameValidator = new ObjectNameValidator();
 
         public Metrics():base()
         {
-
         }
         public Metrics(bool batch =true, int interval= 10, IResponseInterface responseCallback=default,ApiClient apiClient=default):base(apiClient:apiClient, interval:interval, batch:batch, responseCallback:responseCallback)
         {
-
 
         }
         /// <summary>
@@ -66,9 +62,20 @@ namespace LogicMonitor.DataSDK.Api
         public override void _mergeRequest()
         {
             var singleRequest = (MetricsV1)GetRequest().Dequeue();
+
+            int singleRequestSize = singleRequest.ToString().Length;
+            int payloadCacheSize = MetricsPayloadCache.ToString().Length;
+            var currentSize = singleRequestSize + payloadCacheSize;
+
             if (singleRequest == null)
             {
                 return;
+            }
+            if(currentSize > Constants.SizeLimitation.MaximunMetricsPayloadSize ||
+                (currentSize >Constants.SizeLimitation.MaximumMetricsPayloadSizeOnCompression && ApiClient.configuration.GZip))
+            {
+                GetRequest().Enqueue(singleRequest);
+                DoRequest();
             }
             if (!MetricsPayloadCache.ContainsKey(singleRequest.resource))
             {
@@ -80,12 +87,22 @@ namespace LogicMonitor.DataSDK.Api
             {
                 _dataS.Add(singleRequest.dataSource, new Dictionary<DataSourceInstance, Dictionary<DataPoint, Dictionary<string, string>>>());
             }
-
+            
             var _instance = _dataS[singleRequest.dataSource];
-            if (!_instance.ContainsKey(singleRequest.dataSourceInstance))
+            //maximun 100 instance allowed per request
+            if (_instance.Count <= Constants.SizeLimitation.MaximumInstances)
             {
-                _instance.Add(singleRequest.dataSourceInstance, new Dictionary<DataPoint, Dictionary<string, string>>());
+                if (!_instance.ContainsKey(singleRequest.dataSourceInstance))
+                {
+                    _instance.Add(singleRequest.dataSourceInstance, new Dictionary<DataPoint, Dictionary<string, string>>());
+                }
             }
+            else
+            {
+                GetRequest().Enqueue(singleRequest);
+                DoRequest();
+            }
+            
 
             var _dataPoint = _instance[singleRequest.dataSourceInstance];
             if (!_dataPoint.ContainsKey(singleRequest.dataPoint))

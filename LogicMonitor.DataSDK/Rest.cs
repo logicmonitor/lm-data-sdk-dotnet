@@ -158,7 +158,7 @@ namespace LogicMonitor.DataSDK
             return response;
         }
 
-        public byte[] GZip(string body)
+        public static byte[] GZip(string body)
         {
             var dataStream = new MemoryStream();
             using (var zipStream = new GZipStream(dataStream, CompressionMode.Compress))

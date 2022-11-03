@@ -23,6 +23,9 @@ namespace LogicMonitor.DataSDK
     {
         public Configuration configuration;
         private Rest rest_client;
+        public long startTime;
+        private int MetricCounter = 1;
+        private int LogCounter = 1;
         private readonly Dictionary<string, string> default_headers = new Dictionary<string, string>();
         public ApiClient()
         {
@@ -105,7 +108,12 @@ namespace LogicMonitor.DataSDK
         {
             if (rest_client == null)
                 rest_client = new Rest();
-
+            //Number of request
+            var timeRateLimit =CheckNumberOfRequest(url);
+            if(!timeRateLimit)
+            {
+                throw new ArgumentException("The number of requests exceeds the rate limit");
+            }
             if (method == "GET")
             {
                 return rest_client.Get("GET", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
@@ -236,6 +244,30 @@ namespace LogicMonitor.DataSDK
                 hex.AppendFormat("{0:x2}", b);
             }
             return hex.ToString();
+        }
+
+        public bool CheckNumberOfRequest(string url)
+        {
+            var currentTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            int difference = (int)(currentTime - startTime);
+            if (difference < 60 && url.Contains("metric/ingest") && MetricCounter < configuration.RequestPerMin)
+            {
+                MetricCounter++;
+                return true;
+            }
+            if (difference < 60 && url.Contains("log/ingest") && LogCounter < configuration.RequestPerMin)
+            {
+                LogCounter++;
+                return true;
+            }
+            if (difference >= 60)
+            {
+                startTime = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+                MetricCounter = 1;
+                LogCounter = 1;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace LogicMonitor.DataSDK.Model
     /// <summary>
     /// This Class is used to define the Logs data.
     /// </summary>
-    [DataContract]
+    [DataContract(Name ="LogsV1")]
     public class LogsV1:IInput
     {
 
@@ -29,27 +29,29 @@ namespace LogicMonitor.DataSDK.Model
             Timestamp = timeStamp;
             MetaData = new Dictionary<string, string>();
             ResourceId = new Dictionary<string, string>();
-
             MetaData = metaData;
             ResourceId = resourceIds;
         }
 
-        [DataMember]
+        [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }
 
-        [DataMember]
-        public Dictionary<string, string> Body { get; set; }
-
-        [DataMember]
-        public string Timestamp { get; set; }
-
-        [DataMember]
-        public Dictionary<string, string> MetaData { get; set; }
-
-        [DataMember]
+        [DataMember(Name = "_lm.resourceId", EmitDefaultValue = false)]
         public Dictionary<string, string> ResourceId { get; set; }
 
+        [DataMember(Name = "Body", EmitDefaultValue = false)]
+        public Dictionary<string, string> Body { get; set; }
 
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public string Timestamp { get; set; }
+
+        [DataMember(Name = "metaData", EmitDefaultValue = false)]
+        public Dictionary<string, string> MetaData { get; set; }
+
+        
+
+        
        
     }
+    
 }

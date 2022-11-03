@@ -90,11 +90,50 @@ namespace LogicMonitor.DataSDK.Tests.Api
         [TestCase("Mac1-", "Dotnet SDK-_", "Instance1", -90)]
         public void TestInValidInstanceIdField(string dataSourceName, string dataSourceGroup, string instanceName, int id)
         {
+            
             dataSource = new DataSource(name: dataSourceName, group: dataSourceGroup);
             dataSourceInstance = new DataSourceInstance(name: instanceName, instanceId: id);
             Assert.AreEqual("DataSourceInstance Id "+ id +" should not be negative.", metrics.ValidField(dataSource, dataSourceInstance));
         }
 
+        [TestCase("Mac1-", "Dotnet SDK-_", "Instance1", -1)]
+        [TestCase("Mac1-", "Dotnet SDK-_", "Instance1", -90)]
+        public void TestInValidInstanceIDPropertyField(string dataSourceName, string dataSourceGroup, string instanceName, int id)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add(" PropertyKey", " PropertyValue");
+            dataSource = new DataSource(name: dataSourceName, group: dataSourceGroup);
+            dataSourceInstance = new DataSourceInstance(name: instanceName, instanceId: id,properties:properties);
+            Assert.AreEqual("DataSourceInstance Id " + id + " should not be negative.Instance Properties Key should not be null, empty or have tailing spaces.", metrics.ValidField(dataSource, dataSourceInstance));
+        }
+        [TestCase("Mac1-", "DotnetSDK", "Instance1")]
+        public void TestInValidInstancePropertiesField(string dataSourceName, string dataSourceGroup, string instanceName)
+        {
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+            properties.Add(" PropertyKey"," PropertyValue");
+            dataSource = new DataSource(name: dataSourceName, group: dataSourceGroup);
+            dataSourceInstance = new DataSourceInstance(name: instanceName,properties:properties);
+            Assert.AreEqual("Instance Properties Key should not be null, empty or have tailing spaces.", metrics.ValidField(dataSource, dataSourceInstance));
+        }
+
+
+        [TestCase("Mac1-", "Dotnet SDK-_", "Instance1", -1)]
+        [TestCase("Mac1-", "Dotnet SDK-_", "Instance1", -90)]
+        public void TestInValidInstanceIDDisplayNameField(string dataSourceName, string dataSourceGroup, string instanceName, int id)
+        {
+            string displayName = " .net instance";
+            dataSource = new DataSource(name: dataSourceName, group: dataSourceGroup);
+            dataSourceInstance = new DataSourceInstance(name: instanceName, instanceId: id, displayName: displayName);
+            Assert.AreEqual("DataSourceInstance Id " + id + " should not be negative.Instance display name Should not be empty or have tailing spaces.", metrics.ValidField(dataSource, dataSourceInstance));
+        }
+        [TestCase("Mac1-", "DotnetSDK", "Instance1")]
+        public void TestInValidInstanceDisplayNameField(string dataSourceName, string dataSourceGroup, string instanceName)
+        {
+            string displayName = " .net instance";
+            dataSource = new DataSource(name: dataSourceName, group: dataSourceGroup);
+            dataSourceInstance = new DataSourceInstance(name: instanceName, displayName: displayName);
+            Assert.AreEqual("Instance display name Should not be empty or have tailing spaces.", metrics.ValidField(dataSource, dataSourceInstance));
+        }
 
         [Test]
         public void TestSingleRequest()

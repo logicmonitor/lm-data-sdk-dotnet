@@ -22,6 +22,7 @@ namespace LogicMonitor.DataSDK
         private readonly ObjectNameValidator objectNameValidator;
         private string _company;
         private string _host;
+        private int requestPerMin = 100;
         public int ConnectionPoolMaxsize;
         public bool AsyncRequest { get; set; }
         /// <summary>
@@ -52,6 +53,10 @@ namespace LogicMonitor.DataSDK
                 this._host = "https://" + this._company + ".logicmonitor.com/rest";
             }
         }
+        /// <summary>
+        /// Sets the Limit fot maximum Number of request per Minitue
+        /// </summary>
+        public int RequestPerMin { get{ return requestPerMin; } set{ requestPerMin = value; } }
 
         public Configuration()
         {

@@ -40,12 +40,12 @@ namespace LogicMonitor.DataSDK.Utils
             public const string InstanceNameTrailing = "Instance Name Should not be empty or have tailing spaces.";
             public const string InstanceNameSize = "Instance Name size should not be greater than 255 characters.";
 
-            public const string InstanceDisplayNameTrailing = "Instance display name Should not be empty or have tailing spaces.";
+            public const string InstanceDisplayNameTailing = "Instance display name Should not be empty or have tailing spaces.";
             public const string InstanceDisplayNameSize = "Instance display name size should not be greater than 255 characters.";
 
-            public const string InstancePropertiesKeyTrailing = "Instance Properties Key should not be null, empty or have trailing spaces.";
+            public const string InstancePropertiesKeyTailing = "Instance Properties Key should not be null, empty or have tailing spaces.";
             public const string InstancePropertiesKeySize = "Instance Properties Key should not be greater than 255 characters.";
-            public const string InstancePropertiesValueTrailing = "Instance Properties Value should not be null, empty or have trailing spaces.";
+            public const string InstancePropertiesValueTailing = "Instance Properties Value should not be null, empty or have tailing spaces.";
             public const string InstancePropertiesValueSize = "Instance Properties Value should not be greater than 24000 characters.";
 
             public const string InstanceId = "DataSource Instance Id cannot be more than 9 digit";

@@ -33,5 +33,15 @@ namespace LogicMonitor.DataSDK
             public static readonly string ApplicationXGzip = "application/x-gzip";
             public static readonly string GZip = "gzip";
         };
+
+        public struct SizeLimitation
+        {
+            public static readonly int MaximumInstances = 100;
+            public static readonly int MaximunMetricsPayloadSize = 1048576;
+            public static readonly int MaximumMetricsPayloadSizeOnCompression = 104858;
+
+            public static readonly int MaximumLogPayloadSize = 8388608;
+            public static readonly int MaximumArraySizeLogMessage = 32768;
+        };
     }
 }

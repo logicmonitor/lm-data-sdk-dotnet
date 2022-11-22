@@ -53,7 +53,7 @@ namespace LogicMonitor.DataSDK.Tests.Api
       [Test]
       public void TestSingleRequest()
       {
-      Assert.AreEqual("[{\"message\":\"Sample Log\",\"_lm.resourceId\":{\"system.displayname\":\"abcdtest\"},\"timestamp\":\""+timestamp+"\",\"metadata\":\"null\"}]", logs.SingleRequest(logsv1));
+      Assert.AreEqual("[{\"message\":\"Sample Log\",\"_lm.resourceId\":{\"system.displayname\":\"abcdtest\"},\"timestamp\":\""+timestamp+"\"}]", logs.SingleRequest(logsv1));
       }
 
     [Test]
@@ -63,14 +63,6 @@ namespace LogicMonitor.DataSDK.Tests.Api
       list.Add("\"{TestLog}\"");
       string expectedbody = "[\"{TestLog}\"]";
       string actualbody = logs.SerializeList(list);
-      Assert.AreEqual(expectedbody, actualbody);
-    }
-
-    [Test]
-    public void TestCreateLogBody()
-    {
-      string expectedbody = "{\"message\":\"Sample Log\",\"_lm.resourceId\":\"{\\\"system.displayname\\\":\\\"abcdtest\\\"}\",\"timestamp\":\"" + timestamp + "\",\"metadata\":\"null\"}";
-      string actualbody = logs.CreateLogBody(logsv1);
       Assert.AreEqual(expectedbody, actualbody);
     }
 

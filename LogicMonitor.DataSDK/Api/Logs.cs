@@ -7,6 +7,9 @@
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using System.Text;
 using LogicMonitor.DataSDK.Internal;
 using LogicMonitor.DataSDK.Model;
 using Newtonsoft.Json;
@@ -52,7 +55,7 @@ namespace LogicMonitor.DataSDK.Api
 
         public string SingleRequest(LogsV1 logsV1)
         {
-            var bodyString = CreateLogBody(logsV1);
+            var bodyString = JsonConvert.SerializeObject(logsV1);
             List<string> logsV1s = new List<string>();
             logsV1s.Add(bodyString);
             var body = SerializeList(logsV1s);
@@ -64,11 +67,11 @@ namespace LogicMonitor.DataSDK.Api
             List<string> logsV1s = new List<string>();
             foreach (var item in logPayloadCache)
             {
-              var bodystring = CreateLogBody(item);
+              var bodystring = JsonConvert.SerializeObject(item);
               logsV1s.Add(bodystring);
             }
             logPayloadCache.Clear();
-            if(logsV1s.Count > 0)
+            if (logsV1s.Count > 0)
             {
                 var body = SerializeList(logsV1s);
                 Send(body);
@@ -77,11 +80,16 @@ namespace LogicMonitor.DataSDK.Api
         }
         public string SerializeList(List<string> list)
         {
-          var body = Newtonsoft.Json.JsonConvert.SerializeObject(list);
-          body = body.Replace(@"\", "");
-          body = body.Replace("\"{", "{");
-          body = body.Replace("}\"", "}");
-          return body;
+
+            string body = "[";
+            foreach (var item in list)
+            {
+                body += item.ToString() + ",";
+                
+            }
+            body = body.Substring(0, body.Length - 1);
+            body += "]";
+            return body;
 
         }
         public RestResponse Send(string body)
@@ -92,20 +100,25 @@ namespace LogicMonitor.DataSDK.Api
         public override void _mergeRequest()
         {
             List<LogsV1> v1s = new List<LogsV1>();
+            LogsV1 currentLog = (LogsV1)rawRequest.Dequeue();
 
-            logPayloadCache.Add((LogsV1)rawRequest.Dequeue());
+            int singleRequestSize = currentLog.ToString().Length;
+            int logPayloadCacheSize = logPayloadCache.ToString().Length;
+            int currentSize = singleRequestSize + logPayloadCacheSize;
+            int gzipSize = Rest.GZip(logPayloadCache.ToString() + currentLog.ToString()).Length;
+
+            if( (currentSize > Constants.SizeLimitation.MaximumLogPayloadSize ) ||
+                (gzipSize > Constants.SizeLimitation.MaximumMetricsPayloadSizeOnCompression && ApiClient.configuration.GZip) )
+            {
+                rawRequest.Enqueue(currentLog);
+                DoRequest();
+            }
+            logPayloadCache.Add(currentLog);
+
+
         }
 
-        public string CreateLogBody(LogsV1 item)
-        {
-            Dictionary<string, string> Body = new Dictionary<string, string>();
-            Body.Add("message", item.Message);
-            Body.Add("_lm.resourceId", Newtonsoft.Json.JsonConvert.SerializeObject(item.ResourceId));
-            Body.Add("timestamp", item.Timestamp);
-            Body.Add("metadata", Newtonsoft.Json.JsonConvert.SerializeObject(item.MetaData));
-            var bodyString = Newtonsoft.Json.JsonConvert.SerializeObject(Body);
-            return bodyString;
-        }
-
+        
+        
     }
 }

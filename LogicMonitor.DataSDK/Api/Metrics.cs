@@ -12,6 +12,7 @@ using RestSharp;
 using System;
 using Microsoft.Extensions.Logging;
 using LogicMonitor.DataSDK.Utils;
+using Newtonsoft.Json;
 
 namespace LogicMonitor.DataSDK.Api
 {
@@ -65,14 +66,14 @@ namespace LogicMonitor.DataSDK.Api
 
             int singleRequestSize = singleRequest.ToString().Length;
             int payloadCacheSize = MetricsPayloadCache.ToString().Length;
-            var currentSize = singleRequestSize + payloadCacheSize;
-
+            int currentSize = singleRequestSize + payloadCacheSize;
+            int gzipSize = Rest.GZip(MetricsPayloadCache.ToString()+singleRequest.ToString()).Length;
             if (singleRequest == null)
             {
                 return;
             }
             if(currentSize > Constants.SizeLimitation.MaximunMetricsPayloadSize ||
-                (currentSize >Constants.SizeLimitation.MaximumMetricsPayloadSizeOnCompression && ApiClient.configuration.GZip))
+                (gzipSize >Constants.SizeLimitation.MaximumMetricsPayloadSizeOnCompression && ApiClient.configuration.GZip))
             {
                 GetRequest().Enqueue(singleRequest);
                 DoRequest();
@@ -205,7 +206,7 @@ namespace LogicMonitor.DataSDK.Api
             {
                 if (listOfRestMetricsV1True.Count != 0)
                 {
-                    var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True);
+                    var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True,Formatting.None);
                     response = Send(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
@@ -213,7 +214,7 @@ namespace LogicMonitor.DataSDK.Api
                 }
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
-                    var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1False);
+                    var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1False,Formatting.None);
                     response = Send(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
@@ -268,11 +269,7 @@ namespace LogicMonitor.DataSDK.Api
             
             List<RestMetricsV1> listOfRestMetricsV1 = new List<RestMetricsV1>();
             listOfRestMetricsV1.Add(restMetrics);
-
-            var body = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1);
-            body = body.Replace(@"\", "");
-            body = body.Replace("\"{", "{");
-            body = body.Replace("}\"", "}");
+            var body = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1, Formatting.None);
             return body;
             
         }

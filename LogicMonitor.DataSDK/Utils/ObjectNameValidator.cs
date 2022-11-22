@@ -421,7 +421,7 @@ namespace LogicMonitor.DataSDK.Utils
             if (instanceDisplayName != null)
             {
                 if (!PassEmptyAndSpellCheck(instanceDisplayName))
-                    errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstanceDisplayNameTrailing);
+                    errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstanceDisplayNameTailing);
                 else if (!IsNameLengthValid(instanceDisplayName))
                     errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstanceDisplayNameSize);
                 else if (Convert.ToBoolean(ValidateDeviceDisplayName(instanceDisplayName)))
@@ -438,7 +438,7 @@ namespace LogicMonitor.DataSDK.Utils
                 foreach (var item in instanceProperties)
                 {
                     if (!PassEmptyAndSpellCheck(item.Key))
-                        errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesKeyTrailing);
+                        errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesKeyTailing);
                     else if (!IsNameLengthValid(item.Key))
                         errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesKeySize);
                     else if (item.Key.ToLower().StartsWith("system.") || item.Key.ToLower().StartsWith("auto."))
@@ -446,7 +446,7 @@ namespace LogicMonitor.DataSDK.Utils
                     else if (IsInValidResourceId(item.Key))
                         errorMsg.Append(String.Format("Invalid instance Properties key {0}", item.Key));
                     else if (!PassEmptyAndSpellCheck(item.Value))
-                        errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesValueTrailing);
+                        errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesValueTailing);
                     else if (item.Value.Length > 24000)
                         errorMsg.Append(ObjectNameConstant.DataSourceInstance.InstancePropertiesValueSize);
                     else if (IsInValidResourceId(item.Value))

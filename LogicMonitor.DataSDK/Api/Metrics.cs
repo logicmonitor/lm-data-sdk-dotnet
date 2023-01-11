@@ -22,14 +22,15 @@ namespace LogicMonitor.DataSDK.Api
     public class Metrics : BatchingCache
     {
         public static readonly object _lock;
+
         private ObjectNameValidator objectNameValidator = new ObjectNameValidator();
 
         public Metrics():base()
         {
         }
-        public Metrics(bool batch =true, int interval= 10, IResponseInterface responseCallback=default,ApiClient apiClient=default):base(apiClient:apiClient, interval:interval, batch:batch, responseCallback:responseCallback)
+        public Metrics(bool batch =true, int interval= 10, IResponseInterface responseCallback =default,ApiClient apiClient=default):base(apiClient:apiClient, interval:interval, batch:batch, responseCallback:responseCallback)
         {
-
+            
         }
         /// <summary>
         /// </summary>
@@ -56,7 +57,9 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 string body = SingleRequest(input);
-                return Send(Constants .Path.MetricIngestPath,body,"POST",input.resource.Create);
+                var response = Send(Constants .Path.MetricIngestPath,body,"POST",input.resource.Create);
+                base.ResponseHandler(response);
+                return response;
             }
         }
 
@@ -210,7 +213,7 @@ namespace LogicMonitor.DataSDK.Api
                     response = Send(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
-                    BatchingCache.ResponseHandler(response: response);
+                    base.ResponseHandler(response: response);
                 }
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
@@ -218,7 +221,7 @@ namespace LogicMonitor.DataSDK.Api
                     response = Send(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
-                    BatchingCache.ResponseHandler(response: response);
+                    base.ResponseHandler(response: response);
 
                 }
             }
@@ -274,10 +277,9 @@ namespace LogicMonitor.DataSDK.Api
             
         }
 
-    public static RestResponse Send(string path,string body,string method ,bool create)
+    public RestResponse Send(string path,string body,string method ,bool create)
     {
-      BatchingCache b = new Metrics();
-      return b.MakeRequest(path: path, method: method, body: body, create: create, asyncRequest: false);
+      return base.MakeRequest(path: path, method: method, body: body, create: create, asyncRequest: false);
 
     }
 
@@ -290,7 +292,6 @@ namespace LogicMonitor.DataSDK.Api
     }
     public string GetResourcePropertyBody(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
     {
-
             string errorMsg = "";
             if (resourceIds != null)
                 errorMsg += objectNameValidator.CheckResourceIdsValidation(resourceIds);
@@ -307,7 +308,6 @@ namespace LogicMonitor.DataSDK.Api
             body = body.Replace(@"\", "");
             body = body.Replace("\"{", "{");
             body = body.Replace("}\"", "}");
-            //return b.MakeRequest(path: "/resource_property/ingest", method: method, body: body, asyncRequest: false);
             return body;
     }
 
@@ -348,8 +348,6 @@ namespace LogicMonitor.DataSDK.Api
             body = body.Replace("\"instances\":[{", "");
             body = body.Replace("}]", "");
             return body;
-            //return b.MakeRequest(path: "
-            //", method: method, body: body, asyncRequest: false);
         }
         public string ValidField(DataSource dataSource, DataSourceInstance dataSourceInstance)
         {

@@ -60,9 +60,6 @@ namespace LogicMonitor.DataSDK
             var url = this.configuration.host + path;
             this.Update_params_for_auth(headerParams, queryParams, authSetting, path, method, body);
             var response_data = this.Request(method: method, url: url, queryParams: queryParams, _request_timeout: _request_timeout, headers: headerParams, body: body);
-
-
-            Console.WriteLine("Response: {0}", response_data.Content.ToString());
             return response_data;
         }
 

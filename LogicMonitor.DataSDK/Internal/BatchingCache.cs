@@ -35,10 +35,10 @@ namespace LogicMonitor.DataSDK.Internal
         public const char _PayloadTotal = 'T';
         public const char _PayloadException = 'E';
 
-        public static ApiClient ApiClient { get; set; }
+        public ApiClient ApiClient { get; set; }
         public int Interval { get; set; }
-        public static bool Batch { get; set; }
-        public static IResponseInterface ResponseCallback { get; set; }
+        public bool Batch { get; set; }
+        public IResponseInterface ResponseCallback { get; set; }
 
         private readonly Object _Lock = new Object();
         protected Queue<IInput> rawRequest = new Queue<IInput>(100);
@@ -50,11 +50,13 @@ namespace LogicMonitor.DataSDK.Internal
         private Thread requestThread;
         private Semaphore _hasRequest;
 
+        public DefaultResponse defaultResponse = new DefaultResponse();
+        
         public BatchingCache()
         {
         }
 
-        public BatchingCache(ApiClient apiClient, int interval = 10, bool batch = true, IResponseInterface responseCallback = default)
+        public BatchingCache(ApiClient apiClient, int interval = 10, bool batch = true, IResponseInterface responseCallback =default)
         {
             if (apiClient == null)
                 apiClient = new ApiClient();
@@ -62,9 +64,14 @@ namespace LogicMonitor.DataSDK.Internal
             ApiClient = apiClient;
             Interval = interval;
             Batch = batch;
-
+            if (responseCallback == default)
+            {
+                ResponseCallback = defaultResponse;
+            }
             if (responseCallback is IResponseInterface)
+            {
                 ResponseCallback = responseCallback;
+            }
             else
                 _logger.LogWarning("Response callback is not defined or is invalid");
 
@@ -169,7 +176,7 @@ namespace LogicMonitor.DataSDK.Internal
             _logger.LogDebug(smsg);
         }
 
-        public static void ResponseHandler(RestResponse response = default)
+        public void ResponseHandler(RestResponse response = default)
         {
             _logger.LogDebug("Response is {0} : {1}  \n{2}", response.Content.ToString(), response.StatusCode.ToString(), response.Headers.ToString());
             try

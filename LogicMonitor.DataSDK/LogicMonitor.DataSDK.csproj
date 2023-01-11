@@ -21,16 +21,18 @@ API reference: https://logicmonitor.github.io/lm-data-sdk-dotnet
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>	
     <PackageIcon>LM_Icon.png</PackageIcon>	
     <repositorytype>SDK</repositorytype>
-    <Version>0.1.2-alpha</Version>
-    <PackageReleaseNotes>Summary: What's new in 0.1.2-alpha:-
-- Rate Limitation available.
+    <Version>0.1.3-alpha</Version>
+    <PackageReleaseNotes>Summary: What's new in 0.1.3-alpha:-
+- Distributed Schema for logs and metrics object.
+- Datasource Instance Added.
+- Default ResponseInterface added
     </PackageReleaseNotes>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>Logicmonitor</Owners>
     <Summary>Allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.</Summary>
     <Title>LogicMonitor PushMetricSDK</Title>
-    <PackageVersion>0.1.2-alpha</PackageVersion>
+    <PackageVersion>0.1.3-alpha</PackageVersion>
     <Configurations>Release;Debug</Configurations>
   </PropertyGroup>
 

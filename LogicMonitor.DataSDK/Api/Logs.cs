@@ -49,7 +49,10 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 var body= SingleRequest(logs);
-                return Send(body);
+
+                var response = Send(body);
+                base.ResponseHandler(response);
+                return response;
             }
         }
 
@@ -74,8 +77,11 @@ namespace LogicMonitor.DataSDK.Api
             if (logsV1s.Count > 0)
             {
                 var body = SerializeList(logsV1s);
-                Send(body);
-            }    
+                var response = Send(body);
+                base.ResponseHandler(response: response);
+                Console.WriteLine("Res[pnese");
+
+            }
 
         }
         public string SerializeList(List<string> list)
@@ -94,8 +100,7 @@ namespace LogicMonitor.DataSDK.Api
         }
         public RestResponse Send(string body)
         {
-          BatchingCache b = new Logs();
-          return b.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
+          return base.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
         }
         public override void _mergeRequest()
         {

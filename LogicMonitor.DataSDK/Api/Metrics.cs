@@ -10,6 +10,7 @@ using LogicMonitor.DataSDK.Internal;
 using LogicMonitor.DataSDK.Model;
 using RestSharp;
 using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using LogicMonitor.DataSDK.Utils;
 using Newtonsoft.Json;
@@ -32,23 +33,17 @@ namespace LogicMonitor.DataSDK.Api
         {
             
         }
-        /// <summary>
-        /// </summary>
-        /// <param name="resource"></param>
-        /// <param name="dataSource"></param>
-        /// <param name="dataSourceInstance"></param>
-        /// <param name="dataPoint"></param>
-        /// <param name="values"></param>
-        public RestResponse SendMetrics(Resource resource, DataSource dataSource, DataSourceInstance dataSourceInstance, DataPoint dataPoint, Dictionary<string, string> values)
+ 
+        public async Task<RestResponse> SendMetricsAsync(Resource resource, DataSource dataSource, DataSourceInstance dataSourceInstance, DataPoint dataPoint, Dictionary<string, string> values)
         {
-            
-            string errorMsg = ValidField(dataSource:dataSource, dataSourceInstance:dataSourceInstance);
+
+            string errorMsg = ValidField(dataSource: dataSource, dataSourceInstance: dataSourceInstance);
             if (errorMsg != null && errorMsg.Length > 0)
                 throw new ArgumentException(errorMsg);
 
 
-            MetricsV1 input = new MetricsV1(resource,dataSource,dataSourceInstance,dataPoint,values);
-            
+            MetricsV1 input = new MetricsV1(resource, dataSource, dataSourceInstance, dataPoint, values);
+
             if (Batch)
             {
                 AddRequest(input);
@@ -57,7 +52,7 @@ namespace LogicMonitor.DataSDK.Api
             else
             {
                 string body = SingleRequest(input);
-                var response = Send(Constants .Path.MetricIngestPath,body,"POST",input.resource.Create);
+                var response = await SendAsync(Constants.Path.MetricIngestPath, body, "POST", input.resource.Create);
                 base.ResponseHandler(response);
                 return response;
             }
@@ -122,7 +117,7 @@ namespace LogicMonitor.DataSDK.Api
             
         }
       
-        public override void _doRequest()
+        public override async Task _doRequest()
         {
             var responseList = new List<RestResponse>();
             List<RestMetricsV1> listOfRestMetricsV1True = new List<RestMetricsV1>();
@@ -210,7 +205,7 @@ namespace LogicMonitor.DataSDK.Api
                 if (listOfRestMetricsV1True.Count != 0)
                 {
                     var bodyTrue = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1True,Formatting.None);
-                    response = Send(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
+                    response = await SendAsync(Constants.Path.MetricIngestPath,bodyTrue,"POST",true);
                    // MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyTrue,create:true);
                     responseList.Add(response);
                     base.ResponseHandler(response: response);
@@ -218,7 +213,7 @@ namespace LogicMonitor.DataSDK.Api
                 if (listOfRestMetricsV1False.Count != 0 )
                 {
                     var bodyFalse = Newtonsoft.Json.JsonConvert.SerializeObject(listOfRestMetricsV1False,Formatting.None);
-                    response = Send(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
+                    response = await SendAsync(Constants.Path.MetricIngestPath,bodyFalse, "POST",false);
                     //response = MakeRequest(path: "/v2/metric/ingest", method: "POST", body: bodyFalse,create:false);
                     responseList.Add(response);
                     base.ResponseHandler(response: response);
@@ -276,18 +271,17 @@ namespace LogicMonitor.DataSDK.Api
             return body;
             
         }
-
-    public RestResponse Send(string path,string body,string method ,bool create)
+    public async Task<RestResponse> SendAsync(string path, string body, string method, bool create)
     {
-      return base.MakeRequest(path: path, method: method, body: body, create: create, asyncRequest: false);
+        return await base.MakeRequestAsync(path: path, method: method, body: body, create: create);
 
     }
 
-    public RestResponse UpdateResourceProperties(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
+    public async Task<RestResponse> UpdateResourceProperties(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
     {
       var method = patch ? "PATCH" : "PUT";
       string body = GetResourcePropertyBody(resourceIds,resourceProperties,patch);
-      return Send(Constants.Path.UpdateResourcePropertyPath, body, method, false);
+      return await SendAsync(Constants.Path.UpdateResourcePropertyPath, body, method, false);
 
     }
     public string GetResourcePropertyBody(Dictionary<string, string> resourceIds, Dictionary<string, string> resourceProperties, bool patch = true)
@@ -311,11 +305,11 @@ namespace LogicMonitor.DataSDK.Api
             return body;
     }
 
-    public RestResponse UpdateInstanceProperties(Dictionary<string, string> resourceIds, string dataSourceName, string instanceName, Dictionary<string, string> instanceProperties, bool patch = true)
+    public async Task<RestResponse> UpdateInstanceProperties(Dictionary<string, string> resourceIds, string dataSourceName, string instanceName, Dictionary<string, string> instanceProperties, bool patch = true)
     {
       var method = patch ? "PATCH" : "PUT";
       string body = GetInstancePropertyBody(resourceIds, dataSourceName, instanceName, instanceProperties, patch);
-      return Send(Constants.Path.UpdateInsatancePropertyPath, body, method, false);
+      return await SendAsync(Constants.Path.UpdateInsatancePropertyPath, body, method, false);
     }
     public string GetInstancePropertyBody(Dictionary<string, string> resourceIds, string dataSourceName, string instanceName, Dictionary<string, string> instanceProperties, bool patch = true)
     {

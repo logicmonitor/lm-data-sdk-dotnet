@@ -45,7 +45,7 @@ namespace LogicMonitor.DataSDK
             default_headers.Add(Constants.HeaderKey.XVersion, "1");
         }
 
-        public RestResponse Callapi(
+        public async Task<RestResponse> Callapi(
               string path,
               string method,
               TimeSpan _request_timeout,
@@ -59,23 +59,17 @@ namespace LogicMonitor.DataSDK
 
             var url = this.configuration.host + path;
             this.Update_params_for_auth(headerParams, queryParams, authSetting, path, method, body);
-            var response_data = this.Request(method: method, url: url, queryParams: queryParams, _request_timeout: _request_timeout, headers: headerParams, body: body);
+            var response_data = await this.Request(method: method, url: url, queryParams: queryParams, _request_timeout: _request_timeout, headers: headerParams, body: body);
             return response_data;
         }
 
-        public RestResponse CallApi(
+        public async Task<RestResponse> CallApiAsync(
             string path, string method, TimeSpan _request_timeout, Dictionary<string, string> queryParams = default,
-            Dictionary<string, string> headerParams = default, string body = default, string authSetting = null, bool asyncRequest = true)
+            Dictionary<string, string> headerParams = default, string body = default, string authSetting = null)
         {
-            if (!asyncRequest)
-            {
-                return this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting);
-            }
-            else
-            {
-                return CallAsync(path, method, _request_timeout, queryParams, headerParams, body, authSetting)
-                    .Result;
-            }
+
+                return await CallAsync(path, method, _request_timeout, queryParams, headerParams, body, authSetting);
+
         }
 
         public async Task<RestResponse> CallAsync(
@@ -89,11 +83,11 @@ namespace LogicMonitor.DataSDK
 
             )
         {
-            var thread = await Task.FromResult(this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting));
+            var thread = await this.Callapi(path: path, method: method, _request_timeout: _request_timeout, headerParams: headerParams, queryParams: queryParams, body: body, authSetting: authSetting);
             return thread;
         }
 
-        public RestResponse Request(
+        public async Task<RestResponse> Request(
             string method,
             string url,
             TimeSpan _request_timeout,
@@ -113,24 +107,24 @@ namespace LogicMonitor.DataSDK
             }
             if (method == "GET")
             {
-                return rest_client.Get("GET", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
+                return await rest_client.Get("GET", url, queryParams: queryParams, requestTimeout: _request_timeout, headers: headers, body: body);
             }
             else if (method == "POST")
             {
-                return rest_client.Post("POST", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
+                return await rest_client.Post("POST", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
 
             }
             else if (method == "DELETE")
             {
-                return this.rest_client.Delete("DELETE", url, headers: headers, requestTimeout: _request_timeout, body: body, queryParams: queryParams);
+                return await this.rest_client.Delete("DELETE", url, headers: headers, requestTimeout: _request_timeout, body: body, queryParams: queryParams);
             }
             else if (method == "PUT")
             {
-                return rest_client.Put("PUT", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
+                return await rest_client.Put("PUT", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
             }
             else if (method == "PATCH")
             {
-                return rest_client.Patch("PATCH", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
+                return await rest_client.Patch("PATCH", url, queryParams: queryParams, headers: headers, postParams: post_params, requestTimeout: _request_timeout, body: body, gzip: configuration.GZip);
             }
             else
             {

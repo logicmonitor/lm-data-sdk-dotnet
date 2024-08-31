@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using LogicMonitor.DataSDK.Model;
 using Moq;
 using Newtonsoft.Json;
@@ -76,82 +77,82 @@ namespace LogicMonitor.DataSDK.Tests
            return mockIRestClient.Object;
        }
        [Test]
-       public void TestGet()
+       public async Task TestGet()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest(restClient.Object);
 
-           var Response = r.Get(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Get(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
 
        [Test]
-       public void TestPost()
+       public async Task TestPost()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest(restClient.Object);
 
-           var Response = r.Post(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Post(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
 
        [Test]
-       public void TestHead()
+       public async Task TestHead()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest( restClient.Object);
 
-           var Response = r.Head(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Head(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
        [Test]
-       public void TestOptions()
+       public async Task TestOptions()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest( restClient.Object);
 
-           var Response = r.Options(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Options(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
        [Test]
-       public void TestDelete()
+       public async Task TestDelete()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest(restClient.Object);
 
-           var Response = r.Delete(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Delete(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
        [Test]
-       public void TestPut()
+       public async Task TestPut()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest(restClient.Object);
 
-           var Response = r.Put(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Put(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
        [Test]
-       public void TestPatch()
+       public async Task TestPatch()
        {
            Mock<RestClient> restClient = new Mock<RestClient>();
 
            restClient.Setup(c => c.Execute(It.IsAny<RestRequest>())).Returns(new RestResponse { StatusCode = HttpStatusCode.OK, Content = "Test" });
            Rest r = new Rest(restClient.Object);
 
-           var Response = r.Patch(method, url, body, headers, queryParams, requestTimeout);
+           var Response = await r.Patch(method, url, body, headers, queryParams, requestTimeout);
            Assert.AreEqual(HttpStatusCode.OK, Response.StatusCode);
        }
 

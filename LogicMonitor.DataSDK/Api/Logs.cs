@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading.Tasks;
 using LogicMonitor.DataSDK.Internal;
 using LogicMonitor.DataSDK.Model;
 using Newtonsoft.Json;
@@ -37,7 +38,7 @@ namespace LogicMonitor.DataSDK.Api
         /// </summary>
         /// <param name="message">Log Message.</param>
         /// <param name="resource">Resource object.</param>
-        public RestResponse SendLogs(string message, Resource resource, Dictionary<string, string> metadata = default,string timestamp=default)
+        public async Task<RestResponse> SendLogs(string message, Resource resource, Dictionary<string, string> metadata = default,string timestamp=default)
         {
             LogsV1 logs = new LogsV1(message: message, resourceIds: resource.Ids, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), metaData: metadata);
             
@@ -50,7 +51,7 @@ namespace LogicMonitor.DataSDK.Api
             {
                 var body= SingleRequest(logs);
 
-                var response = Send(body);
+                var response = await Send(body);
                 base.ResponseHandler(response);
                 return response;
             }
@@ -65,7 +66,7 @@ namespace LogicMonitor.DataSDK.Api
             return body;
         }
 
-        public override void _doRequest()
+        public override async Task _doRequest()
         {
             List<string> logsV1s = new List<string>();
             foreach (var item in logPayloadCache)
@@ -77,9 +78,9 @@ namespace LogicMonitor.DataSDK.Api
             if (logsV1s.Count > 0)
             {
                 var body = SerializeList(logsV1s);
-                var response = Send(body);
+                var response = await Send(body);
                 base.ResponseHandler(response: response);
-                Console.WriteLine("Res[pnese");
+                //Console.WriteLine("Res[pnese");
 
             }
 
@@ -98,9 +99,9 @@ namespace LogicMonitor.DataSDK.Api
             return body;
 
         }
-        public RestResponse Send(string body)
+        public async Task<RestResponse> Send(string body)
         {
-          return base.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
+          return await base.MakeRequest(path: Constants.Path.LogIngestPath, method: "POST", body: body);
         }
         public override void _mergeRequest()
         {

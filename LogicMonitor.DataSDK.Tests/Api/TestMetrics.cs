@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 using LogicMonitor.DataSDK.Api;
 using LogicMonitor.DataSDK.Internal;
 using LogicMonitor.DataSDK.Model;
@@ -66,14 +67,14 @@ namespace LogicMonitor.DataSDK.Tests.Api
            resource = new Resource(name: resourceName, ids: resourceIds);
        }
        [Test]
-       public void TestBatchSendMetrics()
+       public async Task TestBatchSendMetrics()
        {
            MyResponse responseInterface = new MyResponse();
   
            metrics = new Metrics(batch: true, interval: 0, responseInterface, apiClient);
            Dictionary<string, string> values = new Dictionary<string, string>();
            values.Add("123234252", "100");
-           Assert.AreEqual(null, metrics.SendMetrics(resource,dataSource,dataSourceInstance,dataPoint,values));
+           Assert.AreEqual(null,await  metrics.SendMetricsAsync(resource,dataSource,dataSourceInstance,dataPoint,values));
        }
 
       [TestCase("Mac1-","DotnetSDK","Instance1")]

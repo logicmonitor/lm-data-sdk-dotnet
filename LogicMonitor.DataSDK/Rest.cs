@@ -12,6 +12,7 @@ using RestSharp;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Threading.Tasks;
 
 namespace LogicMonitor.DataSDK
 {
@@ -44,43 +45,43 @@ namespace LogicMonitor.DataSDK
                 headers[Constants.HeaderKey.ContentType] = Constants.HeaderKey.ApplicationJson;
         }
 
-        public RestResponse Get(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
+        public async Task<RestResponse> Get(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.GET;
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse) await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Head(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
+        public async Task<RestResponse> Head(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.HEAD;
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse)await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Options(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
+        public async Task<RestResponse> Options(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.OPTIONS;
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse)await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Delete(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
+        public async Task<RestResponse> Delete(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
             request.Method = Method.DELETE;
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse)await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Post(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default,bool gzip = true )
+        public async Task<RestResponse> Post(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default,bool gzip = true )
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -103,11 +104,11 @@ namespace LogicMonitor.DataSDK
                 request.AddJsonBody(body);
             }
             Request(method, url, body, headers, queryParams, requestTimeout, postParams);
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse)await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Put(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
+        public async Task<RestResponse> Put(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams, TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -129,11 +130,11 @@ namespace LogicMonitor.DataSDK
                 request.AddJsonBody(body);
             }
             Request(method, url, body, headers, queryParams, requestTimeout, postParams);
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse) await client.ExecuteAsync(request);
             return response;
         }
 
-        public RestResponse Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams,  TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
+        public async Task<RestResponse> Patch(string method, string url, string body, Dictionary<string, string> headers, Dictionary<string, string> queryParams,  TimeSpan requestTimeout, Dictionary<string, string> postParams = default, bool gzip = true)
         {
             client.BaseUrl = new System.Uri(url);
             var request = new RestRequest();
@@ -154,7 +155,7 @@ namespace LogicMonitor.DataSDK
                 request.AddJsonBody(body);
             }
             Request(method, url, body, headers, queryParams, requestTimeout, postParams);
-            RestResponse response = (RestResponse)client.Execute(request);
+            RestResponse response = (RestResponse)await client.ExecuteAsync(request);
             return response;
         }
 

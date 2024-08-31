@@ -10,6 +10,7 @@ using RestSharp;
 using System.Collections.Generic;
 using LogicMonitor.DataSDK.Api;
 using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using LogicMonitor.DataSDK.Model;
 
@@ -110,7 +111,7 @@ namespace LogicMonitor.DataSDK.Internal
         }
 
         public abstract void _mergeRequest();
-        public abstract void _doRequest();
+        public abstract Task _doRequest();
 
         public void MergeRequest()
         {
@@ -208,7 +209,7 @@ namespace LogicMonitor.DataSDK.Internal
                 _logger.LogError(e.Message);
             }
         }
-        public RestResponse MakeRequest(string body, string path = default, string method = default, bool create = false, bool asyncRequest = false)
+        public async Task<RestResponse> MakeRequest(string body, string path = default, string method = default, bool create = false, bool asyncRequest = false)
         {
 
             TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
@@ -224,7 +225,7 @@ namespace LogicMonitor.DataSDK.Internal
             headersParams.Add(Constants.HeaderKey.Accept, ApiClient.SelectHeaderAccept("application/json"));
             headersParams.Add(Constants.HeaderKey.ContentType, ApiClient.SelectHeaderContentType("application/json"));
 
-            return ApiClient.CallApi(
+            return await ApiClient.CallApiAsync(
                 path,
                 method,
                 _request_timeout,
@@ -233,6 +234,33 @@ namespace LogicMonitor.DataSDK.Internal
                 body: body,
                 authSetting: authSetting
                 );
+        }
+
+        public async Task<RestResponse> MakeRequestAsync(string body, string path = default, string method = default, bool create = false)
+        {
+
+            TimeSpan _request_timeout = TimeSpan.FromMinutes(2);
+            var queryParams = new Dictionary<string, string>();
+            if (create && path == Constants.Path.MetricIngestPath)
+            {
+                queryParams.Add("create", "true");
+            }
+            var headersParams = new Dictionary<string, string>();
+            string authSetting = "LMv1";
+            if (ApiClient == null)
+                ApiClient = new ApiClient();
+            headersParams.Add(Constants.HeaderKey.Accept, ApiClient.SelectHeaderAccept("application/json"));
+            headersParams.Add(Constants.HeaderKey.ContentType, ApiClient.SelectHeaderContentType("application/json"));
+
+            return await ApiClient.CallApiAsync(
+                path,
+                method,
+                _request_timeout,
+                queryParams,
+                headersParams,
+                body: body,
+                authSetting: authSetting
+            );
         }
     }
 }

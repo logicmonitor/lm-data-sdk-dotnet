@@ -123,7 +123,13 @@ namespace LogicMonitor.DataSDK.Api
 
         }
 
-        
-        
+        private string BuildBody(LogsV1 log)
+        {
+            string body = string.Empty;
+
+
+            return body;    
+        }
+
     }
 }

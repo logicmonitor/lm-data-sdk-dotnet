@@ -27,14 +27,14 @@ namespace LogicMonitor.DataSDK.Model
         public LogsV1(string message, Dictionary<string, string> resourceIds, string timeStamp = default, Dictionary<string, string> metaData = default, LogLevel loglevel=default)
         {
             Message = message;
-            LogLevel = loglevel.ToString();
+            LogLevel = loglevel==default ? null : loglevel.ToString();
             Timestamp = timeStamp;
             MetaData = new Dictionary<string, string>();
             ResourceId = new Dictionary<string, string>();
             MetaData = metaData;
             ResourceId = resourceIds;
         }
-        [DataMember(Name = "log_level", EmitDefaultValue =false)]
+        [DataMember(Name = "log_level", EmitDefaultValue = false)]
         public string LogLevel { get; set; }
 
         [DataMember(Name = "message", EmitDefaultValue = false)]

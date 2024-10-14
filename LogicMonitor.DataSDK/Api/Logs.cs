@@ -12,6 +12,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using LogicMonitor.DataSDK.Internal;
 using LogicMonitor.DataSDK.Model;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -37,9 +38,9 @@ namespace LogicMonitor.DataSDK.Api
         /// </summary>
         /// <param name="message">Log Message.</param>
         /// <param name="resource">Resource object.</param>
-        public RestResponse SendLogs(string message, Resource resource, Dictionary<string, string> metadata = default,string timestamp=default)
+        public RestResponse SendLogs(string message, Resource resource, Dictionary<string, string> metadata = default,string timestamp=default, LogLevel logLevel=default)
         {
-            LogsV1 logs = new LogsV1(message: message, resourceIds: resource.Ids, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), metaData: metadata);
+            LogsV1 logs = new LogsV1(message: message, resourceIds: resource.Ids, DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(), metaData: metadata, loglevel: logLevel);
             
             if (Batch)
             {
@@ -79,7 +80,7 @@ namespace LogicMonitor.DataSDK.Api
                 var body = SerializeList(logsV1s);
                 var response = Send(body);
                 base.ResponseHandler(response: response);
-                Console.WriteLine("Res[pnese");
+                Console.WriteLine("Response");
 
             }
 
@@ -123,7 +124,7 @@ namespace LogicMonitor.DataSDK.Api
 
         }
 
-        
-        
+
+
     }
 }

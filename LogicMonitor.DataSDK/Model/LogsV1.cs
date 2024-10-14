@@ -7,6 +7,7 @@
  */
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace LogicMonitor.DataSDK.Model
@@ -23,15 +24,18 @@ namespace LogicMonitor.DataSDK.Model
         {
         }
 
-        public LogsV1(string message, Dictionary<string, string> resourceIds, string timeStamp = default, Dictionary<string, string> metaData = default)
+        public LogsV1(string message, Dictionary<string, string> resourceIds, string timeStamp = default, Dictionary<string, string> metaData = default, LogLevel loglevel=default)
         {
             Message = message;
+            LogLevel = loglevel==default ? null : loglevel.ToString();
             Timestamp = timeStamp;
             MetaData = new Dictionary<string, string>();
             ResourceId = new Dictionary<string, string>();
             MetaData = metaData;
             ResourceId = resourceIds;
         }
+        [DataMember(Name = "log_level", EmitDefaultValue = false)]
+        public string LogLevel { get; set; }
 
         [DataMember(Name = "message", EmitDefaultValue = false)]
         public string Message { get; set; }

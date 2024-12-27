@@ -77,18 +77,8 @@ namespace LogicMonitor.DataSDK
 
         }
 
-        public Configuration(string company = null, string accessID = null, string accessKey = null, string bearerToken = null)
-        {
-            objectNameValidator = new ObjectNameValidator();
-
-            _company = company ??= Environment.GetEnvironmentVariable("LM_COMPANY");
-            AccessID = accessID ??= Environment.GetEnvironmentVariable("LM_ACCESS_ID");
-            AccessKey = accessKey ??= Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
-            BearerToken = bearerToken ??= Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
-
-            CheckAuthentication();
-        }
-        public Configuration(string company = null, string accessID = null, string accessKey = null, string bearerToken = null, string domainName = "logicmonitor.com")
+        
+        public Configuration(string company = null, string domainName = "logicmonitor.com", string accessID = null, string accessKey = null, string bearerToken = null)
         {
             objectNameValidator = new ObjectNameValidator();
 

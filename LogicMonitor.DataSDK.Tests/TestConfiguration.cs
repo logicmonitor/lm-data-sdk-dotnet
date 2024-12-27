@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright, 2021, LogicMonitor, Inc.
+* Copyright, 2025, LogicMonitor, Inc.
 * This Source Code Form is subject to the terms of the 
 * Mozilla Public License, v. 2.0. If a copy of the MPL 
 * was not distributed with this file, You can obtain 
@@ -53,6 +53,7 @@ namespace LogicMonitor.DataSDK.Tests
 
             Assert.AreEqual(null, msg);
         }
+
        [Test]
        public void TestNullCompany()
        {
@@ -67,10 +68,12 @@ namespace LogicMonitor.DataSDK.Tests
                Assert.AreEqual("Company must have your account name", e.Message);
            }
        }
+
+       
        [TestCase("https://lmabcd.logicmonitor.com/rest")]
        public void TestHost(string expected)
        {
-           Assert.AreEqual(expected, config.host);
+            Assert.AreEqual(expected, config.host);
        }
        [TestCase(false)]
        public void TestAsyncRequestGet(bool async)
@@ -102,5 +105,16 @@ namespace LogicMonitor.DataSDK.Tests
            Assert.AreEqual(company, config.Company);
        }
 
-   }
+        [TestCase("lmabcd")]
+        public void TestDomainNameGet(string DomainName)
+        {
+            Assert.AreEqual(DomainName, config.Company);
+        }
+        [TestCase("lmabcd")]
+        public void TestDomainNameSet(string DomainName)
+        {
+            config.DomainName = "lmabcd";
+            Assert.AreEqual(DomainName, config.Company);
+        }
+    }
 }

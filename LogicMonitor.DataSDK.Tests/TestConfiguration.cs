@@ -105,7 +105,7 @@ namespace LogicMonitor.DataSDK.Tests
            Assert.AreEqual(company, config.Company);
        }
 
-        [TestCase("logicmonitor.com")]
+        [TestCase("lmabcd")]
         public void TestDomainNameGet(string DomainName)
         {
             Assert.AreEqual(DomainName, config.Company);

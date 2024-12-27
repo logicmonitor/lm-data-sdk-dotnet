@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright, 2025, LogicMonitor, Inc.
+ * Copyright, 2022, LogicMonitor, Inc.
  * This Source Code Form is subject to the terms of the 
  * Mozilla Public License, v. 2.0. If a copy of the MPL 
  * was not distributed with this file, You can obtain 
@@ -11,7 +11,6 @@ using LogicMonitor.DataSDK.Utils;
 using LogicMonitor.DataSDK.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Newtonsoft.Json.Linq;
 
 namespace LogicMonitor.DataSDK
 {
@@ -42,12 +41,6 @@ namespace LogicMonitor.DataSDK
         /// Use BearerToken property to set the BearerToken while using Bearer authentication.
         /// </summary>
         public string BearerToken { get; set; }
-
-        /// <summary>
-        /// Set custom endpoint.
-        /// </summary>
-        public string DomainName { get; set; }
-
         /// <summary>
         /// Use this property to set the Account name(Company Name).
         /// </summary>
@@ -57,6 +50,7 @@ namespace LogicMonitor.DataSDK
             set
             {
                 this._company = value;
+                this._host = "https://" + this._company + ".logicmonitor.com/rest";
             }
         }
         /// <summary>
@@ -77,8 +71,7 @@ namespace LogicMonitor.DataSDK
 
         }
 
-        
-        public Configuration(string company = null, string domainName = "logicmonitor.com", string accessID = null, string accessKey = null, string bearerToken = null)
+        public Configuration(string company = null, string accessID = null, string accessKey = null, string bearerToken = null)
         {
             objectNameValidator = new ObjectNameValidator();
 
@@ -86,10 +79,8 @@ namespace LogicMonitor.DataSDK
             AccessID = accessID ??= Environment.GetEnvironmentVariable("LM_ACCESS_ID");
             AccessKey = accessKey ??= Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
             BearerToken = bearerToken ??= Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
-            DomainName = domainName ??= Environment.GetEnvironmentVariable("LM_DOMAIN_NAME");
-            
-            CheckAuthentication();
 
+            CheckAuthentication();
         }
 
 
@@ -132,13 +123,7 @@ namespace LogicMonitor.DataSDK
                 throw new ArgumentException("Invalid Company Name");
             }
 
-            //add validate for domain name
-            //change chost property
-            if (DomainName == null)
-            {
-                DomainName = "logicmonitor.com";
-            }
-            this._host = "https://" + this._company + "." + DomainName + "/rest";
+            this._host = "https://" + this._company + ".logicmonitor.com/rest";
             this.ConnectionPoolMaxsize = Environment.ProcessorCount * 5;
             return true;
         }

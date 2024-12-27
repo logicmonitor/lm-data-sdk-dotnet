@@ -16,21 +16,21 @@ For more details kindly refer -
 GitHub repository: https://github.com/logicmonitor/lm-data-sdk-dotnet
 API reference: https://logicmonitor.github.io/lm-data-sdk-dotnet
     </Description>
-    <Copyright>Copyright, 2024, LogicMonitor, Inc.</Copyright>
+    <Copyright>Copyright, 2022, LogicMonitor, Inc.</Copyright>
     <RootNamespace>LogicMonitor.DataSDK</RootNamespace>
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>	
     <PackageIcon>LM_Icon.png</PackageIcon>	
     <repositorytype>SDK</repositorytype>
-    <Version>0.1.5-alpha</Version>
-    <PackageReleaseNotes>Summary: What's new in 0.1.5-alpha:-
-- Updated Configuration to entry custom endpoint .
+    <Version>0.1.4-alpha</Version>
+    <PackageReleaseNotes>Summary: What's new in 0.1.4-alpha:-
+- Added ability to pass Log Level with a log entry.
     </PackageReleaseNotes>
     <PackOnBuild>true</PackOnBuild>
     <NeutralLanguage>en-US</NeutralLanguage>
     <Owners>Logicmonitor</Owners>
     <Summary>Allows you to send metrics directly to the LogicMonitor platform via a dedicated API, removing the need to route the data through a LogicMonitor Collector.</Summary>
     <Title>LogicMonitor PushMetricSDK</Title>
-    <PackageVersion>0.1.5-alpha</PackageVersion>
+    <PackageVersion>0.1.4-alpha</PackageVersion>
     <Configurations>Release;Debug</Configurations>
   </PropertyGroup>
 

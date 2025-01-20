@@ -72,7 +72,7 @@ namespace LogicMonitor.DataSDK
             AccessID = Environment.GetEnvironmentVariable("LM_ACCESS_ID");
             AccessKey = Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
             BearerToken = Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
-
+            DomainName =  Environment.GetEnvironmentVariable("LM_DOMAIN_NAME");
             CheckAuthentication();
 
         }
@@ -87,7 +87,6 @@ namespace LogicMonitor.DataSDK
             AccessKey = accessKey ??= Environment.GetEnvironmentVariable("LM_ACCESS_KEY");
             BearerToken = bearerToken ??= Environment.GetEnvironmentVariable("LM_BEARER_TOKEN");
             DomainName = domainName ??= Environment.GetEnvironmentVariable("LM_DOMAIN_NAME");
-            
             CheckAuthentication();
 
         }

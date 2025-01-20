@@ -210,7 +210,7 @@ namespace LogicMonitor.DataSDK
             }
             else if (configuration.BearerToken != null)
             {
-                headers.Add("Authorization", string.Format("Bearer={0}", configuration.BearerToken));
+                headers.Add("Authorization", string.Format("Bearer {0}", configuration.BearerToken));
                 return true;
             }
             else

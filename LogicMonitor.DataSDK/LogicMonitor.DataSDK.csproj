@@ -43,6 +43,7 @@ API reference: https://logicmonitor.github.io/lm-data-sdk-dotnet
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <None Include="..\LogicMonitor.DataSDK\LM_Icon.png" Pack="true" PackagePath="\" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>
